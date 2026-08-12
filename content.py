@@ -239,10 +239,10 @@ COLECOES = {
                     {"rotulo": "Pré-wedding ou making of",
                      "valor": "Um ensaio dedicado ao casal ou o registro das horas lindas "
                               "que antecedem o grande sim"},
-                    {"rotulo": "3 câmeras em ação",   "valor": "Cerimônia, recepção, festa e ornamentação"},
+                    {"rotulo": "4 câmeras em ação",   "valor": "Cerimônia, recepção, festa e ornamentação"},
                     {"rotulo": "Áudio profissional",  "valor": "Votos, discursos e homenagens"},
                     {"rotulo": "Filme principal",     "valor": "30 a 40 minutos"},
-                    {"rotulo": "Horas de cobertura",  "valor": "6 horas"},
+                    {"rotulo": "Horas de cobertura",  "valor": "7 horas"},
                     {"rotulo": "2 teasers cinematográficos", "valor": "Filmes curtos e artísticos"},
                     {"rotulo": "Trilha sonora",       "valor": "Escolhida para conduzir a narrativa"},
                     {"rotulo": "Entrega prioritária", "valor": "Em até 45 dias"},
