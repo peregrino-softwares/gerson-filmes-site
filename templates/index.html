@@ -68,7 +68,7 @@
     <div class="shell manifesto-grade">
       <div class="aparece">
         <span class="rotulo">O olhar</span>
-        <h2>O que a memória apaga,<br><em>o filme guarda.</em></h2>
+        <h2>Mais do que lembrar,<br><em>sentir outra vez.</em></h2>
       </div>
 
       <div class="manifesto-texto aparece">
@@ -262,13 +262,16 @@
       <div class="quem-texto aparece">
         <span class="rotulo">{{ quem.rotulo }}</span>
         <h2>{{ quem.chamada }}</h2>
+        {% if quem.intro %}<p class="quem-intro">{{ quem.intro }}</p>{% endif %}
 
         {% for bloco in quem.blocos %}
         <p class="quem-abre">{{ bloco.abre }}</p>
         <p>{{ bloco.texto }}</p>
         {% endfor %}
 
-        <p class="quem-fecho">{{ quem.fecho }}</p>
+        {% for paragrafo in quem.fecho %}
+        <p class="quem-fecho">{{ paragrafo }}</p>
+        {% endfor %}
 
         <a class="link-sub" href="{{ quem.instagram }}" target="_blank" rel="noopener">
           {{ quem.assinatura }} <i aria-hidden="true">↗</i>

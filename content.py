@@ -526,36 +526,49 @@ QUEM = {
     "nome": "Gerson Martins",
     "foto": "gerson.jpg",
     "instagram": "https://instagram.com/gerson.martinss",
-    "chamada": "Piloto de drone, músico, amante da bela arte do cinema.",
+    "chamada": "Antes de trabalhar com filmes de casamento, eu já transitava entre a "
+               "música, a tecnologia e a imagem.",
+    # Segue logo abaixo do título, antes dos blocos.
+    "intro": "Hoje, essas linguagens se encontram na maneira como conto cada história.",
 
     # Cada bloco abre com uma frase curta e desenvolve embaixo.
     "blocos": [
         {
-            "abre": "Antes de filmar eventos eu já exercia a arte.",
-            "texto": "Talvez venha daí uma parte importante do meu jeito de montar um "
-                     "filme. Para mim, música não entra depois para preencher uma edição. "
-                     "Ritmo, pausa, voz, silêncio e imagem precisam nascer juntos. O corte "
-                     "acompanha o que a música pede — e o áudio nunca é tratado como detalhe.",
+            "abre": "Sou músico, e isso atravessa todo o meu processo de montagem.",
+            "texto": "A trilha não entra apenas para acompanhar as cenas: o filme é "
+                     "construído a partir do ritmo do que foi vivido. A entrada de uma voz, "
+                     "a duração de um olhar, uma pausa ou um silêncio — tudo participa da "
+                     "narrativa. Para mim, imagem e som não são camadas separadas; um "
+                     "amplia o significado do outro.",
         },
         {
-            "abre": "Também sou eu quem pilota o drone.",
-            "texto": "Não é uma etapa terceirizada nem uma imagem aérea feita apenas porque "
-                     "fica bonita. É o mesmo olhar que acompanha a história no chão e, em "
-                     "determinado momento, ganha altura. Por isso, as imagens de cima "
-                     "pertencem ao mesmo filme — não parecem acrescentadas depois.",
+            "abre": "Também piloto o drone.",
+            "texto": "Por isso, as imagens aéreas não aparecem como um recurso isolado ou "
+                     "simplesmente decorativo. Elas surgem quando a história pede outra "
+                     "perspectiva. O olhar que acompanha os detalhes no chão é o mesmo que, "
+                     "do alto, revela a dimensão do lugar e a atmosfera daquele momento.",
         },
         {
-            "abre": "E antes de tudo isso, já havia a tecnologia.",
-            "texto": "Trabalho com ela desde antes de ter uma câmera profissional nas mãos. "
-                     "É dessa relação que nasceu, inclusive, este site — feito aqui, linha "
-                     "por linha, para que o filme de vocês tenha um lugar próprio, e não "
-                     "fique perdido em alguma conversa.",
+            "abre": "A tecnologia faz parte da minha trajetória desde antes da primeira "
+                    "câmera profissional.",
+            "texto": "Gosto de compreender e construir as ferramentas que sustentam toda a "
+                     "experiência. Este site, por exemplo, foi desenvolvido por mim, linha "
+                     "por linha, para que cada filme tenha um espaço próprio — organizado, "
+                     "acessível e à altura da história que guarda.",
         },
     ],
 
-    "fecho": "No fim, música, tecnologia, câmera e voo acabaram se encontrando no mesmo lugar.",
+    # Dois parágrafos de fecho, na ordem em que aparecem.
+    "fecho": [
+        "No fim, meu trabalho nasce do encontro entre sensibilidade e precisão: escutar "
+        "antes de cortar, observar antes de enquadrar e compreender antes de registrar.",
+
+        "Música, câmera, tecnologia e voo se tornaram linguagens diferentes para uma mesma "
+        "intenção: preservar não apenas o que aconteceu, mas a maneira como foi vivido.",
+    ],
     "assinatura": "Gerson Martins · Gerson Filmes",
 }
+
 
 
 # ---------------------------------------------------------------

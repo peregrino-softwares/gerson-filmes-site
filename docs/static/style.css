@@ -513,16 +513,19 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .quem-grade { display: grid; grid-template-columns: .78fr 1.22fr; gap: 80px; align-items: center; }
 .quem-retrato { position: relative; background: var(--areia); aspect-ratio: 4 / 5; overflow: hidden; }
 .quem-retrato img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.9); }
-.quem-texto h2 { margin: 22px 0 30px; font-family: var(--serif); font-size: clamp(30px, 3.2vw, 46px); line-height: 1.15; letter-spacing: -.02em; max-width: 620px; }
+/* A frase de abertura é uma sentença inteira, não um mote de três
+   palavras: no corpo antigo ela ocupava quatro linhas. */
+.quem-texto h2 { margin: 22px 0 16px; font-family: var(--serif); font-size: clamp(26px, 2.7vw, 38px); line-height: 1.2; letter-spacing: -.015em; max-width: 680px; }
 .quem-texto p { margin: 0 0 20px; color: var(--cinza-esc); font-size: 15.5px; line-height: 1.85; max-width: 620px; }
 /* As frases curtas do Gerson abrem cada bloco; o corpo desenvolve embaixo.
    Esse degrau é o que dá respiração ao texto. */
+.quem-intro { margin: 0 0 8px !important; font-size: 17px; line-height: 1.75; }
 .quem-abre { margin: 34px 0 10px !important; color: var(--tinta) !important; font-family: var(--serif); font-size: 23px; line-height: 1.35; }
 .quem-abre:first-of-type { margin-top: 0 !important; }
 .quem-fecho { margin-top: 34px !important; font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.45; color: var(--argila-txt) !important; }
 .quem-texto .link-sub { margin-top: 26px; }
 .quem.sem-retrato .quem-grade { grid-template-columns: 1fr; }
-.quem.sem-retrato .quem-texto h2 { font-size: clamp(34px, 4vw, 56px); }
+.quem.sem-retrato .quem-texto h2 { font-size: clamp(30px, 3.2vw, 42px); }
 
 /* ------------------------------------------------------ Depoimentos */
 .vozes { background: var(--osso); color: var(--tinta); }
