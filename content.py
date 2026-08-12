@@ -524,7 +524,7 @@ QUEM = {
     "ativo": True,
     "rotulo": "Filmmaker",
     "nome": "Gerson Martins",
-    "foto": "gerson.webp",   # recortada, sem fundo — o quadro do site entra atrás
+    "foto": "gerson.jpg",
     "instagram": "https://instagram.com/gerson.martinss",
     "chamada": "Antes de trabalhar com filmes de casamento, eu já transitava entre a "
                "música, a tecnologia e a imagem.",
