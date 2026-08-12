@@ -118,15 +118,17 @@ METODO = [
     },
     {
         "rotulo": "Som",
-        "titulo": "O áudio vem junto com a imagem",
-        "texto": "Microfone nos votos, nos discursos, na homenagem. Quando a voz se perde, "
-                 "a cena perde com ela.",
+        "titulo": "O som também conta a história",
+        "texto": "Captamos os votos, discursos e homenagens com microfones dedicados, "
+                 "preservando cada palavra com clareza e emoção. Assim, imagem e áudio se "
+                 "completam para tornar cada momento ainda mais vivo.",
     },
     {
         "rotulo": "Ar",
-        "titulo": "O drone é nosso",
-        "texto": "As imagens aéreas são feitas pela mesma equipe que filma no chão, então o "
-                 "olhar de cima nasce conversando com o de baixo.",
+        "titulo": "Um novo olhar sobre a celebração",
+        "texto": "Nosso drone revela a celebração por uma perspectiva única. Seus movimentos "
+                 "valorizam o cenário, a atmosfera e a dimensão de cada momento, "
+                 "acrescentando elegância e força cinematográfica a toda a celebração.",
     },
     {
         "rotulo": "Presença",
