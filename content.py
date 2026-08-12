@@ -371,11 +371,11 @@ COLECOES = {
     },
 }
 
-# Como se paga. Fica logo abaixo dos preços, na mesma seção: é a primeira
+# Formas de pagamento. Fica logo abaixo dos preços, na mesma seção: é a primeira
 # pergunta de quem olha um valor, e antes ela só existia lá embaixo, nas
 # dúvidas — muita gente fechava a página antes de chegar lá.
 PAGAMENTO = {
-    "rotulo": "Como se paga",
+    "rotulo": "Formas de pagamento",
     "texto": "40% na entrada para reservar a data e o restante até 7 dias antes do "
              "evento. No cartão, em até 12 vezes, com os juros da máquina. "
              "O formato fica combinado antes de assinar.",
@@ -524,7 +524,7 @@ QUEM = {
     "ativo": True,
     "rotulo": "Filmmaker",
     "nome": "Gerson Martins",
-    "foto": "gerson.jpg",
+    "foto": "gerson.webp",   # recortada, sem fundo — o quadro do site entra atrás
     "instagram": "https://instagram.com/gerson.martinss",
     "chamada": "Antes de trabalhar com filmes de casamento, eu já transitava entre a "
                "música, a tecnologia e a imagem.",
@@ -694,10 +694,10 @@ FAQ = [
     },
     {
         "pergunta": "O que vocês publicam do nosso filme?",
-        "resposta": "Trechos curtos, e só com a sua autorização. O filme inteiro não vai "
-                    "para lugar nenhum: para mostrar o trabalho usamos recortes de poucos "
-                    "segundos, escolhidos para preservar a intimidade de vocês. Se preferir "
-                    "que nada seja publicado, é só dizer — o filme fica só com vocês.",
+        "resposta": "Para apresentar nosso trabalho, utilizamos apenas recortes de "
+                    "poucos segundos, selecionados com cuidado e destinados exclusivamente "
+                    "ao portfólio. A intimidade de vocês é sempre preservada, e o filme "
+                    "completo nunca é publicado ou compartilhado sem autorização.",
     },
 ]
 
