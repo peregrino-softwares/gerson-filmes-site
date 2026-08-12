@@ -22,6 +22,14 @@ from app import app, content
 BASE_DIR = Path(__file__).resolve().parent
 DOCS_DIR = BASE_DIR / "docs"
 
+# Sem domínio próprio (MARCA["site_url"] vazio), o site mora dentro de uma
+# pasta: https://peregrino-softwares.github.io/gerson-filmes-site/, e não
+# na raiz. Precisa disso para os links entre páginas — Início, Casamentos,
+# os vídeos — nascerem já com esse prefixo. Quando o domínio voltar a ser
+# preenchido, o prefixo some sozinho e tudo passa a apontar para a raiz.
+ENDERECO_PADRAO_PAGES = "https://peregrino-softwares.github.io/gerson-filmes-site"
+BASE_URL = content.MARCA.get("site_url") or ENDERECO_PADRAO_PAGES
+
 # Cada página vira uma pasta com um index.html, para o endereço final não
 # precisar de extensão (gersonfilmes.com.br/casamentos, não .../casamentos.html).
 PAGINAS = {
@@ -41,7 +49,7 @@ def congelar():
 
     with app.test_client() as cliente:
         for rota, destino in PAGINAS.items():
-            resposta = cliente.get(rota)
+            resposta = cliente.get(rota, base_url=BASE_URL)
             if resposta.status_code != 200:
                 raise SystemExit(f"{rota} devolveu {resposta.status_code}, esperado 200")
             caminho = DOCS_DIR / destino
@@ -50,11 +58,11 @@ def congelar():
 
         # A página de erro do GitHub Pages precisa se chamar exatamente
         # 404.html e morar na raiz — é onde o Pages já procura sozinho.
-        erro = cliente.get("/uma-pagina-que-nao-existe")
+        erro = cliente.get("/uma-pagina-que-nao-existe", base_url=BASE_URL)
         (DOCS_DIR / "404.html").write_bytes(erro.data)
 
         for rota in ("/robots.txt", "/sitemap.xml"):
-            resposta = cliente.get(rota)
+            resposta = cliente.get(rota, base_url=BASE_URL)
             (DOCS_DIR / rota.lstrip("/")).write_bytes(resposta.data)
 
     shutil.copytree(BASE_DIR / "static", DOCS_DIR / "static")

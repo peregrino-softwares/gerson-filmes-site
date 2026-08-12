@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /cliente
-Sitemap: https://www.gersonfilmes.com.br/sitemap.xml
+Sitemap: https://peregrino-softwares.github.io/gerson-filmes-site/sitemap.xml

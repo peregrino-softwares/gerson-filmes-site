@@ -26,7 +26,7 @@ MARCA = {
     "regiao": "Minas Gerais",
     "atendimento": "Sete Lagoas e região, Belo Horizonte e todo o Brasil",
     "email": "gersonfilmess@gmail.com",
-    "site_url": "https://www.gersonfilmes.com.br",
+    "site_url": "",  # ⚠️ CONFIRA: vazio de propósito — veja a nota abaixo
 }
 
 WHATSAPP_MENSAGEM = "Olá, Gerson. Vi seu site e queria conversar sobre uma data."
