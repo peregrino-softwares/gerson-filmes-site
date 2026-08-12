@@ -198,17 +198,17 @@ PROCESSO = [
 COLECOES = {
     "Casamento": {
         "titulo": "Casamentos",
-        "nota": "Valores de referência para Sete Lagoas, Belo Horizonte e região. O que "
-                "muda de uma opção para outra são as horas de cobertura, quantas câmeras "
-                "registram o dia e até onde o drone alcança. Viagem e duração real do "
-                "evento ajustam o valor final.",
+        "nota": "Os valores apresentados são referências para Sete Lagoas, Belo "
+                "Horizonte e região. Cada opção varia conforme o tempo de cobertura, o "
+                "número de câmeras e a abrangência das imagens aéreas. Deslocamentos e a "
+                "duração efetiva do evento são considerados na composição do valor final.",
 
-        # Aparece logo abaixo dos três cartões.
-        "flexibilidade": "Cada casamento tem o seu desenho. Se algum item não fizer sentido "
-                         "para vocês, ele pode ser trocado por outro de valor equivalente — "
-                         "e o valor da opção permanece o mesmo. Ajustes e acréscimos são "
-                         "conversados pelo WhatsApp e registrados em contrato, para que "
-                         "nada dependa de memória.",
+        # Aparece logo abaixo da nota, antes dos cartões.
+        "flexibilidade": "Se alguma opção não se encaixar no que vocês imaginam, ela pode "
+                         "ser personalizada com itens de valor equivalente, sem alteração "
+                         "no valor escolhido. Ajustes e acréscimos são alinhados pelo "
+                         "WhatsApp e formalizados em contrato, garantindo clareza e "
+                         "segurança em cada detalhe.",
 
         "pacotes": [
             {

@@ -119,7 +119,6 @@
           <span class="rotulo">Como trabalhamos</span>
           <h2 class="titulo">Sete decisões que<br>mudam o resultado.</h2>
         </div>
-        <p class="corpo">Nada aqui é promessa de marketing: é o que fazemos em cada evento, e o motivo de fazer assim.</p>
       </div>
 
       <div class="metodo-grade">
@@ -161,7 +160,7 @@
     <div class="shell">
       <div class="colecoes-cabeca aparece">
         <div>
-          <span class="rotulo">Orçamento</span>
+          <span class="rotulo">Orçamentos</span>
           <h2 class="titulo">Um ponto de partida<br><em>para cada história.</em></h2>
         </div>
       </div>
@@ -185,6 +184,9 @@
            {% if not loop.first %}hidden{% endif %}>
 
         <p class="painel-nota">{{ grupo.nota }}</p>
+        {% if grupo.flexibilidade %}
+        <p class="flexibilidade">{{ grupo.flexibilidade }}</p>
+        {% endif %}
 
         <div class="pacotes {% if grupo.pacotes|length == 2 %}dois{% endif %}">
           {% for pacote in grupo.pacotes %}
@@ -228,9 +230,6 @@
           {{ pagamento.texto }}
         </p>
 
-        {% if grupo.flexibilidade %}
-        <p class="flexibilidade">{{ grupo.flexibilidade }}</p>
-        {% endif %}
       </div>
       {% endfor %}
     </div>

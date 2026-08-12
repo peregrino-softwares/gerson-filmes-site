@@ -59,12 +59,15 @@
     <div class="shell">
       <div class="colecoes-cabeca aparece">
         <div>
-          <span class="rotulo">Orçamento</span>
+          <span class="rotulo">Orçamentos</span>
           <h2 class="titulo">Um ponto de partida<br><em>para cada história.</em></h2>
         </div>
       </div>
 
       <p class="setor-nota aparece">{{ grupo.nota }}</p>
+      {% if grupo.flexibilidade %}
+      <p class="flexibilidade aparece">{{ grupo.flexibilidade }}</p>
+      {% endif %}
 
       <div class="pacotes {% if grupo.pacotes|length == 2 %}dois{% endif %}">
         {% for pacote in grupo.pacotes %}
@@ -103,9 +106,6 @@
         {% endfor %}
       </div>
 
-      {% if grupo.flexibilidade %}
-      <p class="flexibilidade aparece">{{ grupo.flexibilidade }}</p>
-      {% endif %}
     </div>
   </section>
 

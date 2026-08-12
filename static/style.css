@@ -354,6 +354,9 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 /* ------------------------------------------------------ O que filmo */
 .filmo { background: var(--tinta); }
 .secao-cabeca { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 90px; }
+/* Sem o parágrafo ao lado, o cabeçalho não fica preso à metade da largura:
+   a de Como trabalhamos ficou só com o título. */
+.secao-cabeca:has(> :only-child) { grid-template-columns: 1fr; }
 .secao-cabeca .titulo { margin-top: 18px; }
 .secao-cabeca p { margin: 0 0 6px; }
 
@@ -462,13 +465,17 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 
 .pacote-num b { font-weight: 500; color: var(--osso); letter-spacing: .14em; text-transform: uppercase; }
 
-/* Nota de flexibilidade, logo abaixo dos três cartões. Fica recuada e em
-   itálico para não competir com os preços — é ressalva, não oferta. */
+/* Nota de flexibilidade, logo abaixo da nota de valores e antes dos cartões.
+   Fica recuada e em itálico para não competir com os preços — é ressalva,
+   não oferta. Só a coleção de casamento tem essa nota hoje, por isso o
+   espaçamento é resolvido por :has() em vez de mudar a nota para todas. */
 .flexibilidade {
-  max-width: 720px; margin: 34px 0 0; padding-left: 22px;
+  max-width: 720px; margin: 0 0 46px; padding-left: 22px;
   border-left: 1px solid var(--argila);
   color: var(--cinza); font-size: 13.5px; line-height: 1.8; font-style: italic;
 }
+.painel-nota:has(+ .flexibilidade),
+.setor-nota:has(+ .flexibilidade) { margin-bottom: 22px; }
 .pacote-link { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--linha); display: flex; align-items: center; justify-content: space-between; gap: 14px; font-size: 13px; }
 .pacote-link i { font-style: normal; color: var(--argila-cl); transition: transform .3s ease; }
 .pacote-link:hover i { transform: translateX(6px); }
