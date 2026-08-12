@@ -23,9 +23,8 @@ Abra o **`content.py`**. Tudo que precisa da sua conferência está marcado com
 2. **Preços e prazos de casamento** — confira se ainda valem.
 3. **Dois depoimentos** — o da Fernanda e Tiago é seu; os outros dois são
    exemplos de formato. Troque pelos reais.
-4. **Domínio** — já está preenchido em `MARCA["site_url"]`
-   (`https://www.gersonfilmes.com.br`). Falta apontá-lo no registrador; veja
-   *O domínio*, no fim.
+4. **Domínio** — pronto e no ar em `https://www.gersonfilmes.com.br`.
+   Nada a fazer; os detalhes ficam em *O domínio*, no fim.
 
 ---
 
@@ -348,25 +347,22 @@ ficam guardados na memória deste projeto; a ideia geral:
 
 ### O domínio
 
-`www.gersonfilmes.com.br` já está escrito em `MARCA["site_url"]` — o
-`build_static.py` usa esse mesmo endereço para gerar o arquivo `CNAME` que o
-GitHub Pages exige, e para preencher o sitemap e os links de compartilhamento.
-Falta o lado de fora, no site onde o domínio foi comprado (registrador):
+**Está no ar em https://www.gersonfilmes.com.br** desde 12/08/2026. Quem
+digita `gersonfilmes.com.br` sem o `www` é levado para lá sozinho, e os dois
+endereços têm cadeado (certificado emitido pelo GitHub, renovado sozinho).
 
-1. Criar um registro **CNAME** apontando `www` para
-   `peregrino-softwares.github.io`.
-2. Para `gersonfilmes.com.br` sem o `www` também funcionar, usar o
-   **encaminhamento de domínio** (domain forwarding) que a maioria dos
-   registradores oferece pronto, redirecionando para
-   `https://www.gersonfilmes.com.br`. Se o seu registrador não tiver essa
-   opção, o outro caminho é cadastrar 4 registros **A** no domínio sem `www`,
-   apontando para: `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e
-   `185.199.111.153` (são IPs fixos do GitHub Pages).
-3. No GitHub, em **Settings → Pages** do repositório, cadastrar
-   `www.gersonfilmes.com.br` como domínio personalizado e marcar **Enforce
-   HTTPS** assim que a opção aparecer (o certificado leva alguns minutos
-   para ser emitido depois do DNS propagar).
+O que está configurado, caso um dia precise conferir ou refazer:
 
-Enquanto o DNS não propaga — de minutos a algumas horas — o endereço
-`https://peregrino-softwares.github.io/gerson-filmes-site/` continua
-servindo a mesma versão.
+| Onde | O quê |
+|---|---|
+| Registro.br, zona DNS | 4 registros `A` no domínio (vazio no campo Nome) para `185.199.108.153`, `.109`, `.110` e `.111` |
+| Registro.br, zona DNS | 1 `CNAME` de nome `www` para `peregrino-softwares.github.io` |
+| `content.py` | `MARCA["site_url"]` — é dele que saem o `docs/CNAME`, o sitemap e os links de compartilhamento |
+| GitHub, Settings → Pages | domínio `www.gersonfilmes.com.br`, com *Enforce HTTPS* ligado |
+
+⚠️ **Se um dia esvaziar o `site_url`**, o `build_static.py` volta a gerar o
+site para o endereço `peregrino-softwares.github.io/gerson-filmes-site/`, com
+todos os links dentro dessa subpasta — e some o `docs/CNAME`. É proposital:
+serve para publicar sem domínio. Mas aí o domínio precisa ser retirado
+também em Settings → Pages, senão o GitHub redireciona para um endereço que
+o site não atende mais.
