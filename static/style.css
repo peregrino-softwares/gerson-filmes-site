@@ -684,7 +684,9 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .recado-caixa { width: min(680px, var(--shell)); background: var(--osso); color: var(--tinta); padding: 64px 56px; }
 .recado-caixa h1 { margin: 24px 0 20px; font-family: var(--serif); font-size: clamp(42px, 4.8vw, 66px); line-height: 1.02; letter-spacing: -.03em; }
 .recado-caixa > p { margin: 0 0 34px; max-width: 460px; color: var(--cinza-esc); font-size: 16px; line-height: 1.8; }
-.recado-extra { margin-top: 46px; padding-top: 28px; border-top: 1px solid var(--linha-esc); display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+/* auto-fit, e não 1fr 1fr: com a área do cliente desligada sobra um bloco
+   só, e a coluna fixa deixava um buraco do lado direito. */
+.recado-extra { margin-top: 46px; padding-top: 28px; border-top: 1px solid var(--linha-esc); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px; }
 .recado-extra div { display: grid; gap: 8px; }
 .recado-extra span { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza-2); }
 .recado-extra a { font-size: 14px; border-bottom: 1px solid var(--linha-esc); padding-bottom: 4px; justify-self: start; }

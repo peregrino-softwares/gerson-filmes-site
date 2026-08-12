@@ -3,6 +3,10 @@
 Site em Flask com página de apresentação, formulário que abre o WhatsApp
 já preenchido e área reservada onde cada cliente assiste e baixa o próprio filme.
 
+> **A área do cliente está desligada** enquanto o site estiver no plano
+> gratuito do Render — lá o servidor não tem disco e apagaria os acessos a
+> cada publicação. Para religar, veja *Publicar no Render*, no fim.
+
 ---
 
 ## ⚠️ Antes de publicar
@@ -16,10 +20,9 @@ Abra o **`content.py`**. Tudo que precisa da sua conferência está marcado com
 2. **Preços e prazos de casamento** — confira se ainda valem.
 3. **Dois depoimentos** — o da Fernanda e Tiago é seu; os outros dois são
    exemplos de formato. Troque pelos reais.
-4. **Domínio** em `MARCA["site_url"]` — está vazio de propósito. Enquanto
-   estiver assim, o site descobre sozinho o próprio endereço, então nada
-   quebra. Quando comprar o domínio, cole ali e o Google passa a indexar por
-   ele.
+4. **Domínio** — já está preenchido em `MARCA["site_url"]`
+   (`https://www.gersonfilmes.com.br`). Falta apontá-lo no Render; veja
+   *O domínio*, no fim.
 
 ---
 
@@ -33,8 +36,8 @@ Abra o **`content.py`**. Tudo que precisa da sua conferência está marcado com
 | `/eventos`        | Setor de eventos                                   |
 | `/orcamento`      | Formulário → abre o WhatsApp organizado            |
 | `/obrigado`       | Confirmação e abertura da conversa                 |
-| `/cliente`        | Login da área reservada                            |
-| `/cliente/painel` | Filmes e downloads de cada cliente                 |
+| `/cliente`        | Login da área reservada — *desligada por enquanto* |
+| `/cliente/painel` | Filmes e downloads de cada cliente — *desligada*   |
 | `/robots.txt`     | Instruções para buscadores                         |
 | `/sitemap.xml`    | Mapa do site                                       |
 
@@ -156,8 +159,9 @@ Abra `http://127.0.0.1:5000`.
 ## ⚠️ Cópias antigas deste site no Desktop
 
 ```text
-Meu SIte\JULHO 2026\1\gerson_filmes_v4          ← ESTA. É a atual.
-Meu SIte\JULHO 2026\1\gerson_filmes_v3             backup: paleta terracota, sem página de 15 anos
+Meu SIte\JULHO 2026\1\gerson_filmes_v21         ← ESTA. É a atual.
+Meu SIte\JULHO 2026\1\gerson_filmes_v20            backup: o domínio entrou aqui
+Meu SIte\JULHO 2026\1\gerson_filmes_v3 … v19       backups, do mais antigo ao mais novo
 Meu SIte\JULHO 2026\1\gerson_filmes_minimalista    backup antigo
 Meu SIte\JULHO 2026\2\gerson_filmes_minimalista    tinha o teaser — já trazido
 Meu SIte\gerson_filmes_minimalista                 antiga
@@ -280,9 +284,63 @@ só é baixado quando alguém aperta o play.
 
 ## Publicar no Render
 
-O `render.yaml` já traz tudo. No painel, cadastre `SECRET_KEY`,
-`WHATSAPP_NUMBER` (5531998851328) e `HTTPS_ONLY` (1).
+O código vive no GitHub, em `peregrino-softwares/gerson-filmes-site`. O Render
+lê esse repositório: **publicar é dar `git push`** — ele reconstrói sozinho.
 
-**Atenção:** o banco (`private/clients.db`) e a pasta `uploads/` precisam de
-disco persistente. Sem isso, cada publicação apaga os acessos dos clientes e
-os filmes enviados.
+```bash
+git add -A
+```
+
+```bash
+git commit -m "o que mudou"
+```
+
+```bash
+git push
+```
+
+O `render.yaml` já traz tudo pronto (plano, região, variáveis). Na primeira
+vez, no painel do Render: **New → Blueprint**, aponte para o repositório e
+confirme. As variáveis vêm do arquivo; a `SECRET_KEY` ele sorteia sozinho.
+
+### O que o plano gratuito faz
+
+| | Grátis (agora) | Starter, US$ 7/mês |
+|---|---|---|
+| Site no ar | dorme após 15 min sem visita; a primeira pessoa espera ~50 s | sempre acordado |
+| Disco | não existe | 1 GB que sobrevive à publicação |
+| Área do cliente | desligada | funciona |
+| Orçamentos recebidos | chegam pelo WhatsApp; a cópia salva aqui se perde no reinício | cópia guardada |
+
+**O formulário continua funcionando no plano gratuito** — ele abre a conversa
+no seu WhatsApp, e é por lá que o pedido chega. O que se perde no reinício é só
+a cópia guardada no servidor (`leads/orcamentos.txt` e o banco).
+
+### Religar a área do cliente
+
+Três passos, quando quiser assinar o plano pago:
+
+1. No `render.yaml`, troque `plan: free` por `plan: starter` e acrescente o
+   bloco `disk:` que está comentado no fim do arquivo.
+2. No `content.py`, troque `AREA_CLIENTE = False` por `True`.
+3. No `app.py`, faça o banco e os uploads morarem no disco — as duas linhas
+   passam a ler o caminho montado:
+
+   ```python
+   DADOS_DIR = Path(os.getenv("DADOS_DIR", BASE_DIR))
+   DB_PATH = DADOS_DIR / "private" / "clients.db"
+   UPLOADS_DIR = DADOS_DIR / "uploads"
+   ```
+
+   e no `render.yaml` acrescente `DADOS_DIR` com o valor `/var/data`. Sem isso
+   o disco fica montado sem ninguém usar, e os acessos continuam sumindo.
+
+### O domínio
+
+`www.gersonfilmes.com.br` já está escrito em `MARCA["site_url"]`, então o
+sitemap e os links de compartilhamento já apontam para lá. Falta ligar no
+Render: **Settings → Custom Domains**, cadastre `www.gersonfilmes.com.br` e
+`gersonfilmes.com.br`, e no registrador do domínio aponte o que o Render pedir
+(um `CNAME` para o www e o redirecionamento do domínio sem www). Enquanto o DNS
+não propaga — costuma levar de minutos a algumas horas — o endereço
+`gerson-filmes.onrender.com` continua servindo.

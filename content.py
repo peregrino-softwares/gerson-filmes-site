@@ -31,6 +31,16 @@ MARCA = {
 
 WHATSAPP_MENSAGEM = "Olá, Gerson. Vi seu site e queria conversar sobre uma data."
 
+# A área do cliente (login, filmes e downloads) fica desligada enquanto o
+# site estiver no plano gratuito do Render. Sem disco próprio, o servidor
+# apaga o banco e os arquivos enviados a cada publicação — quem entrasse
+# ali perderia o acesso sem entender por quê.
+#
+# Trocar para True quando o plano virar pago e o disco existir. Isso faz
+# voltar sozinho: o link no menu, o link no rodapé, o convite da página de
+# obrigado e as páginas /cliente. Nenhuma outra linha precisa mudar.
+AREA_CLIENTE = False
+
 # Mensagem montada quando alguém envia o formulário. O que está entre
 # chaves é preenchido sozinho — não mude os nomes dentro das chaves.
 WHATSAPP_FORMULARIO = """Olá, Gerson. Vim pelo site e queria conversar sobre a minha data.
@@ -53,7 +63,7 @@ FICHA = [
     {"rotulo": "Atendimento",  "valor": "Sete Lagoas e região, BH e todo o Brasil"},
     {"rotulo": "Equipamentos", "valor": "Sony Cinema, drones DJI e Zoom 32 bit float"},
     {"rotulo": "Equipe",       "valor": "Especializada em eventos de grande porte"},
-    {"rotulo": "Entrega",      "valor": "Prazo em contrato, na sua área de cliente"},
+    {"rotulo": "Entrega",      "valor": "Prazo definido em contrato"},
 ]
 
 
@@ -169,8 +179,8 @@ PROCESSO = [
     {
         "indice": "04",
         "titulo": "Entrega",
-        "texto": "O filme chega na sua área de cliente. Você assiste, baixa e guarda a "
-                 "cópia onde quiser.",
+        "texto": "O filme chega por um link privado, só de vocês. Você assiste, baixa e "
+                 "guarda a cópia onde quiser.",
     },
 ]
 
@@ -522,9 +532,9 @@ QUEM = {
         {
             "abre": "E antes de tudo isso, já havia a tecnologia.",
             "texto": "Trabalho com ela desde antes de ter uma câmera profissional nas mãos. "
-                     "É dessa relação que nasceu, inclusive, a área de cliente deste site: "
-                     "um espaço próprio para guardar e rever seus filmes, sem depender de um "
-                     "link perdido em alguma conversa.",
+                     "É dessa relação que nasceu, inclusive, este site — feito aqui, linha "
+                     "por linha, para que o filme de vocês tenha um lugar próprio, e não "
+                     "fique perdido em alguma conversa.",
         },
     ],
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Recebido — {{ marca.nome }}{% endblock %}
-{% block description %}Recebi sua mensagem. Vamos continuar a conversa pelo WhatsApp.{% endblock %}
+{% block description %}Recebemos sua mensagem. Vamos continuar a conversa pelo WhatsApp.{% endblock %}
 {% block body_class %}pagina-interna{% endblock %}
 
 {% block content %}
@@ -20,10 +20,12 @@
         <span>Enquanto isso</span>
         <a href="{{ marca.instagram }}" target="_blank" rel="noopener">Ver filmes no {{ marca.instagram_arroba }}</a>
       </div>
+      {% if area_cliente %}
       <div>
         <span>Já é cliente?</span>
         <a href="{{ url_for('cliente') }}">Entrar na área do cliente</a>
       </div>
+      {% endif %}
     </div>
   </section>
 </main>

@@ -1,13 +1,41 @@
 services:
   - type: web
     name: gerson-filmes
-    env: python
+    runtime: python
+    plan: free
+    # Virginia é a região mais perto do Brasil entre as do Render.
+    region: virginia
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    # Dois trabalhadores com fatias de tempo: enquanto alguém baixa o vídeo
+    # da abertura, o site continua respondendo para as outras pessoas. Com um
+    # só, o vídeo segurava a fila.
+    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 60
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.6
       - key: SECRET_KEY
         generateValue: true
       - key: WHATSAPP_NUMBER
         value: 5531998851328
       - key: HTTPS_ONLY
         value: 1
+
+# ------------------------------------------------------------------
+# Quando virar plano pago e a área do cliente voltar
+# ------------------------------------------------------------------
+# No plano gratuito não existe disco: o servidor recomeça do zero a cada
+# publicação, então o banco (private/clients.db) e a pasta uploads/ seriam
+# apagados. Por isso a área do cliente está desligada em content.py
+# (AREA_CLIENTE = False).
+#
+# Para religar, troque `plan: free` por `plan: starter`, acrescente o bloco
+# abaixo dentro do serviço e ponha AREA_CLIENTE = True:
+#
+#     disk:
+#       name: dados
+#       mountPath: /var/data
+#       sizeGB: 1
+#
+# O disco monta numa pasta fora do projeto, então o app precisa saber
+# guardar as coisas lá — é uma linha em app.py (BASE_DIR dos dados) e
+# está anotada no README.

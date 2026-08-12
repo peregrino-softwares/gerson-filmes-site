@@ -27,6 +27,12 @@ LEADS_DIR = BASE_DIR / "leads"
 
 WHATSAPP = os.getenv("WHATSAPP_NUMBER", content.MARCA["whatsapp"])
 
+# Área do cliente: ligada ou desligada em content.py. Enquanto o servidor não
+# tiver disco próprio, ela fica fora do ar de propósito — o banco e os arquivos
+# seriam apagados a cada publicação. Desligada, some do site e as páginas
+# respondem 404; ligada, tudo volta sem mais nenhuma mudança.
+AREA_CLIENTE = getattr(content, "AREA_CLIENTE", True)
+
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "troque-esta-chave-em-producao")
 app.config.update(
@@ -163,6 +169,8 @@ def inject_content():
         "pacotes_por_tipo": content.PACOTES_POR_TIPO,
         "como_conheceu": content.COMO_CONHECEU,
         "whatsapp_link": whatsapp_link(content.WHATSAPP_MENSAGEM),
+        # Desligada, some do menu, do rodapé e da página de obrigado.
+        "area_cliente": AREA_CLIENTE,
         "ano": datetime.now().year,
     }
 
@@ -295,6 +303,22 @@ def registrar_lead(dados):
 
 
 # ---------------------------------------------------------------- cliente
+def area_ligada(view):
+    """Fecha a área do cliente quando AREA_CLIENTE está desligada.
+
+    Esconder o link do menu não bastaria: quem tivesse o endereço salvo
+    entraria assim mesmo, criaria acesso e o perderia na publicação
+    seguinte. Com o 404, a parte que ainda não se sustenta simplesmente
+    não existe para o visitante.
+    """
+    @wraps(view)
+    def wrapped(*args, **kwargs):
+        if not AREA_CLIENTE:
+            abort(404)
+        return view(*args, **kwargs)
+    return wrapped
+
+
 def login_required(view):
     @wraps(view)
     def wrapped(*args, **kwargs):
@@ -305,6 +329,7 @@ def login_required(view):
 
 
 @app.route("/cliente", methods=["GET", "POST"])
+@area_ligada
 def cliente():
     if request.method == "GET":
         if session.get("client_id"):
@@ -329,6 +354,7 @@ def cliente():
 
 
 @app.get("/cliente/painel")
+@area_ligada
 @login_required
 def cliente_painel():
     with db_connection() as con:
@@ -370,6 +396,7 @@ def arquivo_autorizado(filename):
 
 
 @app.get("/cliente/assistir/<path:filename>")
+@area_ligada
 @login_required
 def cliente_assistir(filename):
     if not arquivo_autorizado(filename):
@@ -378,6 +405,7 @@ def cliente_assistir(filename):
 
 
 @app.get("/cliente/baixar/<path:filename>")
+@area_ligada
 @login_required
 def cliente_baixar(filename):
     if not arquivo_autorizado(filename):
@@ -423,4 +451,6 @@ def pagina_nao_encontrada(_erro):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # A porta vem de PORT quando existir, para poder rodar duas versões do
+    # site ao mesmo tempo sem uma tomar o lugar da outra.
+    app.run(debug=True, port=int(os.getenv("PORT", "5000")))
