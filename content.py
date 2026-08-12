@@ -31,14 +31,14 @@ MARCA = {
 
 WHATSAPP_MENSAGEM = "Olá, Gerson. Vi seu site e queria conversar sobre uma data."
 
-# A área do cliente (login, filmes e downloads) fica desligada enquanto o
-# site estiver no plano gratuito do Render. Sem disco próprio, o servidor
-# apaga o banco e os arquivos enviados a cada publicação — quem entrasse
-# ali perderia o acesso sem entender por quê.
+# A área do cliente (login, filmes e downloads) fica desligada porque o site
+# publicado hoje é estático, no GitHub Pages — não existe servidor rodando
+# para conferir senha nem para guardar quem tem acesso a quê.
 #
-# Trocar para True quando o plano virar pago e o disco existir. Isso faz
-# voltar sozinho: o link no menu, o link no rodapé, o convite da página de
-# obrigado e as páginas /cliente. Nenhuma outra linha precisa mudar.
+# Trocar para True só faz sentido se um dia o site voltar a rodar num
+# servidor de verdade (como o Render, com disco). Nesse caso, a chave liga
+# sozinha: o link no menu, o link no rodapé, o convite da página de obrigado
+# e as páginas /cliente. Nenhuma outra linha precisa mudar.
 AREA_CLIENTE = False
 
 # Mensagem montada quando alguém envia o formulário. O que está entre

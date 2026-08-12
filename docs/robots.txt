@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /cliente
+Sitemap: https://www.gersonfilmes.com.br/sitemap.xml

@@ -1,11 +1,14 @@
 # Gerson Filmes — site oficial
 
-Site em Flask com página de apresentação, formulário que abre o WhatsApp
-já preenchido e área reservada onde cada cliente assiste e baixa o próprio filme.
+O conteúdo é editado em Flask — mexendo em `content.py` — mas o que fica no
+ar é uma **versão estática**, gerada por `build_static.py` e publicada de
+graça e sempre ligada no GitHub Pages. Formulário que abre o WhatsApp já
+preenchido, sem precisar de servidor nenhum rodando por trás.
 
-> **A área do cliente está desligada** enquanto o site estiver no plano
-> gratuito do Render — lá o servidor não tem disco e apagaria os acessos a
-> cada publicação. Para religar, veja *Publicar no Render*, no fim.
+> **A área do cliente está desligada.** O site publicado é só arquivos
+> parados — não existe um servidor por trás para conferir senha. Ela volta
+> se um dia o site precisar rodar num servidor de verdade; veja *Religar a
+> área do cliente*, no fim.
 
 ---
 
@@ -21,7 +24,7 @@ Abra o **`content.py`**. Tudo que precisa da sua conferência está marcado com
 3. **Dois depoimentos** — o da Fernanda e Tiago é seu; os outros dois são
    exemplos de formato. Troque pelos reais.
 4. **Domínio** — já está preenchido em `MARCA["site_url"]`
-   (`https://www.gersonfilmes.com.br`). Falta apontá-lo no Render; veja
+   (`https://www.gersonfilmes.com.br`). Falta apontá-lo no registrador; veja
    *O domínio*, no fim.
 
 ---
@@ -152,7 +155,10 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Abra `http://127.0.0.1:5000`.
+Abra `http://127.0.0.1:5000`. Esse é o **modo de edição** — mexe em
+`content.py`, atualiza a página e confere na hora. É diferente do site
+publicado, que é a versão estática (veja abaixo); serve para conferir antes
+de gerar essa versão.
 
 ---
 
@@ -178,13 +184,19 @@ antes de dar `python app.py`.
 
 ## Ver os orçamentos recebidos
 
-Cada pedido é gravado no banco e em `leads/orcamentos.txt`.
+No site publicado (estático), cada pedido chega **só pelo WhatsApp** — é lá
+que fica o registro. `admin_seed.py ver-pedidos` só mostra algo se alguém
+enviou o formulário rodando `python app.py` localmente; no ar, essa cópia
+não existe, porque não há servidor por trás para gravá-la.
 
 ```bash
 python admin_seed.py ver-pedidos
 ```
 
 ## Criar o acesso de um cliente
+
+⚠️ **Isto só funciona rodando `python app.py`.** A área do cliente está
+desligada no site publicado; veja a nota no topo deste arquivo.
 
 ```bash
 python admin_seed.py criar-cliente --nome "Ana e Lucas" --email "casal@email.com" --senha "uma-senha-forte"
@@ -282,10 +294,18 @@ só é baixado quando alguém aperta o play.
 
 ---
 
-## Publicar no Render
+## Publicar no GitHub Pages
 
-O código vive no GitHub, em `peregrino-softwares/gerson-filmes-site`. O Render
-lê esse repositório: **publicar é dar `git push`** — ele reconstrói sozinho.
+O site vive em `peregrino-softwares/gerson-filmes-site` (público — precisa
+ser público para o GitHub Pages ser gratuito). O que fica no ar é a pasta
+`docs/`, então publicar tem um passo a mais que um `git push` comum:
+
+```bash
+python build_static.py
+```
+
+Isso apaga a `docs/` antiga e gera de novo, com os textos e preços de agora.
+Depois:
 
 ```bash
 git add -A
@@ -299,48 +319,54 @@ git commit -m "o que mudou"
 git push
 ```
 
-O `render.yaml` já traz tudo pronto (plano, região, variáveis). Na primeira
-vez, no painel do Render: **New → Blueprint**, aponte para o repositório e
-confirme. As variáveis vêm do arquivo; a `SECRET_KEY` ele sorteia sozinho.
+Alguns segundos depois de o push chegar, o GitHub Pages já está servindo a
+versão nova. **Sempre no ar, de graça** — sem o site dormir depois de um
+tempo sem visita, que é o que aconteceria num plano gratuito de servidor
+como o Render.
 
-### O que o plano gratuito faz
+### O que se perde por não ter servidor
 
-| | Grátis (agora) | Starter, US$ 7/mês |
-|---|---|---|
-| Site no ar | dorme após 15 min sem visita; a primeira pessoa espera ~50 s | sempre acordado |
-| Disco | não existe | 1 GB que sobrevive à publicação |
-| Área do cliente | desligada | funciona |
-| Orçamentos recebidos | chegam pelo WhatsApp; a cópia salva aqui se perde no reinício | cópia guardada |
+O formulário de orçamento continua funcionando normalmente — ele monta a
+mensagem e abre o WhatsApp direto no navegador da pessoa, sem passar por
+lugar nenhum. O que não existe mais é uma **cópia salva à parte** dos
+pedidos (antes ficava em `leads/orcamentos.txt` e num banco); agora o único
+registro é a própria conversa no seu WhatsApp. E a área do cliente — login,
+filmes, downloads — fica desligada, porque logins e senhas precisam de
+código rodando por trás para conferir, e um site estático não tem isso.
 
-**O formulário continua funcionando no plano gratuito** — ele abre a conversa
-no seu WhatsApp, e é por lá que o pedido chega. O que se perde no reinício é só
-a cópia guardada no servidor (`leads/orcamentos.txt` e o banco).
+### Religar a área do cliente (exige voltar a um servidor)
 
-### Religar a área do cliente
+Não dá para ter login com o site 100% estático — nesse caso, a saída é
+hospedar de novo num serviço que rode Python, como o Render (o `render.yaml`
+já está pronto no repositório, sem uso agora, esperando por isso). Os passos
+ficam guardados na memória deste projeto; a ideia geral:
 
-Três passos, quando quiser assinar o plano pago:
-
-1. No `render.yaml`, troque `plan: free` por `plan: starter` e acrescente o
-   bloco `disk:` que está comentado no fim do arquivo.
-2. No `content.py`, troque `AREA_CLIENTE = False` por `True`.
-3. No `app.py`, faça o banco e os uploads morarem no disco — as duas linhas
-   passam a ler o caminho montado:
-
-   ```python
-   DADOS_DIR = Path(os.getenv("DADOS_DIR", BASE_DIR))
-   DB_PATH = DADOS_DIR / "private" / "clients.db"
-   UPLOADS_DIR = DADOS_DIR / "uploads"
-   ```
-
-   e no `render.yaml` acrescente `DADOS_DIR` com o valor `/var/data`. Sem isso
-   o disco fica montado sem ninguém usar, e os acessos continuam sumindo.
+1. Publicar em algo que rode o Flask (ex.: Render, plano Starter — o
+   gratuito não tem disco e apagaria os acessos a cada reinício).
+2. Em `content.py`, trocar `AREA_CLIENTE = False` por `True`.
+3. Fazer o banco e os uploads morarem num disco que sobrevive à publicação.
 
 ### O domínio
 
-`www.gersonfilmes.com.br` já está escrito em `MARCA["site_url"]`, então o
-sitemap e os links de compartilhamento já apontam para lá. Falta ligar no
-Render: **Settings → Custom Domains**, cadastre `www.gersonfilmes.com.br` e
-`gersonfilmes.com.br`, e no registrador do domínio aponte o que o Render pedir
-(um `CNAME` para o www e o redirecionamento do domínio sem www). Enquanto o DNS
-não propaga — costuma levar de minutos a algumas horas — o endereço
-`gerson-filmes.onrender.com` continua servindo.
+`www.gersonfilmes.com.br` já está escrito em `MARCA["site_url"]` — o
+`build_static.py` usa esse mesmo endereço para gerar o arquivo `CNAME` que o
+GitHub Pages exige, e para preencher o sitemap e os links de compartilhamento.
+Falta o lado de fora, no site onde o domínio foi comprado (registrador):
+
+1. Criar um registro **CNAME** apontando `www` para
+   `peregrino-softwares.github.io`.
+2. Para `gersonfilmes.com.br` sem o `www` também funcionar, usar o
+   **encaminhamento de domínio** (domain forwarding) que a maioria dos
+   registradores oferece pronto, redirecionando para
+   `https://www.gersonfilmes.com.br`. Se o seu registrador não tiver essa
+   opção, o outro caminho é cadastrar 4 registros **A** no domínio sem `www`,
+   apontando para: `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e
+   `185.199.111.153` (são IPs fixos do GitHub Pages).
+3. No GitHub, em **Settings → Pages** do repositório, cadastrar
+   `www.gersonfilmes.com.br` como domínio personalizado e marcar **Enforce
+   HTTPS** assim que a opção aparecer (o certificado leva alguns minutos
+   para ser emitido depois do DNS propagar).
+
+Enquanto o DNS não propaga — de minutos a algumas horas — o endereço
+`https://peregrino-softwares.github.io/gerson-filmes-site/` continua
+servindo a mesma versão.

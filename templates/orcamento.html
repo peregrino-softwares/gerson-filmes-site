@@ -23,8 +23,10 @@
     <div class="formulario-caixa aparece">
       {% if erro %}<div class="aviso" role="alert">{{ erro }}</div>{% endif %}
 
-      <form action="{{ url_for('orcamento') }}" method="post" class="formulario" novalidate
-            data-pacotes='{{ pacotes_por_tipo | tojson }}'>
+      <form class="formulario" novalidate
+            data-pacotes='{{ pacotes_por_tipo | tojson }}'
+            data-modelo='{{ whatsapp_formulario | tojson }}'
+            data-numero="{{ marca.whatsapp }}">
 
         <div class="dupla">
           <div class="campo">

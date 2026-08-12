@@ -1,0 +1,864 @@
+/* =====================================================================
+   GERSON FILMES
+   Paleta: tinta quente, papel osso, argila e sálvia.
+   Fora o preto-e-dourado — clichê de convite de casamento.
+   ===================================================================== */
+
+:root {
+  --tinta:      #15110E;
+  --tinta-2:    #1B1613;
+  --tinta-3:    #241D18;
+  --osso:       #F1ECE3;
+  --osso-2:     #F8F5EF;
+  --areia:      #E2D7C7;
+  --argila:     #A85E45;   /* acento em superfície escura e detalhes */
+  --argila-cl:  #CB8B6E;   /* acento sobre fundo escuro */
+  --argila-txt: #94503A;   /* acento em TEXTO pequeno sobre fundo claro */
+  --argila-esc: #96513C;   /* fundo do convite final */
+  /* Rosa dos 15 anos — empoeirado, não doce. Vizinho da argila na roda
+     de cores, então convive com o resto do site sem brigar. */
+  --rosa:       #C97B8E;
+  --rosa-cl:    #E2A6B5;
+  --rosa-txt:   #9B4C66;
+  --rosa-esc:   #8E4760;
+  --rosa-papel: #F7EDEF;   /* papel rosado, só na página de 15 anos */
+
+  /* Sálvia dos eventos — o terceiro acento, mais sóbrio que os outros
+     dois porque atende empresa e formatura. */
+  --salvia:     #79856F;
+  --salvia-cl:  #A9B69E;
+  --salvia-txt: #556249;
+  --salvia-esc: #4E5A47;
+
+  --cinza:      #A79D92;
+  --cinza-d:    #8F867B;   /* apoio sobre fundo escuro */
+  --cinza-2:    #6A6259;   /* apoio sobre fundo claro */
+  --cinza-esc:  #554E47;
+
+  --linha:      rgba(241, 236, 227, .14);
+  --linha-esc:  rgba(21, 17, 14, .14);
+
+  --shell: min(1280px, calc(100vw - 72px));
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans:  "Instrument Sans", -apple-system, "Segoe UI", Arial, sans-serif;
+
+  --mx: 50vw;
+  --my: 30vh;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--tinta);
+  color: var(--osso);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body.menu-aberto { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
+button { color: inherit; }
+img, video { max-width: 100%; }
+h1, h2, h3 { font-weight: 400; text-wrap: balance; }
+p { text-wrap: pretty; }
+::selection { background: var(--argila); color: var(--osso-2); }
+:focus-visible { outline: 2px solid var(--argila-cl); outline-offset: 3px; }
+
+.pular {
+  position: fixed; top: -100px; left: 16px; z-index: 200;
+  background: var(--osso); color: var(--tinta); padding: 12px 18px;
+  font-size: 13px; transition: top .2s ease;
+}
+.pular:focus { top: 0; }
+
+.grao {
+  position: fixed; inset: 0; pointer-events: none; z-index: 90; opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+.luz {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .45;
+  background: radial-gradient(560px circle at var(--mx) var(--my), rgba(203,139,110,.07), transparent 70%);
+}
+
+.shell { width: var(--shell); margin-inline: auto; position: relative; z-index: 1; }
+
+/* Ritmo vertical: seções propositalmente desiguais, para a página não
+   marchar no mesmo compasso do começo ao fim. */
+.pad-g { padding: 170px 0; }
+.pad-m { padding: 120px 0; }
+.pad-p { padding: 80px 0; }
+
+/* Uma classe troca o acento inteiro do bloco para rosa: serve tanto na
+   página de 15 anos quanto na aba de 15 anos dentro da home. Cada regra
+   do site já lê estas variáveis, então nada precisa ser reescrito. */
+.tema-rosa {
+  --argila:     var(--rosa);
+  --argila-cl:  var(--rosa-cl);
+  --argila-txt: var(--rosa-txt);
+  --argila-esc: var(--rosa-esc);
+}
+.tema-salvia {
+  --argila:     var(--salvia);
+  --argila-cl:  var(--salvia-cl);
+  --argila-txt: var(--salvia-txt);
+  --argila-esc: var(--salvia-esc);
+}
+.tema-rosa .luz { background: radial-gradient(560px circle at var(--mx) var(--my), rgba(226,166,181,.09), transparent 70%); }
+.tema-salvia .luz { background: radial-gradient(560px circle at var(--mx) var(--my), rgba(169,182,158,.08), transparent 70%); }
+
+/* ---------------------------------------------------------------------
+   O rosto feminino dos 15 anos
+   Só trocar o acento deixava a página irmã gêmea da de casamentos. Aqui
+   a seção dos momentos vira papel rosado: quebra a sequência de blocos
+   escuros e é o que faz a página parecer outra coisa já de longe.
+   --------------------------------------------------------------------- */
+.tema-rosa .momentos { background: var(--rosa-papel); color: var(--tinta); }
+.tema-rosa .momentos .rotulo { color: var(--rosa-txt); }
+.tema-rosa .momentos-cabeca h2 { color: var(--tinta); }
+.tema-rosa .momentos-cabeca h2 em { color: var(--rosa-txt); }
+.tema-rosa .momentos-cabeca p { color: var(--cinza-esc); }
+.tema-rosa .momento { border-top-color: rgba(21,17,14,.13); }
+.tema-rosa .momento-num { color: var(--rosa-txt); }
+.tema-rosa .momento h3 { color: var(--tinta); font-style: italic; letter-spacing: -.01em; }
+.tema-rosa .momento p { color: var(--cinza-esc); }
+
+/* Fio decorativo entre os momentos e o orçamento, só no rosa. */
+.tema-rosa .momentos::after {
+  content: ""; display: block; width: 64px; height: 1px;
+  margin: 78px auto 0; background: var(--rosa);
+}
+
+/* Mais rosa na página de 15 anos: a abertura ganha um véu, o bloco do
+   filme e o do orçamento saem do preto puro para um vinho bem fechado. */
+.tema-rosa .setor-abertura.com-video .setor-sombra {
+  background:
+    linear-gradient(90deg, rgba(30,10,17,.9) 0%, rgba(30,10,17,.58) 46%, rgba(30,10,17,.16) 82%),
+    linear-gradient(180deg, rgba(30,10,17,.68) 0%, transparent 32%, rgba(21,17,14,.92) 100%);
+}
+.tema-rosa .setor-precos { background: #191115; }
+.tema-rosa .combinado { background: #191115; }
+.tema-rosa .combinado-lista li { border-bottom-color: rgba(226,166,181,.16); }
+.tema-rosa .combinado-caixa { border-top-color: rgba(226,166,181,.16); }
+.tema-rosa .pacote { background: #191115; }
+.tema-rosa .pacote:hover { background: #221720; }
+.tema-rosa .pacote-marcado { background: #271A24; }
+.tema-rosa .pacote-marcado:hover { background: #2E1F2A; }
+.tema-rosa .pacotes { border-top-color: rgba(226,166,181,.16); }
+.tema-rosa .pacote { border-left-color: rgba(226,166,181,.16); border-bottom-color: rgba(226,166,181,.16); }
+.tema-rosa .pacote-preco { border-top-color: rgba(226,166,181,.16); }
+.tema-rosa .pacote-link { border-top-color: rgba(226,166,181,.16); }
+
+/* O cartão de 15 anos na home ganha o fundo da própria paleta, para se
+   separar dos vizinhos sem virar um bloco solto. */
+.filmo-item.tema-rosa { background: rgba(201,123,142,.07); }
+.filmo-item.tema-rosa:hover { background: rgba(201,123,142,.13); }
+.filmo-item.tema-salvia { background: rgba(121,133,111,.07); }
+.filmo-item.tema-salvia:hover { background: rgba(121,133,111,.13); }
+
+/* ------------------------------------------------------- Tipografia */
+.rotulo {
+  display: block;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--argila-cl);
+}
+.claro .rotulo { color: var(--argila-txt); }
+
+.titulo {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(44px, 5.2vw, 82px);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+}
+.titulo em { font-style: italic; color: var(--argila-cl); }
+.claro .titulo em { color: var(--argila); }
+
+.corpo { color: var(--cinza); font-size: 15.5px; line-height: 1.8; }
+.claro .corpo { color: var(--cinza-esc); }
+
+.regua { height: 1px; background: var(--linha); border: 0; margin: 0; }
+.claro .regua { background: var(--linha-esc); }
+
+.aparece { opacity: 0; transform: translateY(24px); transition: opacity 1s ease var(--atraso, 0ms), transform 1s cubic-bezier(.16,.84,.3,1) var(--atraso, 0ms); }
+.js .aparece.visivel { opacity: 1; transform: none; }
+html:not(.js) .aparece { opacity: 1; transform: none; }
+
+/* ---------------------------------------------------------- Botões */
+.botao {
+  display: inline-flex; align-items: center; gap: 14px;
+  min-height: 54px; padding: 0 30px;
+  font-size: 13px; letter-spacing: .02em;
+  border: 1px solid transparent;
+  transition: background .3s ease, color .3s ease, border-color .3s ease;
+}
+.botao-claro { background: var(--osso); color: var(--tinta); }
+.botao-claro:hover { background: var(--areia); }
+.botao-escuro { background: var(--tinta); color: var(--osso); }
+.botao-escuro:hover { background: var(--tinta-3); }
+.botao-linha { border-color: currentColor; }
+.botao-linha:hover { background: var(--osso); color: var(--tinta); border-color: var(--osso); }
+.claro .botao-linha:hover { background: var(--tinta); color: var(--osso); border-color: var(--tinta); }
+
+.link-sub {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13px; padding-bottom: 7px;
+  border-bottom: 1px solid currentColor;
+  color: var(--cinza);
+  transition: color .25s ease;
+}
+.link-sub:hover { color: var(--osso); }
+.claro .link-sub { color: var(--cinza-esc); }
+.claro .link-sub:hover { color: var(--tinta); }
+.link-sub i { font-style: normal; color: var(--argila-cl); }
+.claro .link-sub i { color: var(--argila-txt); }
+
+/* ------------------------------------------------------- Cabeçalho */
+.topo {
+  position: fixed; inset: 0 0 auto; height: 100px; z-index: 70;
+  border-bottom: 1px solid transparent;
+  transition: background .4s ease, height .4s ease, border-color .4s ease;
+}
+.topo.encolhido,
+.pagina-interna .topo {
+  height: 74px;
+  background: rgba(21, 17, 14, .92);
+  backdrop-filter: blur(20px);
+  border-color: var(--linha);
+}
+.topo-interno { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+
+.marca { display: inline-flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.marca-selo { width: 46px; height: 46px; border-radius: 50%; overflow: hidden; background: var(--osso); display: block; }
+.marca-selo img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.marca-texto { display: flex; flex-direction: column; line-height: 1.25; }
+.marca-texto strong { font-weight: 500; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+.marca-texto small { color: var(--cinza); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+
+.menu { display: flex; align-items: center; gap: 34px; }
+.menu a { position: relative; color: var(--cinza); font-size: 14px; transition: color .25s ease; white-space: nowrap; }
+.menu a::after {
+  content: ""; position: absolute; left: 0; bottom: -6px; width: 100%; height: 1px;
+  background: var(--argila-cl); transform: scaleX(0); transform-origin: right;
+  transition: transform .35s cubic-bezier(.16,.84,.3,1);
+}
+.menu a:hover { color: var(--osso); }
+.menu a:hover::after { transform: scaleX(1); transform-origin: left; }
+/* O item de 15 anos usa o rosa mesmo no menu escuro: é o atalho para
+   um público diferente do resto do site e precisa se anunciar. */
+.menu .menu-tema-rosa,
+.menu .menu-tema-rosa:hover { color: var(--rosa-cl); }
+.menu .menu-tema-rosa::after { background: var(--rosa-cl); }
+.menu .menu-tema-salvia,
+.menu .menu-tema-salvia:hover { color: var(--salvia-cl); }
+.menu .menu-tema-salvia::after { background: var(--salvia-cl); }
+.menu-movel .menu-movel-tema-rosa { color: var(--rosa-cl); }
+.menu-movel .menu-movel-tema-rosa:hover { color: var(--rosa); }
+.menu-movel .menu-movel-tema-salvia { color: var(--salvia-cl); }
+.menu-movel .menu-movel-tema-salvia:hover { color: var(--salvia); }
+.menu .menu-cta { color: var(--osso); border: 1px solid var(--linha); padding: 11px 20px; }
+.menu .menu-cta::after { display: none; }
+.menu .menu-cta:hover { background: var(--osso); color: var(--tinta); border-color: var(--osso); }
+
+.abrir-menu { display: none; width: 44px; height: 44px; border: 0; background: transparent; padding: 12px 8px; cursor: pointer; }
+.abrir-menu span { display: block; height: 1px; background: var(--osso); margin: 6px 0; transition: transform .3s ease; }
+
+.menu-movel {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column; justify-content: space-between;
+  background: var(--tinta-2); color: var(--osso); padding: 26px 26px 40px;
+  transform: translateY(-101%); visibility: hidden;
+  transition: transform .7s cubic-bezier(.76,0,.18,1), visibility .7s;
+}
+.menu-movel[aria-hidden="false"] { transform: translateY(0); visibility: visible; }
+.menu-movel-topo { display: flex; align-items: center; justify-content: space-between; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza); }
+.menu-movel-topo button { border: 0; background: transparent; cursor: pointer; text-transform: uppercase; letter-spacing: .14em; font-size: 11px; color: var(--cinza); }
+.menu-movel nav { display: grid; gap: 4px; }
+.menu-movel nav a { font-family: var(--serif); font-size: clamp(34px, 10vw, 52px); line-height: 1.15; }
+.menu-movel nav a:hover { font-style: italic; color: var(--argila-cl); }
+.menu-movel-pe { display: grid; gap: 20px; justify-items: start; }
+.menu-movel-pe small { color: var(--cinza); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+
+/* ---------------------------------------------------------- Abertura */
+.abertura { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: #0c0a08; }
+.abertura-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.6) contrast(1.05) brightness(.92); }
+.abertura-sombra {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(12,10,8,.9) 0%, rgba(12,10,8,.55) 46%, rgba(12,10,8,.1) 82%),
+    linear-gradient(180deg, rgba(12,10,8,.6) 0%, transparent 30%, rgba(12,10,8,.85) 100%);
+}
+.abertura-conteudo { padding-bottom: 130px; max-width: 960px; }
+.abertura-rotulo { margin-bottom: 34px; color: var(--cinza); font-size: 12px; letter-spacing: .22em; text-transform: uppercase; }
+.abertura h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(62px, 9.4vw, 142px);
+  line-height: .92;
+  letter-spacing: -.035em;
+}
+.abertura h1 span { display: block; }
+/* O deslocamento da segunda linha é o único gesto gráfico do título.
+   Sem ele o bloco fica simétrico demais e perde a cadência de cinema. */
+.abertura h1 em { display: block; font-style: italic; color: var(--argila-cl); margin-left: .16em; }
+.abertura-texto { max-width: 520px; margin: 40px 0 0; color: rgba(241,236,227,.78); font-size: 16.5px; line-height: 1.75; }
+.abertura-acoes { display: flex; align-items: center; flex-wrap: wrap; gap: 28px; margin-top: 42px; }
+
+.abertura-pe {
+  position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%);
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.abertura-frase { color: var(--cinza); font-family: var(--serif); font-style: italic; font-size: 17px; }
+.rolar { display: flex; align-items: center; gap: 14px; color: var(--cinza); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
+.rolar span { width: 54px; height: 1px; background: var(--linha); position: relative; overflow: hidden; }
+.rolar span::after { content: ""; position: absolute; inset: 0; background: var(--argila-cl); transform: translateX(-100%); animation: risca 2.6s infinite cubic-bezier(.6,0,.2,1); }
+@keyframes risca { 50%, 100% { transform: translateX(100%); } }
+
+/* -------------------------------------------------------------- Ficha */
+.ficha { background: var(--tinta-2); border-block: 1px solid var(--linha); }
+.ficha-grade { display: grid; grid-template-columns: repeat(4, 1fr); }
+.ficha-item { padding: 34px 34px 34px 0; border-left: 1px solid var(--linha); padding-left: 34px; }
+.ficha-item:first-child { border-left: 0; padding-left: 0; }
+.ficha-item dt { color: var(--cinza-d); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 10px; }
+.ficha-item dd { margin: 0; font-family: var(--serif); font-size: 21px; line-height: 1.25; color: var(--osso); }
+
+/* -------------------------------------------------------- Manifesto */
+.manifesto { background: var(--osso); color: var(--tinta); }
+.manifesto-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: end; }
+.manifesto h2 { margin: 0; font-family: var(--serif); font-size: clamp(40px, 4.6vw, 70px); line-height: 1.06; letter-spacing: -.025em; }
+.manifesto h2 em { font-style: italic; color: var(--argila); }
+.manifesto-texto { display: grid; gap: 24px; max-width: 480px; }
+.manifesto-texto p { margin: 0; color: var(--cinza-esc); font-size: 16px; line-height: 1.85; }
+.manifesto-assinatura { margin-top: 44px; display: flex; align-items: center; gap: 16px; color: var(--cinza-2); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.manifesto-assinatura::before { content: ""; width: 40px; height: 1px; background: var(--linha-esc); }
+
+/* ----------------------------------------------------- Filme em foco */
+
+/* ------------------------------------------------------ O que filmo */
+.filmo { background: var(--tinta); }
+.secao-cabeca { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 90px; }
+.secao-cabeca .titulo { margin-top: 18px; }
+.secao-cabeca p { margin: 0 0 6px; }
+
+.filmo-lista { border-top: 1px solid var(--linha); }
+.filmo-item {
+  display: grid; grid-template-columns: 76px minmax(0, .9fr) minmax(0, 1.1fr) 200px;
+  gap: 40px; align-items: baseline;
+  padding: 52px 0; border-bottom: 1px solid var(--linha);
+  transition: background .4s ease, padding .4s ease;
+}
+/* A linha inteira reage ao mouse e desliza um pouco para dentro —
+   dá vida sem precisar de cartão, sombra ou moldura. */
+.filmo-item:hover { background: var(--tinta-2); padding-inline: 26px; }
+.filmo-num { color: var(--argila-cl); font-size: 11px; letter-spacing: .18em; }
+.filmo-item h3 { margin: 0; font-family: var(--serif); font-size: clamp(36px, 3.6vw, 56px); line-height: 1; }
+.filmo-chamada { margin: 14px 0 0; color: var(--cinza); font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.35; }
+.filmo-item > p { margin: 0; color: var(--cinza); font-size: 15px; line-height: 1.85; }
+.filmo-link { justify-self: end; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; color: var(--cinza); white-space: nowrap; transition: color .25s ease; }
+.filmo-link i { font-style: normal; color: var(--argila-cl); transition: transform .3s ease; }
+.filmo-item:hover .filmo-link { color: var(--osso); }
+.filmo-item:hover .filmo-link i { transform: translateX(6px); }
+
+/* ------------------------------------------------------- Como trabalho */
+.metodo { background: var(--tinta-2); }
+.metodo-grade { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 90px; }
+.metodo-item { padding: 44px 0; border-top: 1px solid var(--linha); }
+.metodo-item:nth-child(-n+2) { border-top: 0; padding-top: 0; }
+.metodo-rotulo { display: block; color: var(--argila-cl); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 18px; }
+.metodo-item h3 { margin: 0 0 14px; font-family: var(--serif); font-size: 30px; line-height: 1.15; }
+.metodo-item p { margin: 0; color: var(--cinza); font-size: 15px; line-height: 1.8; max-width: 440px; }
+
+/* ---------------------------------------------------------- Processo */
+.processo { background: var(--osso); color: var(--tinta); }
+.processo-grade { display: grid; grid-template-columns: 300px 1fr; gap: 80px; align-items: start; }
+.processo-intro { position: sticky; top: 130px; }
+.processo-intro h2 { margin: 18px 0 0; font-family: var(--serif); font-size: clamp(40px, 4.4vw, 62px); line-height: 1.02; letter-spacing: -.025em; }
+.processo-lista { list-style: none; padding: 0; margin: 0; counter-reset: etapa; }
+.processo-item { display: grid; grid-template-columns: 70px 1fr; gap: 34px; padding: 40px 0; border-bottom: 1px solid var(--linha-esc); }
+.processo-item:first-child { padding-top: 0; }
+.processo-item:last-child { border-bottom: 0; }
+.processo-num { font-family: var(--serif); font-size: 34px; color: var(--argila-txt); line-height: 1; }
+.processo-item h3 { margin: 0 0 12px; font-family: var(--serif); font-size: 32px; line-height: 1.1; }
+.processo-item p { margin: 0; color: var(--cinza-esc); font-size: 15.5px; line-height: 1.85; max-width: 620px; }
+
+/* ---------------------------------------------------------- Coleções */
+.colecoes { background: var(--tinta); }
+.colecoes-cabeca { display: grid; grid-template-columns: 1fr auto; gap: 50px; align-items: end; margin-bottom: 50px; }
+
+/* Abas de tipo de evento: casamento, 15 anos, eventos */
+.abas { display: flex; gap: 2px; border-bottom: 1px solid var(--linha); margin-bottom: 60px; }
+.aba {
+  appearance: none; border: 0; background: transparent; cursor: pointer;
+  padding: 18px 30px 20px; margin-bottom: -1px;
+  color: var(--cinza); font-size: 14px;
+  border-bottom: 1px solid transparent;
+  transition: color .3s ease, border-color .3s ease;
+}
+.aba:hover { color: var(--osso); }
+.aba[aria-selected="true"] { color: var(--osso); border-bottom-color: var(--argila-cl); }
+
+.painel[hidden] { display: none; }
+.painel-nota { margin: 0 0 46px; max-width: 640px; color: var(--cinza-d); font-size: 13.5px; line-height: 1.8; }
+
+/* Lista de preços impressa, não tabela de plano de software:
+   sem sombra, sem borda arredondada, sem selo gritando. */
+/* Cada opção tem a sua altura. Forçar todas ao tamanho da maior abria
+   400 px de vazio na menor — e o filete divisório vira a borda do próprio
+   cartão, para acompanhar essa altura. */
+.pacotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; align-items: start; border-top: 1px solid var(--linha); }
+.pacotes.dois { grid-template-columns: repeat(2, 1fr); }
+.pacote { background: var(--tinta); padding: 44px 36px 40px; display: flex; flex-direction: column; transition: background .35s ease; border-left: 1px solid var(--linha); border-bottom: 1px solid var(--linha); }
+.pacote:first-child { border-left: 0; }
+.pacote:hover { background: var(--tinta-2); }
+.pacote-marcado { background: var(--tinta-3); }
+.pacote-marcado:hover { background: #2a221c; }
+.pacote-topo { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.pacote-num { color: var(--argila-cl); font-size: 11px; letter-spacing: .18em; }
+.pacote h3 { margin: 0; font-family: var(--serif); font-size: 42px; line-height: 1; }
+.pacote-ideal { margin: 20px 0 0; color: var(--cinza); font-size: 13.5px; line-height: 1.7; min-height: 68px; }
+.pacote-preco { margin: 32px 0 30px; padding-top: 26px; border-top: 1px solid var(--linha); font-family: var(--serif); font-size: 44px; line-height: 1; letter-spacing: -.02em; }
+.pacote-preco small { display: block; font-family: var(--sans); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza-d); margin-bottom: 12px; }
+.pacote ul { list-style: none; padding: 0; margin: 0 0 36px; display: grid; gap: 14px; }
+.pacote li { display: grid; grid-template-columns: 20px 1fr; color: var(--cinza); font-size: 14px; line-height: 1.55; }
+.pacote li::before { content: ""; width: 7px; height: 1px; background: var(--argila-cl); margin-top: 11px; }
+
+/* Itens com rótulo e descrição: o rótulo é o que se lê de relance, a
+   descrição fica embaixo para quem parar para comparar. */
+.pacote li.item-detalhado { display: block; padding-left: 20px; position: relative; }
+.pacote li.item-detalhado::before { position: absolute; left: 0; top: 11px; margin: 0; }
+.item-detalhado strong { display: block; font-weight: 400; color: var(--osso); font-size: 14.5px; line-height: 1.4; }
+.item-detalhado span { display: block; margin-top: 3px; color: var(--cinza); font-size: 13px; line-height: 1.6; }
+
+.pacote-num b { font-weight: 500; color: var(--osso); letter-spacing: .14em; text-transform: uppercase; }
+
+/* Nota de flexibilidade, logo abaixo dos três cartões. Fica recuada e em
+   itálico para não competir com os preços — é ressalva, não oferta. */
+.flexibilidade {
+  max-width: 720px; margin: 34px 0 0; padding-left: 22px;
+  border-left: 1px solid var(--argila);
+  color: var(--cinza); font-size: 13.5px; line-height: 1.8; font-style: italic;
+}
+.pacote-link { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--linha); display: flex; align-items: center; justify-content: space-between; gap: 14px; font-size: 13px; }
+.pacote-link i { font-style: normal; color: var(--argila-cl); transition: transform .3s ease; }
+.pacote-link:hover i { transform: translateX(6px); }
+
+/* Cada coleção de 15 anos tem o seu rosa, aprofundando conforme o pacote:
+   blush, rosa, malva. Como cada cartão só redefine as variáveis de acento,
+   o número, o preço, os traços da lista e a seta mudam juntos. */
+.tema-rosa .pacote:nth-child(1) { --argila: #EBB9C0; --argila-cl: #EBB9C0; }
+.tema-rosa .pacote:nth-child(2) { --argila: #DB93A6; --argila-cl: #DB93A6; }
+.tema-rosa .pacote:nth-child(3) { --argila: #C489AE; --argila-cl: #C489AE; }
+.tema-rosa .pacote-preco { color: var(--argila-cl); }
+
+/* A troca de aba muda a cor da seção inteira, então ela precisa de tempo
+   para acontecer — sem transição, o rosa entra como um susto. */
+.colecoes .rotulo,
+.colecoes .titulo em,
+.colecoes .aba,
+.colecoes .pacote-num,
+.colecoes .pacote-preco,
+.colecoes .pacote-ideal,
+.colecoes .pacote-link i { transition: color .5s ease; }
+.colecoes .aba[aria-selected="true"] { transition: color .5s ease, border-color .5s ease; }
+.colecoes .pacote li::before { transition: background .5s ease; }
+
+/* ------------------------------------------------------- Combinado */
+.combinado { background: var(--tinta); }
+.combinado-caixa { display: grid; grid-template-columns: 340px 1fr; gap: 70px; align-items: start; border-top: 1px solid var(--linha); padding-top: 60px; }
+.combinado-caixa h2 { margin: 18px 0 0; font-family: var(--serif); font-size: clamp(34px, 3.6vw, 50px); line-height: 1.08; }
+.combinado-lista { list-style: none; padding: 0; margin: 0; display: grid; }
+.combinado-lista li { padding: 22px 0; border-bottom: 1px solid var(--linha); color: rgba(241,236,227,.82); font-size: 15.5px; }
+.combinado-lista li:first-child { padding-top: 0; }
+
+/* ------------------------------------------------- Quem está atrás */
+.quem { background: var(--osso); color: var(--tinta); }
+.quem-grade { display: grid; grid-template-columns: .78fr 1.22fr; gap: 80px; align-items: center; }
+.quem-retrato { position: relative; background: var(--areia); aspect-ratio: 4 / 5; overflow: hidden; }
+.quem-retrato img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.9); }
+.quem-texto h2 { margin: 22px 0 30px; font-family: var(--serif); font-size: clamp(30px, 3.2vw, 46px); line-height: 1.15; letter-spacing: -.02em; max-width: 620px; }
+.quem-texto p { margin: 0 0 20px; color: var(--cinza-esc); font-size: 15.5px; line-height: 1.85; max-width: 620px; }
+/* As frases curtas do Gerson abrem cada bloco; o corpo desenvolve embaixo.
+   Esse degrau é o que dá respiração ao texto. */
+.quem-abre { margin: 34px 0 10px !important; color: var(--tinta) !important; font-family: var(--serif); font-size: 23px; line-height: 1.35; }
+.quem-abre:first-of-type { margin-top: 0 !important; }
+.quem-fecho { margin-top: 34px !important; font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.45; color: var(--argila-txt) !important; }
+.quem-texto .link-sub { margin-top: 26px; }
+.quem.sem-retrato .quem-grade { grid-template-columns: 1fr; }
+.quem.sem-retrato .quem-texto h2 { font-size: clamp(34px, 4vw, 56px); }
+
+/* ------------------------------------------------------ Depoimentos */
+.vozes { background: var(--osso); color: var(--tinta); }
+.vozes-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+.voz { margin: 0; display: flex; flex-direction: column; }
+/* A primeira citação ocupa duas colunas e vem em corpo maior: quebra a
+   simetria de "três blocos iguais" que denuncia página automática. */
+.voz:first-child { grid-column: span 2; }
+.voz:first-child blockquote { font-size: clamp(28px, 3vw, 42px); }
+.voz blockquote { margin: 0; font-family: var(--serif); font-size: 24px; line-height: 1.32; letter-spacing: -.01em; }
+
+/* A citação sozinha não diz quem falou com clareza suficiente numa grade
+   de cinco vozes — o traço marca onde a atribuição começa, o nome vem
+   maior que a citação em si, e o vínculo com o evento fica por baixo,
+   como legenda. */
+.voz figcaption { margin-top: auto; padding-top: 28px; }
+.voz-linha { display: block; width: 34px; height: 2px; background: var(--argila-txt); margin-bottom: 18px; }
+.voz figcaption strong { display: block; font-weight: 500; color: var(--tinta); letter-spacing: 0; font-size: 16px; margin-bottom: 5px; }
+.voz-evento { display: block; color: var(--cinza-2); font-size: 11.5px; letter-spacing: .09em; text-transform: uppercase; }
+
+/* -------------------------------------------------------------- FAQ */
+.duvidas { background: var(--tinta-2); }
+.duvidas-grade { display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
+.duvidas-intro { position: sticky; top: 130px; }
+.duvidas-intro h2 { margin: 18px 0 22px; font-family: var(--serif); font-size: clamp(36px, 3.8vw, 54px); line-height: 1.05; }
+.duvidas-intro p { margin: 0 0 26px; color: var(--cinza); font-size: 15px; line-height: 1.8; max-width: 280px; }
+
+.duvidas-lista { border-top: 1px solid var(--linha); }
+.duvida { border-bottom: 1px solid var(--linha); }
+.duvida summary {
+  list-style: none; cursor: pointer; position: relative;
+  padding: 30px 48px 30px 0;
+  font-family: var(--serif); font-size: clamp(22px, 2vw, 28px); line-height: 1.3;
+  transition: color .25s ease;
+}
+.duvida summary::-webkit-details-marker { display: none; }
+.duvida summary:hover { color: var(--argila-cl); }
+.duvida summary i { position: absolute; right: 6px; top: 50%; width: 13px; height: 13px; margin-top: -7px; }
+.duvida summary i::before, .duvida summary i::after { content: ""; position: absolute; background: var(--argila-cl); transition: transform .35s cubic-bezier(.16,.84,.3,1); }
+.duvida summary i::before { left: 0; top: 6px; width: 13px; height: 1px; }
+.duvida summary i::after { left: 6px; top: 0; width: 1px; height: 13px; }
+.duvida[open] summary i::after { transform: rotate(90deg); }
+.duvida-resposta p { margin: 0; padding: 0 70px 32px 0; color: var(--cinza); font-size: 15.5px; line-height: 1.85; }
+.duvida[open] .duvida-resposta { animation: abre .4s cubic-bezier(.16,.84,.3,1); }
+@keyframes abre { from { opacity: 0; transform: translateY(-10px); } }
+
+/* ------------------------------------------------------ Convite final */
+.convite { background: var(--argila-esc); color: var(--osso-2); }
+.convite-caixa { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: end; }
+.convite .rotulo { color: rgba(248,245,239,.96); }
+.convite h2 { margin: 22px 0 0; font-family: var(--serif); font-size: clamp(48px, 6vw, 96px); line-height: .98; letter-spacing: -.035em; }
+.convite h2 em { font-style: italic; color: var(--osso-2); }
+.convite p { margin: 26px 0 0; max-width: 460px; color: rgba(248,245,239,.92); font-size: 16px; line-height: 1.8; }
+.convite .botao-claro { background: var(--osso-2); color: var(--argila-esc); }
+.convite .botao-claro:hover { background: var(--tinta); color: var(--osso-2); }
+.convite-nota { display: block; margin-top: 18px; color: rgba(248,245,239,.96); font-size: 12px; }
+
+/* ----------------------------------------------------------- Rodapé */
+.rodape { position: relative; z-index: 1; background: var(--tinta); padding: 100px 0 32px; }
+.rodape-topo { display: grid; grid-template-columns: 1.2fr .8fr; gap: 70px; padding-bottom: 70px; border-bottom: 1px solid var(--linha); }
+.rodape-frase { font-family: var(--serif); font-size: clamp(34px, 3.8vw, 54px); line-height: 1.06; letter-spacing: -.02em; }
+.rodape-frase em { font-style: italic; color: var(--argila-cl); }
+.rodape-palavra p { max-width: 380px; color: var(--cinza); font-size: 14.5px; line-height: 1.8; margin: 22px 0 0; }
+.rodape-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-content: start; }
+.rodape-colunas > div { display: grid; gap: 13px; align-content: start; }
+.rodape-titulo { color: var(--argila-cl); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 4px; }
+.rodape-colunas a { color: var(--cinza); font-size: 14px; transition: color .25s ease; }
+.rodape-colunas a:hover { color: var(--osso); }
+.rodape-base { display: flex; justify-content: space-between; gap: 20px; padding-top: 26px; color: var(--cinza-d); font-size: 11px; letter-spacing: .1em; }
+
+/* Instagram e WhatsApp, empilhados no canto. O WhatsApp fica embaixo por
+   ser o que mais se usa — é o polegar que decide a ordem, não a estética. */
+.flutuantes { position: fixed; right: 26px; bottom: 26px; z-index: 60; display: grid; gap: 12px; }
+.flutuante {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--osso); color: var(--tinta);
+  display: grid; place-items: center;
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+  transition: transform .3s ease, background .3s ease;
+}
+.flutuante:hover { transform: translateY(-4px); background: var(--argila-cl); }
+.flutuante svg { width: 21px; height: 21px; fill: currentColor; display: block; }
+
+/* Os mesmos dois ícones no cabeçalho, discretos, antes do botão. */
+.menu-social { display: inline-flex; align-items: center; gap: 14px; padding-left: 4px; }
+.menu-social a { display: grid; place-items: center; width: 30px; height: 30px; color: var(--cinza); transition: color .25s ease; }
+.menu-social a::after { display: none; }
+.menu-social a:hover { color: var(--argila-cl); }
+.menu-social svg { width: 18px; height: 18px; fill: currentColor; display: block; }
+
+/* ====================================================== Página 15 anos */
+/* Abertura de setor. Sem vídeo é só tipografia sobre a tinta; com vídeo
+   vira uma capa cheia, no mesmo espírito da home. */
+.setor-abertura { position: relative; padding: 200px 0 110px; overflow: hidden; }
+.setor-abertura.com-video { min-height: 86svh; display: flex; align-items: flex-end; padding: 190px 0 90px; background: #0c0a08; }
+.setor-abertura.com-video::before { display: none; }
+.setor-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.62) contrast(1.05) brightness(.86); }
+.setor-sombra {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(12,10,8,.9) 0%, rgba(12,10,8,.6) 46%, rgba(12,10,8,.18) 82%),
+    linear-gradient(180deg, rgba(12,10,8,.7) 0%, transparent 32%, rgba(12,10,8,.9) 100%);
+}
+.setor-abertura-texto { position: relative; z-index: 1; }
+.setor-abertura::before {
+  content: ""; position: absolute; right: -180px; top: -140px;
+  width: 620px; height: 620px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(203,139,110,.13), transparent 68%);
+  pointer-events: none;
+}
+.tema-rosa .setor-abertura::before { background: radial-gradient(circle, rgba(201,123,142,.16), transparent 68%); }
+.setor-abertura h1 {
+  margin: 26px 0 0; font-family: var(--serif);
+  font-size: clamp(54px, 7.6vw, 116px); line-height: .96; letter-spacing: -.035em;
+}
+.setor-abertura h1 em { display: block; font-style: italic; color: var(--argila-cl); margin-left: .14em; }
+.setor-abertura-texto > p { max-width: 520px; margin: 34px 0 0; color: rgba(241,236,227,.84); font-size: 16.5px; line-height: 1.8; }
+.setor-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; margin-top: 40px; }
+
+/* O bloco do filme na página de 15 anos reaproveita o player da home,
+   mas ali o fundo é escuro — só as linhas e os apoios precisam virar. */
+
+/* Capas dos outros filmes do setor. Só aparecem quando há mais de um. */
+  content: ""; position: absolute; inset: 0; border: 2px solid var(--argila-cl);
+}
+
+.momentos { background: var(--tinta); }
+.momentos-cabeca { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 80px; }
+.momentos-cabeca h2 { margin: 18px 0 0; font-family: var(--serif); font-size: clamp(40px, 4.6vw, 68px); line-height: 1.04; letter-spacing: -.025em; }
+.momentos-cabeca h2 em { font-style: italic; color: var(--rosa-cl); }
+.momentos-cabeca p { margin: 0 0 6px; color: var(--cinza); font-size: 15.5px; line-height: 1.8; }
+
+.momentos-grade { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 60px; }
+.momento { padding: 40px 0; border-top: 1px solid var(--linha); }
+.momento:nth-child(-n+3) { border-top: 0; padding-top: 0; }
+.momento-num { display: block; color: var(--rosa-cl); font-size: 10px; letter-spacing: .2em; margin-bottom: 16px; }
+.momento h3 { margin: 0 0 12px; font-family: var(--serif); font-size: 30px; line-height: 1.12; }
+.momento p { margin: 0; color: var(--cinza); font-size: 14.5px; line-height: 1.8; }
+
+.setor-precos { background: var(--tinta); }
+.setor-precos .colecoes-cabeca { margin-bottom: 44px; }
+.setor-nota { margin: 0 0 46px; max-width: 640px; color: var(--cinza-d); font-size: 13.5px; line-height: 1.8; }
+
+/* ========================================================== Orçamento */
+.pagina-interna { background: var(--tinta); }
+.orcamento { min-height: 100vh; padding: 170px 0 110px; position: relative; overflow: hidden; }
+.orcamento-grade { display: grid; grid-template-columns: .9fr 1.1fr; gap: 100px; align-items: start; }
+.orcamento-intro { position: sticky; top: 150px; }
+.orcamento-intro h1 { margin: 24px 0 26px; font-family: var(--serif); font-size: clamp(48px, 5.4vw, 80px); line-height: 1; letter-spacing: -.035em; }
+.orcamento-intro > p { max-width: 400px; color: var(--cinza); font-size: 15.5px; line-height: 1.85; }
+.orcamento-notas { list-style: none; padding: 0; margin: 40px 0 0; display: grid; }
+.orcamento-notas li { padding: 16px 0; border-top: 1px solid var(--linha); color: rgba(241,236,227,.75); font-size: 14px; }
+
+.formulario-caixa { background: var(--osso); color: var(--tinta); padding: 54px 52px; }
+.formulario { display: grid; gap: 28px; }
+.dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.campo { display: grid; gap: 10px; }
+.campo label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--cinza-2); }
+.campo label i { color: var(--argila-txt); font-style: normal; }
+.campo input, .campo textarea, .campo select {
+  width: 100%; border: 0; border-bottom: 1px solid rgba(21,17,14,.22); border-radius: 0;
+  background: transparent; color: var(--tinta); padding: 11px 0 14px;
+  outline: none; resize: vertical; transition: border-color .25s ease;
+}
+.campo input:focus, .campo textarea:focus, .campo select:focus { border-color: var(--argila); }
+.campo input::placeholder, .campo textarea::placeholder { color: #a49b90; }
+.campo select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--cinza-2) 50%), linear-gradient(135deg, var(--cinza-2) 50%, transparent 50%);
+  background-position: calc(100% - 14px) 53%, calc(100% - 9px) 53%;
+  background-size: 5px 5px; background-repeat: no-repeat;
+}
+.campo.erro input, .campo.erro select { border-color: #a13c28; }
+.armadilha { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.enviar {
+  margin-top: 6px; min-height: 62px; border: 0; cursor: pointer;
+  background: var(--tinta); color: var(--osso); padding: 0 26px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; letter-spacing: .05em;
+  transition: background .3s ease;
+}
+.enviar:hover { background: var(--argila-esc); }
+.enviar i { font-style: normal; color: var(--argila-cl); font-size: 17px; }
+.enviar:hover i { color: var(--osso); }
+.formulario-nota { margin: -12px 0 0; color: var(--cinza-2); font-size: 11.5px; line-height: 1.6; }
+.formulario-nota i { color: var(--argila-txt); font-style: normal; }
+.aviso { padding: 16px 18px; margin-bottom: 26px; background: #f3ddd6; color: #7d2f1d; font-size: 14px; }
+
+/* ------------------------------------------------------- Obrigado / 404 */
+.recado { min-height: 100vh; display: grid; place-items: center; padding: 160px 0 100px; }
+.recado-caixa { width: min(680px, var(--shell)); background: var(--osso); color: var(--tinta); padding: 64px 56px; }
+.recado-caixa h1 { margin: 24px 0 20px; font-family: var(--serif); font-size: clamp(42px, 4.8vw, 66px); line-height: 1.02; letter-spacing: -.03em; }
+.recado-caixa > p { margin: 0 0 34px; max-width: 460px; color: var(--cinza-esc); font-size: 16px; line-height: 1.8; }
+/* auto-fit, e não 1fr 1fr: com a área do cliente desligada sobra um bloco
+   só, e a coluna fixa deixava um buraco do lado direito. */
+.recado-extra { margin-top: 46px; padding-top: 28px; border-top: 1px solid var(--linha-esc); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px; }
+.recado-extra div { display: grid; gap: 8px; }
+.recado-extra span { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza-2); }
+.recado-extra a { font-size: 14px; border-bottom: 1px solid var(--linha-esc); padding-bottom: 4px; justify-self: start; }
+
+/* ------------------------------------------------------ Área do cliente */
+.entrada { min-height: 100vh; display: grid; place-items: center; padding: 140px 24px 90px; }
+.entrada-caixa { width: min(520px, 100%); background: var(--osso); color: var(--tinta); padding: 56px 52px; }
+.entrada-caixa h1 { margin: 24px 0 16px; font-family: var(--serif); font-size: 52px; line-height: 1.02; letter-spacing: -.03em; }
+.entrada-caixa > p { margin: 0 0 36px; color: var(--cinza-esc); font-size: 15px; line-height: 1.75; }
+.ajuda { display: block; text-align: center; margin-top: 26px; color: var(--cinza-2); font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
+
+.painel-cliente { min-height: 100vh; padding: 150px 0 110px; background: var(--osso); color: var(--tinta); }
+.painel-cabeca { display: flex; justify-content: space-between; align-items: end; gap: 30px; padding-bottom: 44px; border-bottom: 1px solid var(--linha-esc); }
+.painel-cabeca h1 { margin: 18px 0 6px; font-family: var(--serif); font-size: clamp(42px, 5vw, 66px); line-height: 1; letter-spacing: -.03em; }
+.painel-cabeca p { margin: 0; color: var(--cinza-esc); font-size: 14px; }
+.sair { border-bottom: 1px solid var(--linha-esc); padding-bottom: 5px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.painel-bloco { margin-top: 70px; }
+.painel-bloco h2 { margin: 0 0 26px; font-family: var(--serif); font-size: 38px; }
+.entregas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--linha-esc); border: 1px solid var(--linha-esc); }
+.entrega { background: var(--osso); padding: 32px 30px; min-height: 250px; display: flex; flex-direction: column; transition: background .3s ease; }
+.entrega:hover { background: var(--osso-2); }
+.entrega-tipo { color: var(--argila-txt); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; }
+.entrega h3 { margin: 34px 0 8px; font-family: var(--serif); font-size: 30px; line-height: 1.1; }
+.entrega p { margin: 0; color: var(--cinza-2); font-size: 12px; word-break: break-all; }
+.entrega-acoes { display: flex; gap: 26px; margin-top: auto; padding-top: 24px; border-top: 1px solid var(--linha-esc); }
+.entrega-acoes a { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.entrega-acoes a:last-child { color: var(--argila); }
+.vazio { grid-column: 1 / -1; background: var(--osso); padding: 46px; color: var(--cinza-2); font-size: 15px; }
+
+/* =====================================================================
+   RESPONSIVO
+   ===================================================================== */
+@media (max-width: 1180px) {
+  :root { --shell: min(100% - 48px, 980px); }
+  .menu { gap: 22px; }
+  .menu a { font-size: 13px; }
+  /* Com sete itens o cabeçalho fica no limite aqui. Os ícones saem porque
+     os botões flutuantes já cobrem o mesmo caminho. */
+  .menu-social { display: none; }
+  .filmo-item { grid-template-columns: 60px 1fr 1fr; }
+  .filmo-link { grid-column: 2 / -1; justify-self: start; margin-top: 6px; }
+}
+
+@media (max-width: 980px) {
+  :root { --shell: min(100% - 40px, 860px); }
+  .menu { display: none; }
+  .abrir-menu { display: block; }
+  .pad-g { padding: 110px 0; }
+  .pad-m { padding: 90px 0; }
+
+  .ficha-grade { grid-template-columns: 1fr 1fr; }
+  .ficha-item { padding: 26px 26px 26px 26px; border-top: 1px solid var(--linha); }
+  .ficha-item:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .ficha-item:nth-child(-n+2) { border-top: 0; }
+
+  .quem-grade { grid-template-columns: 1fr; gap: 34px; }
+  .quem-retrato { max-width: 320px; }
+  .manifesto-grade, .secao-cabeca, .metodo-grade, .processo-grade,
+  .combinado-caixa, .duvidas-grade, .orcamento-grade, .rodape-topo,
+  .convite-caixa, .colecoes-cabeca { grid-template-columns: 1fr; gap: 38px; }
+  .processo-intro, .duvidas-intro, .orcamento-intro { position: static; }
+  .metodo-item:nth-child(2) { border-top: 1px solid var(--linha); padding-top: 44px; }
+
+  .filmo-item { grid-template-columns: 50px 1fr; gap: 12px 22px; }
+  .filmo-item > p, .filmo-link { grid-column: 2; }
+  .filmo-item:hover { padding-inline: 14px; }
+
+  .momentos-cabeca { grid-template-columns: 1fr; gap: 30px; margin-bottom: 50px; }
+  .momentos-grade { grid-template-columns: 1fr 1fr; column-gap: 44px; }
+  .momento:nth-child(-n+3) { border-top: 1px solid var(--linha); padding-top: 40px; }
+  .momento:nth-child(-n+2) { border-top: 0; padding-top: 0; }
+  .pacotes, .pacotes.dois { grid-template-columns: 1fr; }
+  .pacote-ideal { min-height: 0; }
+  .vozes-grade { grid-template-columns: 1fr; gap: 44px; }
+  .voz:first-child { grid-column: auto; }
+  .voz:first-child blockquote { font-size: 28px; }
+  .entregas { grid-template-columns: 1fr 1fr; }
+  .duvidas-intro p { max-width: none; }
+}
+
+@media (max-width: 680px) {
+  :root { --shell: calc(100% - 30px); }
+
+  /* Polegar precisa de área. Links de texto ganham altura sem mudar o
+     desenho — o espaço extra é invisível, mas é o que faz acertar. */
+  .menu-movel nav a { padding: 6px 0; }
+  .menu-movel-pe small a { display: inline-block; padding: 12px 0; }
+  .menu-movel-topo button { padding: 12px 0 12px 16px; margin: -12px -16px -12px 0; }
+  .rodape-colunas a { padding: 7px 0; }
+  .link-sub { padding-top: 8px; padding-bottom: 12px; }
+  .filmo-link, .entrega-acoes a, .ajuda { padding-top: 12px; padding-bottom: 12px; }
+  .pacote-link { padding-bottom: 11px; }
+  html { scroll-padding-top: 80px; }
+  .pad-g { padding: 84px 0; }
+  .pad-m { padding: 70px 0; }
+  .pad-p { padding: 56px 0; }
+
+  .topo { height: 76px; }
+  .topo.encolhido, .pagina-interna .topo { height: 68px; }
+  .marca-selo { width: 40px; height: 40px; }
+  .marca-texto small { display: none; }
+
+  .abertura { min-height: 100svh; }
+  .abertura-conteudo { padding-bottom: 108px; }
+  .abertura-rotulo { margin-bottom: 22px; font-size: 10px; letter-spacing: .16em; }
+  .abertura h1 { font-size: clamp(52px, 17vw, 78px); line-height: .96; }
+  .abertura h1 em { margin-left: 0; }
+  .abertura-texto { margin-top: 26px; font-size: 15px; }
+  .abertura-acoes { margin-top: 30px; gap: 20px; flex-direction: column; align-items: stretch; }
+  .abertura-acoes .botao { justify-content: center; }
+  .abertura-acoes .link-sub { justify-content: center; }
+  .abertura-pe { bottom: 24px; }
+  .abertura-frase { font-size: 14px; }
+  .rolar { display: none; }
+
+  .ficha-grade { grid-template-columns: 1fr; }
+  .ficha-item, .ficha-item:nth-child(odd) { padding: 20px 0; border-left: 0; border-top: 1px solid var(--linha); }
+  .ficha-item:first-child { border-top: 0; }
+  .ficha-item dd { font-size: 19px; }
+
+  .filmo-item { padding: 34px 0; gap: 10px 16px; grid-template-columns: 38px 1fr; }
+  .filmo-item h3 { font-size: 34px; }
+  .filmo-chamada { font-size: 18px; }
+
+  .metodo-item { padding: 32px 0; }
+  .metodo-item h3 { font-size: 26px; }
+  .processo-item { grid-template-columns: 46px 1fr; gap: 18px; padding: 30px 0; }
+  .processo-item h3 { font-size: 27px; }
+  .processo-num { font-size: 27px; }
+
+  .abas { gap: 0; overflow-x: auto; }
+  .aba { padding: 15px 18px 17px; font-size: 13px; white-space: nowrap; }
+  .pacote { padding: 34px 26px 32px; }
+  .pacote h3 { font-size: 34px; }
+  .pacote-preco { font-size: 36px; }
+
+  .combinado-caixa { padding-top: 40px; }
+  .voz blockquote, .voz:first-child blockquote { font-size: 25px; }
+  .duvida summary { padding: 24px 38px 24px 0; }
+  .duvida-resposta p { padding-right: 8px; }
+
+  .convite h2 { font-size: 46px; }
+  .rodape { padding-top: 70px; }
+  .rodape-colunas { grid-template-columns: 1fr; gap: 34px; }
+  .rodape-base { flex-direction: column; gap: 12px; }
+  .flutuantes { right: 16px; bottom: 16px; gap: 10px; }
+  .flutuante { width: 48px; height: 48px; }
+
+  .setor-abertura { padding: 130px 0 70px; }
+  .setor-abertura h1 em { margin-left: 0; }
+  .setor-acoes { flex-direction: column; align-items: stretch; gap: 18px; }
+  .setor-acoes .botao { justify-content: center; }
+  /* No celular as capas viram uma faixa que se arrasta com o dedo. */
+  .momentos-grade { grid-template-columns: 1fr; }
+  .momento, .momento:nth-child(-n+3) { border-top: 1px solid var(--linha); padding: 30px 0; }
+  .momento:first-child { border-top: 0; padding-top: 0; }
+  .momento h3 { font-size: 26px; }
+  .orcamento { padding-top: 120px; }
+  .orcamento-intro h1 { font-size: 46px; }
+  .formulario-caixa { padding: 34px 24px; }
+  .dupla { grid-template-columns: 1fr; }
+  .recado-caixa { padding: 44px 26px; }
+  .recado-extra { grid-template-columns: 1fr; }
+  .entrada-caixa { padding: 40px 26px; }
+  .entrada-caixa h1 { font-size: 42px; }
+  .painel-cliente { padding-top: 120px; }
+  .painel-cabeca { flex-direction: column; align-items: flex-start; gap: 22px; }
+  .entregas { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .js .aparece { opacity: 1; transform: none; }
+}

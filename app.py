@@ -169,6 +169,9 @@ def inject_content():
         "pacotes_por_tipo": content.PACOTES_POR_TIPO,
         "como_conheceu": content.COMO_CONHECEU,
         "whatsapp_link": whatsapp_link(content.WHATSAPP_MENSAGEM),
+        # No site publicado (estático), o formulário monta a mensagem no
+        # próprio navegador — não há servidor para receber o POST.
+        "whatsapp_formulario": content.WHATSAPP_FORMULARIO,
         # Desligada, some do menu, do rodapé e da página de obrigado.
         "area_cliente": AREA_CLIENTE,
         "ano": datetime.now().year,
@@ -264,9 +267,9 @@ def orcamento():
 
 @app.get("/obrigado")
 def obrigado():
-    texto = session.pop("ultimo_contato", "")
-    destino = whatsapp_link(texto or content.WHATSAPP_MENSAGEM)
-    return render_template("obrigado.html", destino=destino)
+    # No site publicado, o app.js já troca o link pelo WhatsApp com a
+    # mensagem da pessoa, lida do sessionStorage do navegador.
+    return render_template("obrigado.html")
 
 
 def formatar_data(valor):
