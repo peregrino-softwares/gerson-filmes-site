@@ -26,7 +26,7 @@ MARCA = {
     "regiao": "Minas Gerais",
     "atendimento": "Sete Lagoas e região, Belo Horizonte e todo o Brasil",
     "email": "gersonfilmess@gmail.com",
-    "site_url": "",  # ⚠️ CONFIRA: vazio de propósito — veja a nota abaixo
+    "site_url": "https://www.gersonfilmes.com.br",
 }
 
 WHATSAPP_MENSAGEM = "Olá, Gerson. Vi seu site e queria conversar sobre uma data."
@@ -148,8 +148,9 @@ METODO = [
     {
         "rotulo": "Depois",
         "titulo": "O filme continua com você",
-        "texto": "Ele fica guardado num espaço reservado para vocês aqui no site. "
-                 "É só entrar e rever quando der vontade — hoje ou daqui a dez anos.",
+        "texto": "Ele chega por um link privado, só de vocês, e a cópia fica com "
+                 "quem viveu o dia. É só abrir e rever quando der vontade — hoje "
+                 "ou daqui a dez anos.",
     },
 ]
 
@@ -670,8 +671,7 @@ FAQ = [
         "resposta": "Trechos curtos, e só com a sua autorização. O filme inteiro não vai "
                     "para lugar nenhum: para mostrar o trabalho usamos recortes de poucos "
                     "segundos, escolhidos para preservar a intimidade de vocês. Se preferir "
-                    "que nada seja publicado, é só dizer — o filme fica apenas na sua área "
-                    "de cliente.",
+                    "que nada seja publicado, é só dizer — o filme fica só com vocês.",
     },
 ]
 
