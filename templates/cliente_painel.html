@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Suas entregas — {{ marca.nome }}{% endblock %}
+{% block description %}Assista e baixe seus filmes e arquivos.{% endblock %}
+{% block body_class %}pagina-interna{% endblock %}
+
+{% block content %}
+<main class="painel-cliente claro">
+  <div class="shell">
+    <header class="painel-cabeca aparece">
+      <div>
+        <span class="rotulo">Área do cliente</span>
+        <h1>Olá, {{ nome }}.</h1>
+        <p>Seus filmes e arquivos estão aqui. Vale guardar uma cópia no seu computador também.</p>
+      </div>
+      <a class="sair" href="{{ url_for('cliente_sair') }}">Sair</a>
+    </header>
+
+    <section class="painel-bloco aparece">
+      <h2>Assistir</h2>
+      <div class="entregas">
+        {% for item in videos %}
+        <article class="entrega">
+          <span class="entrega-tipo">Filme</span>
+          <h3>{{ item.titulo }}</h3>
+          <p>{{ item.url and 'Hospedado fora do site' or item.arquivo }}</p>
+          <div class="entrega-acoes">
+            {% if item.url %}
+            <a href="{{ item.url }}" target="_blank" rel="noopener">Abrir o filme ↗</a>
+            {% else %}
+            <a href="{{ url_for('cliente_assistir', filename=item.arquivo) }}" target="_blank" rel="noopener">Assistir</a>
+            <a href="{{ url_for('cliente_baixar', filename=item.arquivo) }}">Baixar</a>
+            {% endif %}
+          </div>
+        </article>
+        {% else %}
+        <div class="vazio">Seu filme aparece aqui assim que a edição for finalizada.</div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="painel-bloco aparece">
+      <h2>Arquivos</h2>
+      <div class="entregas">
+        {% for item in downloads %}
+        <article class="entrega">
+          <span class="entrega-tipo">{{ item.url and 'Link' or 'Download' }}</span>
+          <h3>{{ item.titulo }}</h3>
+          <p>{{ item.url and 'Hospedado fora do site' or item.arquivo }}</p>
+          <div class="entrega-acoes">
+            {% if item.url %}
+            <a href="{{ item.url }}" target="_blank" rel="noopener">Abrir ↗</a>
+            {% else %}
+            <a href="{{ url_for('cliente_baixar', filename=item.arquivo) }}">Baixar arquivo</a>
+            {% endif %}
+          </div>
+        </article>
+        {% else %}
+        <div class="vazio">Ainda não há arquivos disponíveis. Eles aparecem aqui assim que forem liberados.</div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %}

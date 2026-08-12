@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% set grupo = colecoes[setor.tipo] %}
+
+{% block title %}Filmagem de {{ setor.nome|lower }} em {{ marca.cidade_base }} — {{ marca.nome }}{% endblock %}
+{% block description %}{{ setor.abertura }} Filmagem de {{ setor.nome|lower }} em {{ marca.cidade_base }} e todo o Brasil.{% endblock %}
+{% block body_class %}pagina-interna pagina-setor {{ setor.tema }}{% endblock %}
+
+{% block content %}
+<main>
+
+  <!-- ─────────────────────────────── abertura ─────────────────────────────── -->
+  <section class="setor-abertura {% if setor.video_fundo %}com-video{% endif %}">
+    {% if setor.video_fundo %}
+    <video class="setor-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"
+           {% if setor.capa_fundo %}poster="{{ url_for('static', filename=setor.capa_fundo) }}"{% endif %}>
+      <source src="{{ url_for('static', filename=setor.video_fundo) }}" type="video/mp4">
+    </video>
+    <div class="setor-sombra" aria-hidden="true"></div>
+    {% endif %}
+
+    <div class="shell setor-abertura-texto">
+      <span class="rotulo">{{ setor.rotulo }}</span>
+      <h1>{{ setor.titulo_1 }}<em>{{ setor.titulo_2 }}</em></h1>
+      <p>{{ setor.abertura }}</p>
+
+      <div class="setor-acoes">
+        <a class="botao botao-claro" href="{{ url_for('orcamento', tipo=setor.tipo) }}">Falar com a gente</a>
+        <a class="link-sub" href="#orcamento">Ver o orçamento <i aria-hidden="true">↓</i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────── os momentos ───────────────────────────── -->
+  <section class="momentos pad-g">
+    <div class="shell">
+      <div class="momentos-cabeca aparece">
+        <div>
+          <span class="rotulo">{{ setor.intro_rotulo }}</span>
+          <h2>{{ setor.intro_titulo | safe }}</h2>
+        </div>
+        <p>{{ setor.intro_texto }}</p>
+      </div>
+
+      <div class="momentos-grade">
+        {% for item in setor.momentos %}
+        <article class="momento aparece">
+          <span class="momento-num">{{ '%02d' % loop.index }}</span>
+          <h3>{{ item.titulo }}</h3>
+          <p>{{ item.texto }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────── orçamento ─────────────────────────────── -->
+  <section class="setor-precos pad-g" id="orcamento">
+    <div class="shell">
+      <div class="colecoes-cabeca aparece">
+        <div>
+          <span class="rotulo">Orçamento</span>
+          <h2 class="titulo">Um ponto de partida<br><em>para cada história.</em></h2>
+        </div>
+      </div>
+
+      <p class="setor-nota aparece">{{ grupo.nota }}</p>
+
+      <div class="pacotes {% if grupo.pacotes|length == 2 %}dois{% endif %}">
+        {% for pacote in grupo.pacotes %}
+          <article class="pacote {% if pacote.destaque %}pacote-marcado{% endif %} aparece">
+            <div class="pacote-topo">
+              <h3>{{ pacote.nome }}</h3>
+              <span class="pacote-num">
+                {{ pacote.indice }}{% if pacote.selo %} · <b>{{ pacote.selo }}</b>{% endif %}
+              </span>
+            </div>
+
+            <p class="pacote-ideal">{{ pacote.descricao or pacote.ideal }}</p>
+
+            <p class="pacote-preco">
+              <small>{% if pacote.preco.startswith('R$') %}a partir de{% else %}investimento{% endif %}</small>
+              {{ pacote.preco }}
+            </p>
+
+            <ul>
+              {% for item in pacote.itens %}
+              {% if item is mapping %}
+              <li class="item-detalhado">
+                <strong>{{ item.rotulo }}</strong>
+                <span>{{ item.valor }}</span>
+              </li>
+              {% else %}
+              <li>{{ item }}</li>
+              {% endif %}
+              {% endfor %}
+            </ul>
+
+            <a class="pacote-link" href="{{ url_for('orcamento', tipo=setor.tipo, pacote=pacote.nome) }}">
+              {{ pacote.botao or 'Falar sobre esta opção' }} <i aria-hidden="true">→</i>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+
+      {% if grupo.flexibilidade %}
+      <p class="flexibilidade aparece">{{ grupo.flexibilidade }}</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- ───────────────────────────── o caminho ─────────────────────────────── -->
+  <section class="processo claro pad-g">
+    <div class="shell processo-grade">
+      <div class="processo-intro aparece">
+        <span class="rotulo">O caminho</span>
+        <h2>Da primeira conversa<br>ao filme na sua mão.</h2>
+      </div>
+
+      <ol class="processo-lista">
+        {% for etapa in processo %}
+        <li class="processo-item aparece">
+          <span class="processo-num">{{ etapa.indice }}</span>
+          <div>
+            <h3>{{ etapa.titulo }}</h3>
+            <p>{{ etapa.texto }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────── o combinado ───────────────────────────── -->
+  <section class="combinado pad-m">
+    <div class="shell combinado-caixa aparece">
+      <div>
+        <span class="rotulo">Sem surpresa</span>
+        <h2>O que fica<br>combinado.</h2>
+      </div>
+      <ul class="combinado-lista">
+        {% for item in combinado %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────── convite ─────────────────────────────── -->
+  <section class="convite pad-g">
+    <div class="shell convite-caixa aparece">
+      <div>
+        <span class="rotulo">Um convite</span>
+        <h2>{{ setor.convite_titulo | safe }}</h2>
+        <p>{{ setor.convite_texto }}</p>
+      </div>
+      <div>
+        <a class="botao botao-claro" href="{{ url_for('orcamento', tipo=setor.tipo) }}">Começar uma conversa</a>
+        <span class="convite-nota">Sem compromisso · Resposta pelo WhatsApp</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+{% endblock %}

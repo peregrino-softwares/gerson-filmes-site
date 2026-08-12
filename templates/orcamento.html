@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Falar com a gente — {{ marca.nome }}{% endblock %}
+{% block description %}Conte a data, o lugar e um pouco da sua história. Respondemos pessoalmente com a disponibilidade e uma proposta.{% endblock %}
+{% block body_class %}pagina-interna{% endblock %}
+
+{% block content %}
+<main class="orcamento">
+  <div class="shell orcamento-grade">
+
+    <div class="orcamento-intro aparece">
+      <span class="rotulo">Falar com a gente</span>
+      <h1>Conte como será<br>o seu dia.</h1>
+      <p>Leva menos de um minuto. Ao enviar, a conversa abre no WhatsApp já com tudo organizado, e confirmamos se a data está livre.</p>
+
+      <ul class="orcamento-notas">
+        <li>Consulta sem compromisso</li>
+        <li>Quem responde é gente, não é atendimento automático</li>
+        <li>Seus dados servem só para essa resposta</li>
+      </ul>
+    </div>
+
+    <div class="formulario-caixa aparece">
+      {% if erro %}<div class="aviso" role="alert">{{ erro }}</div>{% endif %}
+
+      <form action="{{ url_for('orcamento') }}" method="post" class="formulario" novalidate
+            data-pacotes='{{ pacotes_por_tipo | tojson }}'>
+
+        <div class="dupla">
+          <div class="campo">
+            <label for="nome">Seu nome ou de vocês <i>*</i></label>
+            <input id="nome" name="nome" required autocomplete="name" placeholder="Ana e Lucas"
+                   value="{{ enviado.nome if enviado else '' }}">
+          </div>
+          <div class="campo">
+            <label for="whatsapp">WhatsApp <i>*</i></label>
+            <input id="whatsapp" name="whatsapp" required inputmode="tel" autocomplete="tel"
+                   placeholder="(31) 99999-9999" value="{{ enviado.whatsapp if enviado else '' }}">
+          </div>
+        </div>
+
+        <div class="dupla">
+          <div class="campo">
+            <label for="tipo">Tipo de evento <i>*</i></label>
+            <select id="tipo" name="tipo" required>
+              {% for item in tipos_evento %}
+                <option value="{{ item }}" {% if tipo == item %}selected{% endif %}>{{ item }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="campo">
+            <label for="pacote">Qual orçamento te interessa?</label>
+            <select id="pacote" name="pacote" data-escolhido="{{ pacote or '' }}">
+              <option value="">Ainda não sei</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="dupla">
+          <div class="campo">
+            <label for="data">Data do evento <i>*</i></label>
+            <input id="data" name="data" type="date" required value="{{ enviado.data if enviado else '' }}">
+          </div>
+          <div class="campo">
+            <label for="local">Cidade ou espaço <i>*</i></label>
+            <input id="local" name="local" required placeholder="Belo Horizonte, MG"
+                   value="{{ enviado.local if enviado else '' }}">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="mensagem">O que não pode faltar nesse filme?</label>
+          <textarea id="mensagem" name="mensagem" rows="4"
+                    placeholder="Uma homenagem, uma pessoa especial, a música da entrada, o número de convidados. O que vier à cabeça.">{{ enviado.mensagem if enviado else '' }}</textarea>
+        </div>
+
+        <div class="campo">
+          <label for="conheceu">Como nos encontrou?</label>
+          <select id="conheceu" name="conheceu">
+            {% for item in como_conheceu %}<option value="{{ item }}">{{ item }}</option>{% endfor %}
+          </select>
+        </div>
+
+        <input type="hidden" name="origem" value="Site">
+        <div class="armadilha" aria-hidden="true">
+          <label for="website">Não preencha</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="enviar" type="submit">
+          <span>Enviar e abrir o WhatsApp</span>
+          <i aria-hidden="true">→</i>
+        </button>
+        <p class="formulario-nota">Campos com <i>*</i> são obrigatórios.</p>
+      </form>
+    </div>
+
+  </div>
+</main>
+{% endblock %}

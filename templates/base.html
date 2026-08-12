@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15110E">
+  <meta name="color-scheme" content="dark">
+
+  <title>{% block title %}{{ marca.nome }} — {{ marca.frase_apoio }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ marca.frase_principal }} Filmes de casamento, 15 anos e eventos em {{ marca.cidade_base }} e todo o Brasil.{% endblock %}">
+  <link rel="canonical" href="{{ base_url }}{{ request.path }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="{{ marca.nome }}">
+  <meta property="og:title" content="{{ self.title() }}">
+  <meta property="og:description" content="{{ self.description() }}">
+  <meta property="og:image" content="{{ base_url }}{{ url_for('static', filename='logo-gerson-filmes.png') }}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="{{ url_for('static', filename='logo-header.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='logo-header.png') }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Sem esta marca nada fica escondido: se o JS falhar, o site aparece igual. -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{ marca.nome }}",
+    "description": "{{ marca.frase_principal }} {{ marca.frase_apoio }} Filmagem de casamentos, 15 anos e eventos.",
+    "url": "{{ base_url }}",
+    "image": "{{ base_url }}{{ url_for('static', filename='logo-gerson-filmes.png') }}",
+    "telephone": "+{{ marca.whatsapp }}",
+    "email": "{{ marca.email }}",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "{{ marca.cidade_base }}",
+      "addressRegion": "MG",
+      "addressCountry": "BR"
+    },
+    "areaServed": "{{ marca.atendimento }}",
+    "sameAs": ["{{ marca.instagram }}"],
+    "slogan": "{{ marca.frase_principal }}"
+  }
+  </script>
+  {% block schema %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <a class="pular" href="#conteudo">Ir para o conteúdo</a>
+  <div class="grao" aria-hidden="true"></div>
+  <div class="luz" aria-hidden="true"></div>
+
+  <header class="topo" data-topo>
+    <div class="shell topo-interno">
+      <a class="marca" href="{{ url_for('home') }}" aria-label="{{ marca.nome }}, início">
+        <span class="marca-selo"><img src="{{ url_for('static', filename='logo-header.png') }}" alt="" width="46" height="46"></span>
+        <span class="marca-texto">
+          <strong>{{ marca.nome }}</strong>
+          <small>{{ marca.assinatura }}</small>
+        </span>
+      </a>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="{{ url_for('home') }}"
+           {% if request.endpoint == 'home' %}aria-current="page"{% endif %}
+           title="A vida passa, o filme eterniza">Início</a>
+        {% for s in ordem_setores %}
+        <a class="{% if setores[s].tema %}menu-{{ setores[s].tema }}{% endif %}"
+           href="{{ url_for('setor', slug=s) }}"
+           {% if slug is defined and slug == s %}aria-current="page"{% endif %}>{{ setores[s].nome }}</a>
+        {% endfor %}
+        <a href="{{ url_for('home') }}#orcamento">Orçamento</a>
+        <a href="{{ url_for('home') }}#duvidas">Dúvidas</a>
+
+        <span class="menu-social">
+          <a href="{{ marca.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icone_instagram | safe }}</a>
+          <a href="{{ whatsapp_link }}" target="_blank" rel="noopener" aria-label="WhatsApp">{{ icone_whatsapp | safe }}</a>
+        </span>
+
+        <a class="menu-cta" href="{{ url_for('orcamento') }}">Falar com a gente</a>
+      </nav>
+
+      <button class="abrir-menu" type="button" data-abrir aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-movel">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu-movel" id="menu-movel" data-menu-movel aria-hidden="true">
+    <div class="menu-movel-topo">
+      <span>{{ marca.nome }}</span>
+      <button type="button" data-fechar aria-label="Fechar menu">Fechar</button>
+    </div>
+
+    <nav aria-label="Navegação">
+      <a href="{{ url_for('home') }}">Início</a>
+      {% for s in ordem_setores %}
+      <a class="{% if setores[s].tema %}menu-movel-{{ setores[s].tema }}{% endif %}"
+         href="{{ url_for('setor', slug=s) }}">{{ setores[s].nome }}</a>
+      {% endfor %}
+      <a href="{{ url_for('home') }}#orcamento">Orçamento</a>
+      <a href="{{ url_for('home') }}#duvidas">Dúvidas</a>
+    </nav>
+
+    <div class="menu-movel-pe">
+      <a class="botao botao-claro" href="{{ url_for('orcamento') }}">Falar com a gente</a>
+      <small><a href="{{ marca.instagram }}" target="_blank" rel="noopener">{{ marca.instagram_arroba }}</a> · <a href="{{ url_for('cliente') }}">Área do cliente</a></small>
+    </div>
+  </div>
+
+  <div id="conteudo">{% block content %}{% endblock %}</div>
+
+  <div class="flutuantes">
+    <a class="flutuante" href="{{ marca.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+      {{ icone_instagram | safe }}
+    </a>
+    <a class="flutuante flutuante-zap" href="{{ whatsapp_link }}" target="_blank" rel="noopener" aria-label="Conversar pelo WhatsApp">
+      {{ icone_whatsapp | safe }}
+    </a>
+  </div>
+
+  <footer class="rodape">
+    <div class="shell rodape-topo">
+      <div class="rodape-palavra">
+        <div class="rodape-frase">A vida passa,<br><em>o filme eterniza.</em></div>
+        <p>{{ marca.frase_apoio }} Casamentos, 15 anos e eventos em {{ marca.atendimento }}.</p>
+      </div>
+
+      <div class="rodape-colunas">
+        <div>
+          <span class="rodape-titulo">Setores</span>
+          {% for s in ordem_setores %}
+          <a href="{{ url_for('setor', slug=s) }}">{{ setores[s].nome }}</a>
+          {% endfor %}
+          <a href="{{ url_for('home') }}#orcamento">Orçamento</a>
+          <a href="{{ url_for('home') }}#duvidas">Dúvidas</a>
+        </div>
+        <div>
+          <span class="rodape-titulo">Contato</span>
+          <a href="{{ whatsapp_link }}" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="{{ marca.instagram }}" target="_blank" rel="noopener">{{ marca.instagram_arroba }}</a>
+          <a href="mailto:{{ marca.email }}">{{ marca.email }}</a>
+          <a href="{{ url_for('cliente') }}">Área do cliente</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="shell rodape-base">
+      <span>© {{ ano }} {{ marca.nome }}</span>
+      <span>{{ marca.cidade_base }} · {{ marca.regiao }}</span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>

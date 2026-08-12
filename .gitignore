@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+.DS_Store
+leads/*.txt
+uploads/*
+!uploads/.gitkeep
+private/*.db
+
+# Vídeos sem compressão: ficam só na sua máquina, não vão para o servidor
+_originais/

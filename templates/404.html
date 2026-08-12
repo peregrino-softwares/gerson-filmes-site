@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Página não encontrada — {{ marca.nome }}{% endblock %}
+{% block body_class %}pagina-interna{% endblock %}
+
+{% block content %}
+<main class="recado">
+  <section class="recado-caixa aparece">
+    <span class="rotulo">Erro 404</span>
+    <h1>Esta cena ficou<br>fora da montagem.</h1>
+    <p>A página que você procurava não existe mais, ou nunca existiu. A história principal continua no começo.</p>
+    <a class="botao botao-escuro" href="{{ url_for('home') }}">Voltar ao início</a>
+  </section>
+</main>
+{% endblock %}

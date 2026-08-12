@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: gerson-filmes
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WHATSAPP_NUMBER
+        value: 5531998851328
+      - key: HTTPS_ONLY
+        value: 1

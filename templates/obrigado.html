@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Recebido — {{ marca.nome }}{% endblock %}
+{% block description %}Recebi sua mensagem. Vamos continuar a conversa pelo WhatsApp.{% endblock %}
+{% block body_class %}pagina-interna{% endblock %}
+
+{% block content %}
+<main class="recado">
+  <section class="recado-caixa aparece">
+    <span class="rotulo">Recebido</span>
+    <h1>Sua história<br>já está com a gente.</h1>
+    <p>Estamos abrindo o WhatsApp com tudo o que você escreveu, organizado. Se a janela não abrir sozinha, é só tocar no botão.</p>
+
+    <a class="botao botao-escuro" href="{{ destino }}" target="_blank" rel="noopener" data-abrir-zap>
+      Abrir a conversa <i aria-hidden="true" style="font-style:normal">→</i>
+    </a>
+
+    <div class="recado-extra">
+      <div>
+        <span>Enquanto isso</span>
+        <a href="{{ marca.instagram }}" target="_blank" rel="noopener">Ver filmes no {{ marca.instagram_arroba }}</a>
+      </div>
+      <div>
+        <span>Já é cliente?</span>
+        <a href="{{ url_for('cliente') }}">Entrar na área do cliente</a>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
