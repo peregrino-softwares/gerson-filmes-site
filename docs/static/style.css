@@ -417,6 +417,20 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .painel[hidden] { display: none; }
 .painel-nota { margin: 0 0 46px; max-width: 640px; color: var(--cinza-d); font-size: 13.5px; line-height: 1.8; }
 
+/* Como se paga, logo abaixo dos preços. É a pergunta seguinte de quem
+   acabou de ver um valor — antes ela só aparecia nas Dúvidas, lá no fim.
+   O filete de acento marca sem gritar. */
+.pagamento {
+  margin: 40px 0 0; max-width: 640px; padding-left: 20px;
+  border-left: 2px solid var(--argila);
+  color: var(--cinza-d); font-size: 13.5px; line-height: 1.8;
+}
+.pagamento span {
+  display: block; margin-bottom: 4px;
+  color: var(--osso); font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+}
+.tema-rosa .pagamento { border-left-color: var(--rosa); }
+
 /* Lista de preços impressa, não tabela de plano de software:
    sem sombra, sem borda arredondada, sem selo gritando. */
 /* Cada opção tem a sua altura. Forçar todas ao tamanho da maior abria

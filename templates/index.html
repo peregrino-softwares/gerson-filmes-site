@@ -223,6 +223,11 @@
           {% endfor %}
         </div>
 
+        <p class="pagamento aparece">
+          <span>{{ pagamento.rotulo }}</span>
+          {{ pagamento.texto }}
+        </p>
+
         {% if grupo.flexibilidade %}
         <p class="flexibilidade">{{ grupo.flexibilidade }}</p>
         {% endif %}

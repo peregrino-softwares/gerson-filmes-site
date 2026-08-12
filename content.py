@@ -218,7 +218,7 @@ COLECOES = {
                 "preco": "R$ 2.750",
                 "botao": "Quero conhecer o Essencial",
                 "itens": [
-                    {"rotulo": "Horas de cobertura", "valor": "4 horas"},
+                    {"rotulo": "Horas de cobertura", "valor": "5 horas"},
                     {"rotulo": "2 câmeras",          "valor": "Cerimônia e recepção"},
                     {"rotulo": "Áudio profissional", "valor": "Votos, discursos e homenagens"},
                     {"rotulo": "Filme principal",    "valor": "15 a 25 minutos"},
@@ -231,19 +231,19 @@ COLECOES = {
             {
                 "indice": "02",
                 "nome": "Legado",
-                "selo": "Mais escolhido",
+                "selo": "",
                 "descricao": "Mais tempo, mais perspectivas e mais espaço para transformar "
                              "o dia inteiro em memória.",
                 "preco": "R$ 3.850",
                 "botao": "Quero conhecer o Legado",
                 "itens": [
-                    {"rotulo": "Pré-wedding ou making of",
-                     "valor": "Um ensaio dedicado ao casal ou o registro das horas lindas "
-                              "que antecedem o grande sim"},
+                    {"rotulo": "Making of do casal",
+                     "valor": "O registro das horas que antecedem o grande sim, com os "
+                              "dois se preparando"},
                     {"rotulo": "4 câmeras em ação",   "valor": "Cerimônia, recepção, festa e ornamentação"},
                     {"rotulo": "Áudio profissional",  "valor": "Votos, discursos e homenagens"},
                     {"rotulo": "Filme principal",     "valor": "30 a 45 minutos"},
-                    {"rotulo": "Horas de cobertura",  "valor": "7 horas"},
+                    {"rotulo": "Horas de cobertura",  "valor": "8 horas"},
                     {"rotulo": "2 teasers cinematográficos", "valor": "Filmes curtos e artísticos"},
                     {"rotulo": "Trilha sonora",       "valor": "Escolhida para conduzir a narrativa"},
                     {"rotulo": "Entrega prioritária", "valor": "Em até 45 dias"},
@@ -367,6 +367,16 @@ COLECOES = {
             },
         ],
     },
+}
+
+# Como se paga. Fica logo abaixo dos preços, na mesma seção: é a primeira
+# pergunta de quem olha um valor, e antes ela só existia lá embaixo, nas
+# dúvidas — muita gente fechava a página antes de chegar lá.
+PAGAMENTO = {
+    "rotulo": "Como se paga",
+    "texto": "40% na entrada para reservar a data e o restante até 7 dias antes do "
+             "evento. No cartão, em até 12 vezes, com os juros da máquina. "
+             "O formato fica combinado antes de assinar.",
 }
 
 ORDEM_COLECOES = ["Casamento", "15 anos", "Evento"]
