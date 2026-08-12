@@ -75,9 +75,8 @@ ESPECIALIDADES = [
         "indice": "01",
         "titulo": "Casamentos",
         "chamada": "Quem casa não assiste ao próprio casamento.",
-        "texto": "O dia passa por dentro, em blocos, entre um abraço e outro. O filme "
-                 "devolve a ordem das coisas — inclusive as horas em que vocês estavam "
-                 "ocupados demais para reparar no que acontecia em volta.",
+        "texto": "Daqui a 50 anos, tudo o que vocês viveram neste dia estará a apenas "
+                 "um play de distância.",
         "pacote": "Casamento",
         "tema": "",
     },
@@ -85,9 +84,9 @@ ESPECIALIDADES = [
         "indice": "02",
         "titulo": "15 anos",
         "chamada": "O ano em que ela escolhe quem quer ser.",
-        "texto": "São meses de preparação para quatro horas de festa, com ela no centro de "
-                 "tudo. Filmamos as duas: a menina que ensaiou a valsa por semanas e a que "
-                 "tirou o salto na terceira música.",
+        "texto": "São meses de preparação para uma noite intensa de alegria e festa, com "
+                 "ela no centro de tudo. Filmamos as duas: a menina que ensaiou a valsa "
+                 "por semanas e a que tirou o salto na terceira música.",
         "pacote": "15 anos",
         "tema": "tema-rosa",
     },
@@ -95,10 +94,12 @@ ESPECIALIDADES = [
         "indice": "03",
         "titulo": "Eventos",
         "chamada": "Formatura, confraternização, lançamento.",
-        "texto": "Vídeo de evento costuma ser gravado sem que ninguém tenha decidido para "
-                 "que ele serve. Perguntamos isso antes: registro para a família, peça para "
-                 "as redes ou material institucional pedem cortes diferentes — e dias de "
-                 "gravação diferentes.",
+        "texto": "Um chá de bebê anuncia uma chegada. O aniversário infantil guarda uma "
+                 "fase que passa depressa. As bodas celebram uma história construída a "
+                 "dois. Outras comemorações reúnem pessoas em torno de uma conquista, "
+                 "enquanto o lançamento de uma marca, produto ou projeto inaugura um novo "
+                 "capítulo. Cada ocasião tem seu próprio significado — e pede um filme "
+                 "capaz de traduzi-lo.",
         "pacote": "Evento",
         "tema": "tema-salvia",
     },

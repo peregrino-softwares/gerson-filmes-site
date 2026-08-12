@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/gerson-filmes-site/static/style.css?v=1786502662">
+  <link rel="stylesheet" href="/gerson-filmes-site/static/style.css?v=1786509051">
 
   <!-- Sem esta marca nada fica escondido: se o JS falhar, o site aparece igual. -->
   <script>document.documentElement.classList.add('js');</script>
@@ -100,6 +100,25 @@
         <span></span><span></span>
       </button>
     </div>
+
+    <!-- No celular os três setores ficam à vista, sem depender do menu:
+         são o motivo de a maioria das visitas existir. Some no desktop,
+         onde o menu de cima já mostra tudo. -->
+    <nav class="setores-fita" aria-label="Setores">
+      
+      <a class=""
+         href="/gerson-filmes-site/casamentos"
+         >Casamentos</a>
+      
+      <a class="fita-tema-rosa"
+         href="/gerson-filmes-site/15-anos"
+         >15 anos</a>
+      
+      <a class="fita-tema-salvia"
+         href="/gerson-filmes-site/eventos"
+         aria-current="page">Eventos</a>
+      
+    </nav>
   </header>
 
   <div class="menu-movel" id="menu-movel" data-menu-movel aria-hidden="true">

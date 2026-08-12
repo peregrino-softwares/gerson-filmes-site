@@ -92,6 +92,17 @@
         <span></span><span></span>
       </button>
     </div>
+
+    <!-- No celular os três setores ficam à vista, sem depender do menu:
+         são o motivo de a maioria das visitas existir. Some no desktop,
+         onde o menu de cima já mostra tudo. -->
+    <nav class="setores-fita" aria-label="Setores">
+      {% for s in ordem_setores %}
+      <a class="{% if setores[s].tema %}fita-{{ setores[s].tema }}{% endif %}"
+         href="{{ url_for('setor', slug=s) }}"
+         {% if slug is defined and slug == s %}aria-current="page"{% endif %}>{{ setores[s].nome }}</a>
+      {% endfor %}
+    </nav>
   </header>
 
   <div class="menu-movel" id="menu-movel" data-menu-movel aria-hidden="true">
