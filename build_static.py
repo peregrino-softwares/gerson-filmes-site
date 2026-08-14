@@ -39,6 +39,7 @@ PAGINAS = {
     "/eventos": "eventos/index.html",
     "/orcamento": "orcamento/index.html",
     "/obrigado": "obrigado/index.html",
+    "/politica-de-privacidade": "politica-de-privacidade/index.html",
 }
 
 

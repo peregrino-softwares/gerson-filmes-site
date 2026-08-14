@@ -213,6 +213,11 @@ def home():
     return render_template("index.html")
 
 
+@app.get("/politica-de-privacidade")
+def politica_privacidade():
+    return render_template("politica_privacidade.html")
+
+
 @app.get("/<any(casamentos, '15-anos', eventos):slug>")
 def setor(slug):
     """Uma página por setor: casamentos, 15 anos e eventos.
@@ -438,6 +443,7 @@ def sitemap():
     paginas = [("/", "1.0")]
     paginas += [(f"/{s}", "0.9") for s in content.ORDEM_SETORES]
     paginas += [("/orcamento", "0.8")]
+    paginas += [("/politica-de-privacidade", "0.5")]
     urls = "".join(
         f"<url><loc>{base}{caminho}</loc><lastmod>{hoje}</lastmod>"
         f"<priority>{peso}</priority></url>"

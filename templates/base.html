@@ -159,6 +159,7 @@
           <a href="{{ whatsapp_link }}" target="_blank" rel="noopener">WhatsApp</a>
           <a href="{{ marca.instagram }}" target="_blank" rel="noopener">{{ marca.instagram_arroba }}</a>
           <a href="mailto:{{ marca.email }}">{{ marca.email }}</a>
+          <a href="{{ url_for('politica_privacidade') }}">Política de Privacidade</a>
           {% if area_cliente %}<a href="{{ url_for('cliente') }}">Área do cliente</a>{% endif %}
         </div>
       </div>
