@@ -200,11 +200,6 @@
 
             <p class="pacote-ideal">{{ pacote.descricao or pacote.ideal }}</p>
 
-            <p class="pacote-preco">
-              <small>{{ investimento.rotulo }}</small>
-              {{ investimento.texto }}
-            </p>
-
             <ul>
               {% for item in pacote.itens %}
               {% if item is mapping %}

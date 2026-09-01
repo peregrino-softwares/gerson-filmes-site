@@ -151,7 +151,7 @@ p { text-wrap: pretty; }
 .tema-rosa .pacote-marcado:hover { background: #2E1F2A; }
 .tema-rosa .pacotes { border-top-color: rgba(226,166,181,.16); }
 .tema-rosa .pacote { border-left-color: rgba(226,166,181,.16); border-bottom-color: rgba(226,166,181,.16); }
-.tema-rosa .pacote-preco { border-top-color: rgba(226,166,181,.16); }
+.tema-rosa .pacote ul { border-top-color: rgba(226,166,181,.16); }
 .tema-rosa .pacote-link { border-top-color: rgba(226,166,181,.16); }
 
 /* O cartão de 15 anos na home ganha o fundo da própria paleta, para se
@@ -450,9 +450,7 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .pacote-num { color: var(--argila-cl); font-size: 11px; letter-spacing: .18em; }
 .pacote h3 { margin: 0; font-family: var(--serif); font-size: 42px; line-height: 1; }
 .pacote-ideal { margin: 20px 0 0; color: var(--cinza); font-size: 13.5px; line-height: 1.7; min-height: 68px; }
-.pacote-preco { margin: 32px 0 30px; padding-top: 26px; border-top: 1px solid var(--linha); font-family: var(--serif); font-size: 44px; line-height: 1; letter-spacing: -.02em; }
-.pacote-preco small { display: block; font-family: var(--sans); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza-d); margin-bottom: 12px; }
-.pacote ul { list-style: none; padding: 0; margin: 0 0 36px; display: grid; gap: 14px; }
+.pacote ul { list-style: none; padding: 26px 0 0; margin: 32px 0 36px; border-top: 1px solid var(--linha); display: grid; gap: 14px; }
 .pacote li { display: grid; grid-template-columns: 20px 1fr; color: var(--cinza); font-size: 14px; line-height: 1.55; }
 .pacote li::before { content: ""; width: 7px; height: 1px; background: var(--argila-cl); margin-top: 11px; }
 
@@ -486,7 +484,6 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .tema-rosa .pacote:nth-child(1) { --argila: #EBB9C0; --argila-cl: #EBB9C0; }
 .tema-rosa .pacote:nth-child(2) { --argila: #DB93A6; --argila-cl: #DB93A6; }
 .tema-rosa .pacote:nth-child(3) { --argila: #C489AE; --argila-cl: #C489AE; }
-.tema-rosa .pacote-preco { color: var(--argila-cl); }
 
 /* A troca de aba muda a cor da seção inteira, então ela precisa de tempo
    para acontecer — sem transição, o rosa entra como um susto. */
@@ -494,7 +491,6 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .colecoes .titulo em,
 .colecoes .aba,
 .colecoes .pacote-num,
-.colecoes .pacote-preco,
 .colecoes .pacote-ideal,
 .colecoes .pacote-link i { transition: color .5s ease; }
 .colecoes .aba[aria-selected="true"] { transition: color .5s ease, border-color .5s ease; }
@@ -935,7 +931,6 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
   .aba { padding: 15px 18px 17px; font-size: 13px; white-space: nowrap; }
   .pacote { padding: 34px 26px 32px; }
   .pacote h3 { font-size: 34px; }
-  .pacote-preco { font-size: 36px; }
 
   .combinado-caixa { padding-top: 40px; }
   .voz blockquote, .voz:first-child blockquote { font-size: 25px; }

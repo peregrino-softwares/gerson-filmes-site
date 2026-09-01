@@ -18,9 +18,9 @@ Abra o **`content.py`**. Tudo que precisa da sua conferência está marcado com
 `# ⚠️ CONFIRA`:
 
 1. **Itens e prazos de cada coleção** — confira se ainda valem. O site não
-   publica valor nenhum: no lugar do preço, o cartão mostra "Sob consulta"
-   (o texto fica em `INVESTIMENTO`, no `content.py`) e o orçamento vai pelo
-   WhatsApp, conforme a data, o local e a duração do evento.
+   publica valor nenhum: o cartão vai direto da descrição para os itens, e o
+   orçamento vai pelo WhatsApp, conforme a data, o local e a duração do
+   evento.
 2. **Dois depoimentos** — o da Fernanda e Tiago é seu; os outros dois são
    exemplos de formato. Troque pelos reais.
 3. **Domínio** — pronto e no ar em `https://www.gersonfilmes.com.br`.
@@ -133,8 +133,8 @@ mesmo molde e apontar o `data-tema` do botão para ela.
 03 Autoral    #C489AE   malva
 ```
 
-O tom pinta o investimento, o número, os traços da lista e a seta do cartão
-— tudo junto, porque o cartão só redefine as variáveis de acento. Estão em
+O tom pinta o número, os traços da lista e a seta do cartão — tudo junto,
+porque o cartão só redefine as variáveis de acento. Estão em
 `.tema-rosa .pacote:nth-child(n)` no `style.css`.
 
 Existem variações de cada um (`--argila-txt`, `--cinza-d`) porque a mesma cor

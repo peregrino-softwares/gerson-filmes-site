@@ -155,7 +155,6 @@ def inject_content():
         "processo": content.PROCESSO,
         "colecoes": content.COLECOES,
         "pagamento": content.PAGAMENTO,
-        "investimento": content.INVESTIMENTO,
         "setores": content.SETORES,
         "ordem_setores": content.ORDEM_SETORES,
         "ordem_colecoes": content.ORDEM_COLECOES,

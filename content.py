@@ -192,9 +192,9 @@ PROCESSO = [
 # ---------------------------------------------------------------
 # 7. COLEÇÕES
 #    ⚠️ CONFIRA: itens e prazos.
-#    O site não publica valor nenhum: cada orçamento é enviado pelo
-#    WhatsApp, conforme a data, o local e a duração do evento. O que
-#    aparece no lugar do preço está em INVESTIMENTO, logo abaixo.
+#    O site não publica valor nenhum, nem "sob consulta": o cartão vai
+#    direto da descrição para os itens, e o orçamento é enviado pelo
+#    WhatsApp, conforme a data, o local e a duração do evento.
 # ---------------------------------------------------------------
 COLECOES = {
     "Casamento": {
@@ -373,14 +373,6 @@ PAGAMENTO = {
     "texto": "40% na entrada para reservar a data e o restante até 7 dias antes do "
              "evento. No cartão, em até 12 vezes, com os juros da máquina. "
              "O formato fica combinado antes de assinar.",
-}
-
-# O que cada cartão mostra no lugar do preço. Os valores saíram do site: em vez
-# de um número fechado, o cartão convida para a conversa, e o orçamento vai pelo
-# WhatsApp conforme a data, o local e a duração de cada evento.
-INVESTIMENTO = {
-    "rotulo": "investimento",
-    "texto": "Sob consulta",
 }
 
 ORDEM_COLECOES = ["Casamento", "15 anos", "Evento"]
