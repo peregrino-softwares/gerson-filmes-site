@@ -17,13 +17,13 @@ preenchido, sem precisar de servidor nenhum rodando por trás.
 Abra o **`content.py`**. Tudo que precisa da sua conferência está marcado com
 `# ⚠️ CONFIRA`:
 
-1. **Preços de 15 anos e de eventos** — eu criei como ponto de partida
-   (R$ 1.950 / 2.850 / 3.650 para 15 anos, R$ 1.200 para cobertura de evento).
-   Ajuste para o que você realmente cobra.
-2. **Preços e prazos de casamento** — confira se ainda valem.
-3. **Dois depoimentos** — o da Fernanda e Tiago é seu; os outros dois são
+1. **Itens e prazos de cada coleção** — confira se ainda valem. O site não
+   publica valor nenhum: no lugar do preço, o cartão mostra "Sob consulta"
+   (o texto fica em `INVESTIMENTO`, no `content.py`) e o orçamento vai pelo
+   WhatsApp, conforme a data, o local e a duração do evento.
+2. **Dois depoimentos** — o da Fernanda e Tiago é seu; os outros dois são
    exemplos de formato. Troque pelos reais.
-4. **Domínio** — pronto e no ar em `https://www.gersonfilmes.com.br`.
+3. **Domínio** — pronto e no ar em `https://www.gersonfilmes.com.br`.
    Nada a fazer; os detalhes ficam em *O domínio*, no fim.
 
 ---
@@ -87,7 +87,7 @@ e-mail.
 
 | Quero mudar…                      | Arquivo             |
 |-----------------------------------|---------------------|
-| Qualquer texto, preço ou pergunta | `content.py`        |
+| Qualquer texto, item ou pergunta  | `content.py`        |
 | Cores                             | `static/style.css`, no topo (`:root`) |
 | Vídeo de abertura ou teaser       | `static/`           |
 | Como o site funciona              | `app.py`            |
@@ -133,8 +133,8 @@ mesmo molde e apontar o `data-tema` do botão para ela.
 03 Autoral    #C489AE   malva
 ```
 
-O tom pinta o preço, o número, os traços da lista e a seta do cartão — tudo
-junto, porque o cartão só redefine as variáveis de acento. Estão em
+O tom pinta o investimento, o número, os traços da lista e a seta do cartão
+— tudo junto, porque o cartão só redefine as variáveis de acento. Estão em
 `.tema-rosa .pacote:nth-child(n)` no `style.css`.
 
 Existem variações de cada um (`--argila-txt`, `--cinza-d`) porque a mesma cor
@@ -303,7 +303,7 @@ ser público para o GitHub Pages ser gratuito). O que fica no ar é a pasta
 python build_static.py
 ```
 
-Isso apaga a `docs/` antiga e gera de novo, com os textos e preços de agora.
+Isso apaga a `docs/` antiga e gera de novo, com os textos de agora.
 Depois:
 
 ```bash

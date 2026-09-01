@@ -191,22 +191,23 @@ PROCESSO = [
 
 # ---------------------------------------------------------------
 # 7. COLEÇÕES
-#    ⚠️ CONFIRA: valores, itens e prazos.
-#    Os preços de 15 anos e de eventos foram criados como ponto de
-#    partida — ajuste para o que você realmente cobra.
+#    ⚠️ CONFIRA: itens e prazos.
+#    O site não publica valor nenhum: cada orçamento é enviado pelo
+#    WhatsApp, conforme a data, o local e a duração do evento. O que
+#    aparece no lugar do preço está em INVESTIMENTO, logo abaixo.
 # ---------------------------------------------------------------
 COLECOES = {
     "Casamento": {
         "titulo": "Casamentos",
-        "nota": "Os valores apresentados são referências para Sete Lagoas, Belo "
-                "Horizonte e região. Cada opção varia conforme o tempo de cobertura, o "
-                "número de câmeras e a abrangência das imagens aéreas. Deslocamentos e a "
-                "duração efetiva do evento são considerados na composição do valor final.",
+        "nota": "Cada opção varia conforme o tempo de cobertura, o número de câmeras e "
+                "a abrangência das imagens aéreas. O orçamento é enviado pelo WhatsApp, "
+                "considerando também a data, o deslocamento e a duração efetiva do "
+                "evento — e vale para Sete Lagoas, Belo Horizonte e região.",
 
         # Aparece logo abaixo da nota, antes dos cartões.
         "flexibilidade": "Se alguma opção não se encaixar no que vocês imaginam, ela pode "
-                         "ser personalizada com itens de valor equivalente, sem alteração "
-                         "no valor escolhido. Ajustes e acréscimos são alinhados pelo "
+                         "ser personalizada com itens equivalentes, sem alteração no "
+                         "valor combinado. Ajustes e acréscimos são alinhados pelo "
                          "WhatsApp e formalizados em contrato, garantindo clareza e "
                          "segurança em cada detalhe.",
 
@@ -217,7 +218,6 @@ COLECOES = {
                 "selo": "",
                 "descricao": "A essência do dia preservada em um filme sensível, preciso "
                              "e feito para permanecer.",
-                "preco": "R$ 2.750",
                 "botao": "Quero conhecer o Essencial",
                 "itens": [
                     {"rotulo": "Horas de cobertura", "valor": "5 horas"},
@@ -236,7 +236,6 @@ COLECOES = {
                 "selo": "",
                 "descricao": "Mais tempo, mais perspectivas e mais espaço para transformar "
                              "o dia inteiro em memória.",
-                "preco": "R$ 3.850",
                 "botao": "Quero conhecer o Legado",
                 "itens": [
                     {"rotulo": "Making of do casal",
@@ -259,7 +258,6 @@ COLECOES = {
                 "descricao": "Para reviver a cerimônia por inteiro — sem cortes, por todos "
                              "os ângulos e com a dimensão que somente o olhar do alto "
                              "consegue revelar.",
-                "preco": "R$ 5.350",
                 "botao": "Quero conhecer o Cinema",
                 "itens": [
                     {"rotulo": "Pré-wedding", "valor": "Um ensaio lindo dedicado ao casal"},
@@ -289,14 +287,14 @@ COLECOES = {
     },
     "15 anos": {
         "titulo": "15 anos",
-        "nota": "Valores de referência para Sete Lagoas, Belo Horizonte e região. "
-                "Ensaio em outra cidade e festas acima de quatro horas ajustam o valor.",
+        "nota": "Atendemos Sete Lagoas, Belo Horizonte e região. O orçamento é enviado "
+                "pelo WhatsApp: ensaio em outra cidade e festas acima de quatro horas "
+                "entram nessa conversa.",
         "pacotes": [
             {
                 "indice": "01",
                 "nome": "Essencial",
                 "ideal": "A festa registrada com calma",
-                "preco": "R$ 1.950",
                 "itens": [
                     "Entrada, valsa e melhores momentos da festa",
                     "Discursos e homenagens com microfone",
@@ -309,7 +307,6 @@ COLECOES = {
                 "indice": "02",
                 "nome": "Completo",
                 "ideal": "Do ensaio até o fim da pista",
-                "preco": "R$ 2.850",
                 "itens": [
                     "Ensaio filmado em locação escolhida por você",
                     "Preparação, entrada, valsa e festa",
@@ -323,7 +320,6 @@ COLECOES = {
                 "indice": "03",
                 "nome": "Autoral",
                 "ideal": "Ensaio, festa e material para as redes",
-                "preco": "R$ 3.650",
                 "itens": [
                     "Ensaio em duas locações, com troca de look",
                     "Preparação, entrada, valsa e festa sem limite de horas",
@@ -345,7 +341,6 @@ COLECOES = {
                 "indice": "01",
                 "nome": "Cobertura",
                 "ideal": "Até quatro horas, um ponto de câmera",
-                "preco": "R$ 1.200",
                 "itens": [
                     "Registro dos momentos principais",
                     "Áudio de discursos e apresentações",
@@ -358,7 +353,6 @@ COLECOES = {
                 "indice": "02",
                 "nome": "Institucional",
                 "ideal": "Empresas, marcas e formaturas",
-                "preco": "Sob medida",
                 "itens": [
                     "Roteiro conversado antes da gravação",
                     "Entrevistas, depoimentos e imagens de apoio",
@@ -371,14 +365,22 @@ COLECOES = {
     },
 }
 
-# Formas de pagamento. Fica logo abaixo dos preços, na mesma seção: é a primeira
-# pergunta de quem olha um valor, e antes ela só existia lá embaixo, nas
+# Formas de pagamento. Fica na mesma seção das coleções: é a primeira pergunta
+# de quem acabou de escolher uma opção, e antes ela só existia lá embaixo, nas
 # dúvidas — muita gente fechava a página antes de chegar lá.
 PAGAMENTO = {
     "rotulo": "Formas de pagamento",
     "texto": "40% na entrada para reservar a data e o restante até 7 dias antes do "
              "evento. No cartão, em até 12 vezes, com os juros da máquina. "
              "O formato fica combinado antes de assinar.",
+}
+
+# O que cada cartão mostra no lugar do preço. Os valores saíram do site: em vez
+# de um número fechado, o cartão convida para a conversa, e o orçamento vai pelo
+# WhatsApp conforme a data, o local e a duração de cada evento.
+INVESTIMENTO = {
+    "rotulo": "investimento",
+    "texto": "Sob consulta",
 }
 
 ORDEM_COLECOES = ["Casamento", "15 anos", "Evento"]

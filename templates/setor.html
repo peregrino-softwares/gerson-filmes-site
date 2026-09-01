@@ -82,8 +82,8 @@
             <p class="pacote-ideal">{{ pacote.descricao or pacote.ideal }}</p>
 
             <p class="pacote-preco">
-              <small>{% if pacote.preco.startswith('R$') %}a partir de{% else %}investimento{% endif %}</small>
-              {{ pacote.preco }}
+              <small>{{ investimento.rotulo }}</small>
+              {{ investimento.texto }}
             </p>
 
             <ul>
