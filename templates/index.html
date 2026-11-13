@@ -211,7 +211,7 @@
   </section>
 
   <!-- ─────────────────────────── quem está atrás ──────────────────────────── -->
-  {% if quem.ativo %}
+{% if quem.ativo %}
   <section class="quem claro pad-g {% if not quem_tem_foto %}sem-retrato{% endif %}" id="quem" aria-label="Quem filma">
     <div class="shell quem-grade">
       {% if quem_tem_foto %}
@@ -241,7 +241,7 @@
       </div>
     </div>
   </section>
-  {% endif %}
+{% endif %}
 
   <!-- ──────────────────────────── quem já assistiu ────────────────────────── -->
   {% if depoimentos %}

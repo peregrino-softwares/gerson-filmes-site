@@ -510,7 +510,7 @@ COMBINADO = [
 #     imagem como"). Sem o arquivo, a seção mostra só o texto.
 # ---------------------------------------------------------------
 QUEM = {
-    "ativo": True,
+    "ativo": False,
     "rotulo": "Filmmaker",
     "nome": "Gerson Martins",
     "foto": "gerson.jpg",
