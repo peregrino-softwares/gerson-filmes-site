@@ -9,10 +9,10 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {% for item in faq %}
+{% for item in faq %}
     { "@type": "Question", "name": {{ item.pergunta | tojson }},
       "acceptedAnswer": { "@type": "Answer", "text": {{ item.resposta | tojson }} } }{% if not loop.last %},{% endif %}
-    {% endfor %}
+{% endfor %}
   ]
 }
 </script>
@@ -54,32 +54,13 @@
   <!-- ──────────────────────────────── ficha ──────────────────────────────── -->
   <section class="ficha" aria-label="Informações gerais">
     <dl class="shell ficha-grade">
-      {% for item in ficha %}
+{% for item in ficha %}
       <div class="ficha-item aparece">
         <dt>{{ item.rotulo }}</dt>
         <dd>{{ item.valor }}</dd>
       </div>
-      {% endfor %}
+{% endfor %}
     </dl>
-  </section>
-
-  <!-- ────────────────────────────── manifesto ────────────────────────────── -->
-  <section class="manifesto claro pad-g" id="olhar">
-    <div class="shell manifesto-grade">
-      <div class="aparece">
-        <span class="rotulo">O olhar</span>
-        <h2>Mais do que lembrar,<br><em>sentir outra vez.</em></h2>
-      </div>
-
-      <div class="manifesto-texto aparece">
-        <p>Por algum tempo, vocês vão se lembrar de quase tudo. Depois, o tempo começa a guardar o dia em fragmentos: uma frase, um abraço, o som de uma risada, o olhar das pessoas que nós mais amamos.</p>
-        <p>O filme existe para que nada disso dependa apenas da memória.</p>
-        <p>Para preservar as vozes, os movimentos e tudo o que aconteceu enquanto vocês estavam ocupados vivendo. Sem poses ensaiadas. Sem interromper o momento. Sem transformar sentimentos verdadeiros em cenas montadas.</p>
-        <p>Apenas o dia como ele foi — inteiro, vivo e pronto para ser sentido novamente.</p>
-        <span class="manifesto-assinatura">Gerson Filmes</span>
-        <p class="manifesto-lema">A vida passa. O filme eterniza.</p>
-      </div>
-    </div>
   </section>
 
   <!-- ───────────────────────────── o que eu filmo ─────────────────────────── -->
@@ -90,11 +71,11 @@
           <span class="rotulo">O que filmamos</span>
           <h2 class="titulo">Cada história pede<br><em>uma linguagem.</em></h2>
         </div>
-        <p class="corpo">Um filme não existe apenas para registrar o que aconteceu. Ele preserva o som das vozes, os gestos, as reações, a atmosfera e os pequenos detalhes que deram sentido àquele dia. Com o tempo, esse registro ganha ainda mais valor: torna-se uma forma de reencontrar presenças, redescobrir momentos e sentir novamente a história como ela foi vivida.</p>
+        <p class="corpo">Casamentos, festas de 15 anos e eventos. Escolha o seu momento e conheça as opções de cobertura.</p>
       </div>
 
       <div class="filmo-lista">
-        {% for item in especialidades %}
+{% for item in especialidades %}
         <article class="filmo-item {{ item.tema }} aparece">
           <span class="filmo-num">{{ item.indice }}</span>
           <div>
@@ -106,32 +87,35 @@
             Ver a página <i aria-hidden="true">→</i>
           </a>
         </article>
-        {% endfor %}
+{% endfor %}
       </div>
     </div>
   </section>
 
   <!-- ──────────────────────────── como eu trabalho ─────────────────────────── -->
-  <section class="metodo pad-g" aria-label="Como trabalhamos">
+  <section class="metodo pad-p" aria-label="Como trabalhamos">
     <div class="shell">
       <div class="secao-cabeca aparece">
         <div>
           <span class="rotulo">Como trabalhamos</span>
-          <h2 class="titulo">Sete decisões que<br>mudam o resultado.</h2>
+          <h2 class="titulo">Três cuidados.<br><em>Uma história só de vocês.</em></h2>
         </div>
       </div>
 
       <div class="metodo-grade">
-        {% for item in metodo %}
+{% for item in metodo %}
         <article class="metodo-item aparece">
           <span class="metodo-rotulo">{{ item.rotulo }}</span>
           <h3>{{ item.titulo }}</h3>
           <p>{{ item.texto }}</p>
         </article>
-        {% endfor %}
+{% endfor %}
       </div>
     </div>
   </section>
+
+{% set relatos = depoimentos %}
+{% include "_avaliacoes.html" %}
 
   <!-- ─────────────────────────────── orçamento ─────────────────────────────── -->
   <section class="colecoes pad-g" id="orcamento">
@@ -144,7 +128,7 @@
       </div>
 
       <div class="abas aparece" role="tablist" aria-label="Tipo de evento">
-        {% for chave in ordem_colecoes %}
+{% for chave in ordem_colecoes %}
         <button class="aba" type="button" role="tab" id="aba-{{ loop.index }}"
                 aria-controls="painel-{{ loop.index }}"
                 aria-selected="{{ 'true' if loop.first else 'false' }}"
@@ -152,11 +136,11 @@
                 {% if chave == '15 anos' %}data-tema="tema-rosa"{% endif %}>
           {{ colecoes[chave].titulo }}
         </button>
-        {% endfor %}
+{% endfor %}
       </div>
 
-      {% for chave in ordem_colecoes %}
-      {% set grupo = colecoes[chave] %}
+{% for chave in ordem_colecoes %}
+{% set grupo = colecoes[chave] %}
       <div class="painel {% if chave == '15 anos' %}tema-rosa{% endif %}" role="tabpanel"
            id="painel-{{ loop.index }}" aria-labelledby="aba-{{ loop.index }}"
            {% if not loop.first %}hidden{% endif %}>
@@ -164,41 +148,12 @@
 {% if grupo.nota %}
         <p class="painel-nota">{{ grupo.nota }}</p>
 {% endif %}
-        {% if grupo.flexibilidade %}
+{% if grupo.flexibilidade %}
         <p class="flexibilidade">{{ grupo.flexibilidade }}</p>
-        {% endif %}
+{% endif %}
 
-        <div class="pacotes {% if grupo.pacotes|length == 2 %}dois{% endif %}">
-          {% for pacote in grupo.pacotes %}
-          <article class="pacote {% if pacote.destaque %}pacote-marcado{% endif %} aparece">
-            <div class="pacote-topo">
-              <h3>{{ pacote.nome }}</h3>
-              <span class="pacote-num">
-                {{ pacote.indice }}{% if pacote.selo %} · <b>{{ pacote.selo }}</b>{% endif %}
-              </span>
-            </div>
-
-            <p class="pacote-ideal">{{ pacote.descricao or pacote.ideal }}</p>
-
-            <ul>
-              {% for item in pacote.itens %}
-              {% if item is mapping %}
-              <li class="item-detalhado">
-                <strong>{{ item.rotulo }}</strong>
-                <span>{{ item.valor }}</span>
-              </li>
-              {% else %}
-              <li>{{ item }}</li>
-              {% endif %}
-              {% endfor %}
-            </ul>
-
-            <a class="pacote-link" href="{{ url_for('orcamento', tipo=chave, pacote=pacote.nome) }}">
-              {{ pacote.botao or 'Falar sobre esta opção' }} <i aria-hidden="true">→</i>
-            </a>
-          </article>
-          {% endfor %}
-        </div>
+{% set tipo_pacote = chave %}
+{% include "_pacotes.html" %}
 
         <p class="pagamento aparece">
           <span>{{ pagamento.rotulo }}</span>
@@ -206,7 +161,7 @@
         </p>
 
       </div>
-      {% endfor %}
+{% endfor %}
     </div>
   </section>
 
@@ -214,26 +169,26 @@
 {% if quem.ativo %}
   <section class="quem claro pad-g {% if not quem_tem_foto %}sem-retrato{% endif %}" id="quem" aria-label="Quem filma">
     <div class="shell quem-grade">
-      {% if quem_tem_foto %}
+{% if quem_tem_foto %}
       <div class="quem-retrato aparece">
         <img src="{{ url_for('static', filename=quem.foto) }}" alt="{{ quem.nome }}"
              loading="lazy" width="520" height="650">
       </div>
-      {% endif %}
+{% endif %}
 
       <div class="quem-texto aparece">
         <span class="rotulo">{{ quem.rotulo }}</span>
         <h2>{{ quem.chamada }}</h2>
-        {% if quem.intro %}<p class="quem-intro">{{ quem.intro }}</p>{% endif %}
+{% if quem.intro %}<p class="quem-intro">{{ quem.intro }}</p>{% endif %}
 
-        {% for bloco in quem.blocos %}
+{% for bloco in quem.blocos %}
         <p class="quem-abre">{{ bloco.abre }}</p>
         <p>{{ bloco.texto }}</p>
-        {% endfor %}
+{% endfor %}
 
-        {% for paragrafo in quem.fecho %}
+{% for paragrafo in quem.fecho %}
         <p class="quem-fecho">{{ paragrafo }}</p>
-        {% endfor %}
+{% endfor %}
 
         <a class="link-sub" href="{{ quem.instagram }}" target="_blank" rel="noopener">
           {{ quem.assinatura }} <i aria-hidden="true">↗</i>
@@ -242,35 +197,6 @@
     </div>
   </section>
 {% endif %}
-
-  <!-- ──────────────────────────── quem já assistiu ────────────────────────── -->
-  {% if depoimentos %}
-  <section class="vozes claro pad-g" aria-label="Depoimentos">
-    <div class="shell">
-      <div class="secao-cabeca aparece">
-        <div>
-          <span class="rotulo">Quem já assistiu</span>
-          <h2 class="titulo">Em palavras<br><em>de quem viu.</em></h2>
-        </div>
-      </div>
-
-      <div class="vozes-grade">
-        {% for depo in depoimentos %}
-        <figure class="voz aparece">
-          <blockquote>“{{ depo.texto }}”</blockquote>
-          <figcaption>
-            <span class="voz-linha" aria-hidden="true"></span>
-            <strong>{{ depo.autor }}</strong>
-            <span class="voz-evento">{{ depo.evento }}</span>
-          </figcaption>
-        </figure>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  {% include "_avaliacoes.html" %}
 
   <!-- ──────────────────────────────── dúvidas ─────────────────────────────── -->
   <section class="duvidas pad-g" id="duvidas">
@@ -283,12 +209,12 @@
       </div>
 
       <div class="duvidas-lista aparece">
-        {% for item in faq %}
+{% for item in faq %}
         <details class="duvida">
           <summary>{{ item.pergunta }}<i aria-hidden="true"></i></summary>
           <div class="duvida-resposta"><p>{{ item.resposta }}</p></div>
         </details>
-        {% endfor %}
+{% endfor %}
       </div>
     </div>
   </section>

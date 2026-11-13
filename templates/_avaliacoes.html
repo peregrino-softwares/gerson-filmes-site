@@ -2,9 +2,9 @@
   <div class="shell">
     <div class="avaliacoes-cabeca">
       <div>
-        <span class="rotulo">Histórias compartilhadas</span>
-        <h2 class="titulo" id="avaliacoes-titulo">O que nossos casais<br><em>contam sobre nós.</em></h2>
-        <p>Conheça as experiências de quem confiou à nossa equipe as memórias do seu casamento.</p>
+        <span class="rotulo">Avaliações de clientes</span>
+        <h2 class="titulo" id="avaliacoes-titulo">Quem viveu,<br><em>conta.</em></h2>
+        <p>Experiências de quem confiou à nossa equipe as memórias de um dia especial.</p>
       </div>
       <a class="link-sub" href="https://www.casamentos.com.br/filmagem-casamento/gerson-filmes--e430900/opinioes" target="_blank" rel="nofollow noopener">Ler todas as opiniões <i aria-hidden="true">↗</i></a>
     </div>
@@ -15,6 +15,23 @@
           <a href="https://www.casamentos.com.br" rel="nofollow"><img src="https://cdn1.casamentos.com.br/assets/img/logos/gen_logoHeader.svg" height="20" alt="Casamentos.com.br" loading="lazy"></a>
         </div>
       </div>
+    </div>
+{% if relatos is defined and relatos %}
+    <details class="avaliacoes-outras">
+      <summary>Mais relatos de clientes</summary>
+      <div class="avaliacoes-relatos">
+{% for depo in relatos %}
+        <figure class="voz">
+          <blockquote>“{{ depo.texto }}”</blockquote>
+          <figcaption><strong>{{ depo.autor }}</strong><span class="voz-evento">{{ depo.evento }}</span></figcaption>
+        </figure>
+{% endfor %}
+      </div>
+    </details>
+{% endif %}
+    <div class="avaliacoes-convite">
+      <p>Vamos conversar sobre o seu evento?</p>
+      <a class="botao botao-escuro" href="{{ url_for('orcamento', tipo='Casamento') if slug is defined and slug == 'casamentos' else url_for('orcamento') }}">Consultar disponibilidade <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>

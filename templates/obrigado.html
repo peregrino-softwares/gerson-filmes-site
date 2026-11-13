@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}Recebido — {{ marca.nome }}{% endblock %}
-{% block description %}Recebemos sua mensagem. Vamos continuar a conversa pelo WhatsApp.{% endblock %}
+{% block title %}Continue pelo WhatsApp — {{ marca.nome }}{% endblock %}
+{% block description %}Sua mensagem está pronta. Abra o WhatsApp e confirme o envio para conversar com a Gerson Filmes.{% endblock %}
 {% block body_class %}pagina-interna{% endblock %}
 
 {% block content %}
 <main class="recado">
   <section class="recado-caixa aparece">
-    <span class="rotulo">Recebido</span>
-    <h1>Sua história<br>já está com a gente.</h1>
-    <p>Estamos abrindo o WhatsApp com tudo o que você escreveu, organizado. Se a janela não abrir sozinha, é só tocar no botão.</p>
+    <span class="rotulo">Vamos conversar</span>
+    <h1>Falta só enviar<br>pelo WhatsApp.</h1>
+    <p>Toque no botão para abrir a conversa. Confira a mensagem e confirme o envio no WhatsApp para recebermos seu pedido.</p>
 
     <a class="botao botao-escuro" href="{{ whatsapp_link }}" target="_blank" rel="noopener" data-abrir-zap
        data-numero="{{ marca.whatsapp }}">
-      Abrir a conversa <i aria-hidden="true" style="font-style:normal">→</i>
+      Continuar no WhatsApp <i aria-hidden="true" style="font-style:normal">→</i>
     </a>
 
     <div class="recado-extra">

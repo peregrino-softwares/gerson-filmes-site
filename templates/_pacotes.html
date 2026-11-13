@@ -1,0 +1,36 @@
+<div class="pacotes {% if grupo.pacotes|length == 2 %}dois{% endif %}">
+{% for pacote in grupo.pacotes %}
+  <article class="pacote {% if pacote.destaque %}pacote-marcado{% endif %}">
+    <div class="pacote-topo">
+      <h3>{{ pacote.nome }}</h3>
+      <span class="pacote-num">{{ pacote.indice }}{% if pacote.selo %} · <b>{{ pacote.selo }}</b>{% endif %}</span>
+    </div>
+    <p class="pacote-ideal">{{ pacote.descricao or pacote.ideal }}</p>
+    <ul>
+{% for item in pacote.itens %}
+{% if item is mapping %}
+      <li class="item-detalhado"><strong>{{ item.rotulo }}</strong><span>{{ item.valor }}</span></li>
+{% else %}
+      <li>{{ item }}</li>
+{% endif %}
+{% endfor %}
+    </ul>
+{% if pacote.extras %}
+    <details class="pacote-extras">
+      <summary>Ver os diferenciais do {{ pacote.nome }}</summary>
+      <ul>
+{% for item in pacote.extras %}
+        <li class="item-detalhado"><strong>{{ item.rotulo }}</strong><span>{{ item.valor }}</span></li>
+{% endfor %}
+      </ul>
+    </details>
+{% endif %}
+    <a class="pacote-link" href="{{ url_for('orcamento', tipo=tipo_pacote, pacote=pacote.nome) }}">
+      {{ pacote.botao or 'Falar sobre esta opção' }} <i aria-hidden="true">→</i>
+    </a>
+  </article>
+{% endfor %}
+</div>
+{% if grupo.comparacao %}
+<p class="pacotes-nota">{{ grupo.comparacao }}</p>
+{% endif %}

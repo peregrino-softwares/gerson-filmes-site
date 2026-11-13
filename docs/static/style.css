@@ -381,9 +381,9 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 
 /* ------------------------------------------------------- Como trabalho */
 .metodo { background: var(--tinta-2); }
-.metodo-grade { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 90px; }
+.metodo-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; }
 .metodo-item { padding: 44px 0; border-top: 1px solid var(--linha); }
-.metodo-item:nth-child(-n+2) { border-top: 0; padding-top: 0; }
+.metodo-item:nth-child(-n+3) { border-top: 0; padding-top: 0; }
 .metodo-rotulo { display: block; color: var(--argila-cl); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 18px; }
 .metodo-item h3 { margin: 0 0 14px; font-family: var(--serif); font-size: 30px; line-height: 1.15; }
 .metodo-item p { margin: 0; color: var(--cinza); font-size: 15px; line-height: 1.8; max-width: 440px; }
@@ -462,6 +462,10 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .item-detalhado span { display: block; margin-top: 3px; color: var(--cinza); font-size: 13px; line-height: 1.6; }
 
 .pacote-num b { font-weight: 500; color: var(--osso); letter-spacing: .14em; text-transform: uppercase; }
+.pacotes-nota { max-width: 760px; margin: 24px 0 0; color: var(--cinza); font-size: 13px; line-height: 1.7; }
+.pacote-extras { border-top: 1px solid var(--linha); }
+.pacote-extras summary { padding: 16px 0; cursor: pointer; color: var(--osso); font-size: 13px; }
+.pacote-extras ul { margin: 0 0 16px; padding-top: 0; border: 0; }
 
 /* Nota de flexibilidade, logo abaixo da nota de valores e antes dos cartões.
    Fica recuada e em itálico para não competir com os preços — é ressalva,
@@ -550,11 +554,21 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .avaliacoes-cabeca > a { flex-shrink: 0; }
 .avaliacoes-widget { min-width: 0; padding: clamp(16px, 3vw, 36px); background: #fff; color: var(--tinta); color-scheme: light; border: 1px solid var(--linha-esc); border-radius: 4px; }
 .avaliacoes-widget iframe { display: block; max-width: 100%; margin-inline: auto; }
+.avaliacoes-outras { margin-top: 24px; border-block: 1px solid var(--linha-esc); }
+.avaliacoes-outras summary { padding: 20px 0; cursor: pointer; font-size: 14px; color: var(--cinza-esc); }
+.avaliacoes-relatos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; padding: 10px 0 30px; }
+.avaliacoes-relatos .voz:first-child { grid-column: auto; }
+.avaliacoes-relatos .voz blockquote { font-size: 24px; }
+.avaliacoes-convite { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 32px; }
+.avaliacoes-convite p { margin: 0; color: var(--cinza-esc); }
 #wp-widget-preview { text-align: center; font-size: 14px; line-height: 2; }
 #wp-widget-preview a { display: inline-block; text-decoration: underline; text-underline-offset: 3px; }
 #wp-widget-preview img { vertical-align: middle; width: auto; height: 20px; margin-inline-start: 6px; }
 @media (max-width: 700px) {
   .avaliacoes-cabeca { flex-direction: column; align-items: start; gap: 24px; }
+  .avaliacoes-relatos { grid-template-columns: 1fr; }
+  .avaliacoes-convite { flex-direction: column; align-items: stretch; }
+  .avaliacoes-convite .botao { justify-content: center; }
 }
 
 /* -------------------------------------------------------------- FAQ */
@@ -690,7 +704,9 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .orcamento-notas { list-style: none; padding: 0; margin: 40px 0 0; display: grid; }
 .orcamento-notas li { padding: 16px 0; border-top: 1px solid var(--linha); color: rgba(241,236,227,.75); font-size: 14px; }
 
-.formulario-caixa { background: var(--osso); color: var(--tinta); padding: 54px 52px; }
+.formulario-caixa { background: var(--osso); color: var(--tinta); color-scheme: light; padding: 54px 52px; }
+.pagina-orcamento .flutuantes { display: none; }
+.orcamento-intro .orcamento-resumo { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--linha); font-size: 13px; }
 .formulario { display: grid; gap: 28px; }
 .dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .campo { display: grid; gap: 10px; }
@@ -710,6 +726,14 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
   background-size: 5px 5px; background-repeat: no-repeat;
 }
 .campo.erro input, .campo.erro select { border-color: #a13c28; }
+.campo .campo-erro { color: #7d2f1d; font-size: 12px; line-height: 1.5; }
+.campo input:disabled { opacity: .55; cursor: not-allowed; }
+.campo .data-indefinida { display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0; text-transform: none; cursor: pointer; }
+.campo .data-indefinida input { width: 18px; height: 18px; margin: 0; padding: 0; accent-color: var(--argila-txt); }
+.formulario-complemento { border-block: 1px solid var(--linha-esc); }
+.formulario-complemento summary { padding: 18px 0; cursor: pointer; font-size: 14px; color: var(--cinza-esc); }
+.formulario-complemento .campo { margin-bottom: 24px; }
+.formulario-nota a { text-decoration: underline; text-underline-offset: 3px; }
 .armadilha { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .enviar {
   margin-top: 6px; min-height: 62px; border: 0; cursor: pointer;
@@ -867,7 +891,7 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
   .combinado-caixa, .duvidas-grade, .orcamento-grade, .rodape-topo,
   .convite-caixa, .colecoes-cabeca { grid-template-columns: 1fr; gap: 38px; }
   .processo-intro, .duvidas-intro, .orcamento-intro { position: static; }
-  .metodo-item:nth-child(2) { border-top: 1px solid var(--linha); padding-top: 44px; }
+  .metodo-item:nth-child(n+2) { border-top: 1px solid var(--linha); padding-top: 32px; }
 
   .filmo-item { grid-template-columns: 50px 1fr; gap: 12px 22px; }
   .filmo-item > p, .filmo-link { grid-column: 2; }

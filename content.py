@@ -46,12 +46,12 @@ AREA_CLIENTE = False
 WHATSAPP_FORMULARIO = """Olá, Gerson. Vim pelo site e queria conversar sobre a minha data.
 
 Nome: {nome}
-WhatsApp: {whatsapp}
 Evento: {tipo}
 Data: {data}
 Cidade ou local: {local}
 Orçamento: {pacote}
-O que não pode faltar: {mensagem}"""
+O que não pode faltar: {mensagem}
+Como nos encontrou: {conheceu}"""
 
 
 # ---------------------------------------------------------------
@@ -94,12 +94,7 @@ ESPECIALIDADES = [
         "indice": "03",
         "titulo": "Eventos",
         "chamada": "Formatura, confraternização, lançamento.",
-        "texto": "Um chá de bebê anuncia uma chegada. O aniversário infantil guarda uma "
-                 "fase que passa depressa. As bodas celebram uma história construída a "
-                 "dois. Outras comemorações reúnem pessoas em torno de uma conquista, "
-                 "enquanto o lançamento de uma marca, produto ou projeto inaugura um novo "
-                 "capítulo. Cada ocasião tem seu próprio significado — e pede um filme "
-                 "capaz de traduzi-lo.",
+        "texto": "Das celebrações em família aos encontros de empresas, um registro pensado para o propósito de cada evento.",
         "pacote": "Evento",
         "tema": "tema-salvia",
     },
@@ -109,53 +104,18 @@ ESPECIALIDADES = [
 # ---------------------------------------------------------------
 # 5. COMO EU TRABALHO
 # ---------------------------------------------------------------
-METODO = [
-    {
-        "rotulo": "Roteiro",
-        "titulo": "O roteiro é a alma do trabalho",
-        "texto": "Antes de ligar a câmera já sabemos que história vamos contar e em que "
-                 "ordem. É o que separa um filme de um apanhado de cenas bonitas.",
-    },
-    {
-        "rotulo": "Som",
-        "titulo": "O som também conta a história",
-        "texto": "Captamos os votos, discursos e homenagens com microfones dedicados, "
-                 "preservando cada palavra com clareza e emoção. Assim, imagem e áudio se "
-                 "completam para tornar cada momento ainda mais vivo.",
-    },
-    {
-        "rotulo": "Ar",
-        "titulo": "Um novo olhar sobre a celebração",
-        "texto": "Nosso drone revela a celebração por uma perspectiva única. Seus movimentos "
-                 "valorizam o cenário, a atmosfera e a dimensão de cada momento, "
-                 "acrescentando elegância e força cinematográfica a toda a celebração.",
-    },
-    {
-        "rotulo": "Presença",
-        "titulo": "Discreto por escolha",
-        "texto": "Ninguém precisa posar nem repetir. Circulamos por perto e esperamos o que "
-                 "acontece sozinho.",
-    },
-    {
-        "rotulo": "Montagem",
-        "titulo": "Cada filme no seu ritmo",
-        "texto": "A música, o corte e a duração nascem da história. Nenhum filme sai no "
-                 "molde do anterior.",
-    },
-    {
-        "rotulo": "Cuidado",
-        "titulo": "Duas cópias no mesmo dia",
-        "texto": "Todo o material gravado é copiado em duas mídias antes de encerrarmos o dia.",
-    },
-    {
-        "rotulo": "Depois",
-        "titulo": "O filme continua com você",
-        "texto": "Ele chega por um link privado, só de vocês, e a cópia fica com "
-                 "quem viveu o dia. É só abrir e rever quando der vontade — hoje "
-                 "ou daqui a dez anos.",
-    },
-]
-
+METODO = [{'rotulo': 'Som',
+  'titulo': 'Vozes que permanecem',
+  'texto': 'Votos, discursos e homenagens captados com microfones dedicados, para preservar as '
+           'palavras que fazem parte da história.'},
+ {'rotulo': 'Presença',
+  'titulo': 'Registro discreto',
+  'texto': 'Acompanhamos os momentos com atenção, sem pedir que vocês parem de viver o dia para a '
+           'câmera.'},
+ {'rotulo': 'Montagem',
+  'titulo': 'Uma edição com identidade',
+  'texto': 'Imagem, música e silêncio se encontram em um filme construído a partir da história de '
+           'vocês.'}]
 
 # ---------------------------------------------------------------
 # 6. O CAMINHO — as quatro etapas
@@ -196,181 +156,135 @@ PROCESSO = [
 #    direto da descrição para os itens, e o orçamento é enviado pelo
 #    WhatsApp, conforme a data, o local e a duração do evento.
 # ---------------------------------------------------------------
-COLECOES = {
-    "Casamento": {
-        "titulo": "Casamentos",
-        "nota": "",
-
-        # Aparece logo abaixo da nota, antes dos cartões.
-        "flexibilidade": "Se alguma opção não se encaixar no que vocês imaginam, ela pode "
-                         "ser personalizada com itens equivalentes, sem alteração no "
-                         "valor combinado. Ajustes e acréscimos são alinhados pelo "
-                         "WhatsApp e formalizados em contrato, garantindo clareza e "
-                         "segurança em cada detalhe.",
-
-        "pacotes": [
-            {
-                "indice": "01",
-                "nome": "Essencial",
-                "selo": "",
-                "descricao": "A essência do dia preservada em um filme sensível, preciso "
-                             "e feito para permanecer.",
-                "botao": "Quero conhecer o Essencial",
-                "itens": [
-                    {"rotulo": "Horas de cobertura", "valor": "5 horas"},
-                    {"rotulo": "2 câmeras",          "valor": "Cerimônia e recepção"},
-                    {"rotulo": "Áudio profissional", "valor": "Votos, discursos e homenagens"},
-                    {"rotulo": "Filme principal",    "valor": "15 a 25 minutos"},
-                    {"rotulo": "1 teaser cinematográfico", "valor": "Um filme curto e artístico"},
-                    {"rotulo": "Trilha sonora",      "valor": "Escolhida para conduzir a narrativa"},
-                    {"rotulo": "Entrega",            "valor": "Em até 60 dias"},
-                ],
-                "destaque": False,
-            },
-            {
-                "indice": "02",
-                "nome": "Legado",
-                "selo": "",
-                "descricao": "Mais tempo, mais perspectivas e mais espaço para transformar "
-                             "o dia inteiro em memória.",
-                "botao": "Quero conhecer o Legado",
-                "itens": [
-                    {"rotulo": "Making of do casal",
-                     "valor": "O registro das horas que antecedem o grande sim, com os "
-                              "dois se preparando"},
-                    {"rotulo": "4 câmeras em ação",   "valor": "Cerimônia, recepção, festa e ornamentação"},
-                    {"rotulo": "Áudio profissional",  "valor": "Votos, discursos e homenagens"},
-                    {"rotulo": "Filme principal",     "valor": "30 a 45 minutos"},
-                    {"rotulo": "Horas de cobertura",  "valor": "8 horas"},
-                    {"rotulo": "2 teasers cinematográficos", "valor": "Filmes curtos e artísticos"},
-                    {"rotulo": "Trilha sonora",       "valor": "Escolhida para conduzir a narrativa"},
-                    {"rotulo": "Entrega prioritária", "valor": "Em até 45 dias"},
-                ],
-                "destaque": True,
-            },
-            {
-                "indice": "03",
-                "nome": "Cinema",
-                "selo": "",
-                "descricao": "Para reviver a cerimônia por inteiro — sem cortes, por todos "
-                             "os ângulos e com a dimensão que somente o olhar do alto "
-                             "consegue revelar.",
-                "botao": "Quero conhecer o Cinema",
-                "itens": [
-                    {"rotulo": "Pré-wedding", "valor": "Um ensaio lindo dedicado ao casal"},
-                    {"rotulo": "Making of noiva e noivo",
-                     "valor": "A preparação da noiva e a do noivo, registradas ao mesmo "
-                              "tempo, em pontos diferentes"},
-                    {"rotulo": "Drone durante a cerimônia",
-                     "valor": "Sobrevoos em todas as entradas e saídas, revelando a "
-                              "grandiosidade do evento de uma perspectiva que só um drone "
-                              "é capaz de entregar"},
-                    {"rotulo": "Horas de cobertura", "valor": "Sem limite de horas"},
-                    {"rotulo": "5 câmeras em ação",
-                     "valor": "Múltiplos ângulos do casal, familiares, convidados e de tudo "
-                              "o que acontece ao redor"},
-                    {"rotulo": "Cobertura completa", "valor": "Cerimônia, recepção e festa"},
-                    {"rotulo": "Áudio profissional", "valor": "Votos, discursos e homenagens"},
-                    {"rotulo": "Filme principal · Cerimônia na íntegra",
-                     "valor": "De 1h a 1h30 de filme, sem cortes de conteúdo — preservando "
-                              "entradas, votos, falas, reações e cada etapa da cerimônia"},
-                    {"rotulo": "3 teasers cinematográficos", "valor": "Filmes curtos e artísticos"},
-                    {"rotulo": "Entrega Premium",
-                     "valor": "Prioridade máxima, com entrega em até 25 dias"},
-                ],
-                "destaque": False,
-            },
-        ],
-    },
-    "15 anos": {
-        "titulo": "15 anos",
-        "nota": "Atendemos Sete Lagoas, Belo Horizonte e região. O orçamento é enviado "
-                "pelo WhatsApp: ensaio em outra cidade e festas acima de quatro horas "
-                "entram nessa conversa.",
-        "pacotes": [
-            {
-                "indice": "01",
-                "nome": "Essencial",
-                "ideal": "A festa registrada com calma",
-                "itens": [
-                    "Entrada, valsa e melhores momentos da festa",
-                    "Discursos e homenagens com microfone",
-                    "Filme de 5 a 8 minutos, com trilha licenciada",
-                    "Entrega em até 60 dias",
-                ],
-                "destaque": False,
-            },
-            {
-                "indice": "02",
-                "nome": "Completo",
-                "ideal": "Do ensaio até o fim da pista",
-                "itens": [
-                    "Ensaio filmado em locação escolhida por você",
-                    "Preparação, entrada, valsa e festa",
-                    "Filme de 10 a 15 minutos e um vídeo curto para redes",
-                    "Dois pontos de câmera e áudio profissional",
-                    "Entrega em até 60 dias",
-                ],
-                "destaque": True,
-            },
-            {
-                "indice": "03",
-                "nome": "Autoral",
-                "ideal": "Ensaio, festa e material para as redes",
-                "itens": [
-                    "Ensaio em duas locações, com troca de look",
-                    "Preparação, entrada, valsa e festa sem limite de horas",
-                    "Imagens de drone e vídeo vertical para redes",
-                    "Valsa e homenagens na íntegra",
-                    "Entrega em até 45 dias",
-                ],
-                "destaque": False,
-            },
-        ],
-    },
-    "Evento": {
-        "titulo": "Eventos",
-        "nota": "Formaturas, aniversários, confraternizações, eventos corporativos e "
-                "conteúdo em vídeo para redes. Cada projeto tem duração e entrega "
-                "diferentes, então o orçamento é montado caso a caso.",
-        "pacotes": [
-            {
-                "indice": "01",
-                "nome": "Cobertura",
-                "ideal": "Até quatro horas, um ponto de câmera",
-                "itens": [
-                    "Registro dos momentos principais",
-                    "Áudio de discursos e apresentações",
-                    "Filme de 3 a 5 minutos",
-                    "Entrega em até 30 dias",
-                ],
-                "destaque": False,
-            },
-            {
-                "indice": "02",
-                "nome": "Institucional",
-                "ideal": "Empresas, marcas e formaturas",
-                "itens": [
-                    "Roteiro conversado antes da gravação",
-                    "Entrevistas, depoimentos e imagens de apoio",
-                    "Versões para site, YouTube e formato vertical",
-                    "Prazo combinado conforme o projeto",
-                ],
-                "destaque": False,
-            },
-        ],
-    },
-}
+COLECOES = {'Casamento': {'titulo': 'Casamentos',
+               'nota': '',
+               'flexibilidade': 'As opções podem ser personalizadas. Os ajustes são alinhados na '
+                                'proposta e registrados no contrato.',
+               'pacotes': [{'indice': '01',
+                            'nome': 'Essencial',
+                            'selo': '',
+                            'descricao': 'A essência do dia preservada em um filme sensível, '
+                                         'preciso e feito para permanecer.',
+                            'botao': 'Quero conhecer o Essencial',
+                            'itens': [{'rotulo': 'Horas de cobertura', 'valor': '5 horas'},
+                                      {'rotulo': 'Câmeras', 'valor': '2 câmeras'},
+                                      {'rotulo': 'Cobertura', 'valor': 'Cerimônia e recepção'},
+                                      {'rotulo': 'Áudio', 'valor': 'Votos, discursos e homenagens'},
+                                      {'rotulo': 'Filme principal', 'valor': '15 a 25 minutos'},
+                                      {'rotulo': 'Teasers', 'valor': '1 filme curto e artístico'},
+                                      {'rotulo': 'Trilha sonora',
+                                       'valor': 'Escolhida para conduzir a narrativa'},
+                                      {'rotulo': 'Prazo de entrega', 'valor': 'Em até 60 dias'}],
+                            'destaque': False},
+                           {'indice': '02',
+                            'nome': 'Legado',
+                            'selo': '',
+                            'descricao': 'Mais tempo, mais perspectivas e mais espaço para '
+                                         'transformar o dia inteiro em memória.',
+                            'botao': 'Quero conhecer o Legado',
+                            'itens': [{'rotulo': 'Horas de cobertura', 'valor': '8 horas'},
+                                      {'rotulo': 'Câmeras', 'valor': '4 câmeras'},
+                                      {'rotulo': 'Cobertura',
+                                       'valor': 'Cerimônia, recepção, festa e ornamentação'},
+                                      {'rotulo': 'Áudio', 'valor': 'Votos, discursos e homenagens'},
+                                      {'rotulo': 'Filme principal', 'valor': '30 a 45 minutos'},
+                                      {'rotulo': 'Teasers',
+                                       'valor': '2 filmes curtos e artísticos'},
+                                      {'rotulo': 'Trilha sonora',
+                                       'valor': 'Escolhida para conduzir a narrativa'},
+                                      {'rotulo': 'Prazo de entrega', 'valor': 'Em até 45 dias'}],
+                            'destaque': True,
+                            'extras': [{'rotulo': 'Making of do casal',
+                                        'valor': 'Registro da preparação dos dois antes da '
+                                                 'cerimônia'}]},
+                           {'indice': '03',
+                            'nome': 'Cinema',
+                            'selo': '',
+                            'descricao': 'Preparação do casal, imagens aéreas e cerimônia na '
+                                         'íntegra, com prioridade na entrega.',
+                            'botao': 'Quero conhecer o Cinema',
+                            'itens': [{'rotulo': 'Horas de cobertura',
+                                       'valor': 'Sem limite de horas'},
+                                      {'rotulo': 'Câmeras', 'valor': '5 câmeras'},
+                                      {'rotulo': 'Cobertura',
+                                       'valor': 'Cerimônia, recepção e festa'},
+                                      {'rotulo': 'Áudio', 'valor': 'Votos, discursos e homenagens'},
+                                      {'rotulo': 'Filme principal',
+                                       'valor': 'Cerimônia na íntegra: de 1h a 1h30, sem cortes de '
+                                                'conteúdo'},
+                                      {'rotulo': 'Teasers',
+                                       'valor': '3 filmes curtos e artísticos'},
+                                      {'rotulo': 'Prazo de entrega',
+                                       'valor': 'Prioridade máxima: em até 25 dias'}],
+                            'destaque': False,
+                            'extras': [{'rotulo': 'Pré-wedding',
+                                        'valor': 'Ensaio dedicado ao casal'},
+                                       {'rotulo': 'Making of noiva e noivo',
+                                        'valor': 'Preparação dos dois registrada ao mesmo tempo, '
+                                                 'em locais diferentes'},
+                                       {'rotulo': 'Drone na cerimônia',
+                                        'valor': 'Imagens aéreas conforme as condições do local e '
+                                                 'do tempo'}]}],
+               'comparacao': 'A quantidade de câmeras e a composição da equipe são informações '
+                             'diferentes. Os profissionais e os horários de início e encerramento '
+                             'são definidos na proposta.'},
+ '15 anos': {'titulo': '15 anos',
+             'nota': 'Atendemos Sete Lagoas, Belo Horizonte e região. O orçamento é enviado pelo '
+                     'WhatsApp: ensaio em outra cidade e festas acima de quatro horas entram nessa '
+                     'conversa.',
+             'pacotes': [{'indice': '01',
+                          'nome': 'Essencial',
+                          'ideal': 'A festa registrada com calma',
+                          'itens': ['Entrada, valsa e melhores momentos da festa',
+                                    'Discursos e homenagens com microfone',
+                                    'Filme de 5 a 8 minutos, com trilha licenciada',
+                                    'Entrega em até 60 dias'],
+                          'destaque': False},
+                         {'indice': '02',
+                          'nome': 'Completo',
+                          'ideal': 'Do ensaio até o fim da pista',
+                          'itens': ['Ensaio filmado em locação escolhida por você',
+                                    'Preparação, entrada, valsa e festa',
+                                    'Filme de 10 a 15 minutos e um vídeo curto para redes',
+                                    'Dois pontos de câmera e áudio profissional',
+                                    'Entrega em até 60 dias'],
+                          'destaque': True},
+                         {'indice': '03',
+                          'nome': 'Autoral',
+                          'ideal': 'Ensaio, festa e material para as redes',
+                          'itens': ['Ensaio em duas locações, com troca de look',
+                                    'Preparação, entrada, valsa e festa sem limite de horas',
+                                    'Imagens de drone e vídeo vertical para redes',
+                                    'Valsa e homenagens na íntegra',
+                                    'Entrega em até 45 dias'],
+                          'destaque': False}]},
+ 'Evento': {'titulo': 'Eventos',
+            'nota': 'Formaturas, aniversários, confraternizações, eventos corporativos e conteúdo '
+                    'em vídeo para redes. Cada projeto tem duração e entrega diferentes, então o '
+                    'orçamento é montado caso a caso.',
+            'pacotes': [{'indice': '01',
+                         'nome': 'Cobertura',
+                         'ideal': 'Até quatro horas, um ponto de câmera',
+                         'itens': ['Registro dos momentos principais',
+                                   'Áudio de discursos e apresentações',
+                                   'Filme de 3 a 5 minutos',
+                                   'Entrega em até 30 dias'],
+                         'destaque': False},
+                        {'indice': '02',
+                         'nome': 'Institucional',
+                         'ideal': 'Empresas, marcas e formaturas',
+                         'itens': ['Roteiro conversado antes da gravação',
+                                   'Entrevistas, depoimentos e imagens de apoio',
+                                   'Versões para site, YouTube e formato vertical',
+                                   'Prazo combinado conforme o projeto'],
+                         'destaque': False}]}}
 
 # Formas de pagamento. Fica na mesma seção das coleções: é a primeira pergunta
 # de quem acabou de escolher uma opção, e antes ela só existia lá embaixo, nas
 # dúvidas — muita gente fechava a página antes de chegar lá.
-PAGAMENTO = {
-    "rotulo": "Formas de pagamento",
-    "texto": "40% na entrada para reservar a data e o restante até 7 dias antes do "
-             "evento. No cartão, em até 12 vezes, com os juros da máquina. "
-             "O formato fica combinado antes de assinar.",
-}
+PAGAMENTO = {'rotulo': 'Formas de pagamento',
+ 'texto': 'Entrada de 40% para reservar a data e o restante até 7 dias antes do evento. As '
+          'condições de pagamento ficam registradas na proposta e no contrato.'}
 
 ORDEM_COLECOES = ["Casamento", "15 anos", "Evento"]
 
@@ -664,10 +578,7 @@ FAQ = [
     },
     {
         "pergunta": "Quais são as formas de pagamento?",
-        "resposta": "Pedimos uma entrada de 40% para confirmar a reserva, e o restante "
-                    "deve ser pago até 7 dias antes do evento. Também oferecemos "
-                    "parcelamento no cartão, conforme as condições da proposta. "
-                    "Valores e datas ficam registrados no contrato.",
+        "resposta": PAGAMENTO["texto"],
     },
 ]
 
@@ -675,7 +586,7 @@ FAQ = [
 # ---------------------------------------------------------------
 # 11. FORMULÁRIO
 # ---------------------------------------------------------------
-TIPOS_EVENTO = ["Casamento", "15 anos", "Formatura", "Evento corporativo", "Outro"]
+TIPOS_EVENTO = ["Casamento", "15 anos", "Formatura", "Evento corporativo", "Evento", "Outro"]
 
 # Coleções que aparecem no formulário para cada tipo de evento
 PACOTES_POR_TIPO = {
@@ -683,6 +594,7 @@ PACOTES_POR_TIPO = {
     "15 anos": ["Essencial", "Completo", "Autoral"],
     "Formatura": ["Cobertura", "Institucional"],
     "Evento corporativo": ["Cobertura", "Institucional"],
+    "Evento": ["Cobertura", "Institucional"],
     "Outro": [],
 }
 

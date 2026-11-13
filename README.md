@@ -32,7 +32,7 @@ Abra o **`content.py`**. Tudo que precisa da sua conferência está marcado com
 
 | Endereço          | O que é                                            |
 |-------------------|----------------------------------------------------|
-| `/`               | Página principal, 12 seções                        |
+| `/`               | Página principal, 8 seções                        |
 | `/casamentos`     | Setor de casamentos                                |
 | `/15-anos`        | Setor de 15 anos, em rosa                          |
 | `/eventos`        | Setor de eventos                                   |
@@ -66,20 +66,25 @@ Se for escrever algo novo, mantenha esse corte.
 **A marca escreve-se "Gerson Filmess"**, com dois SS, igual ao Instagram e ao
 e-mail.
 
-### As 12 seções da página principal
+### As 8 seções da página principal
 
-1. **Abertura** — vídeo e a frase principal
-2. **Ficha** — base, atendimento, equipamento, entrega
-3. **O olhar** — por que um filme existe
-4. **Um filme** — o teaser tocando na página
-5. **O que eu filmo** — casamentos, 15 anos, eventos
-6. **Como eu trabalho** — seis decisões técnicas
-7. **O caminho** — as quatro etapas
-8. **Coleções** — abas de casamento, 15 anos e eventos
-9. **O que fica combinado** — o que está no contrato
-10. **Quem já assistiu** — depoimentos
-11. **Dúvidas** — oito perguntas
-12. **Convite** — o fechamento
+1. **Abertura** — vídeo de fundo e convite para conversar
+2. **Ficha** — atendimento, equipamentos, equipe e entrega
+3. **O que filmamos** — casamentos, 15 anos e eventos
+4. **Como trabalhamos** — som, registro discreto e edição personalizada
+5. **Avaliações** — Casamentos.com.br, relatos adicionais e contato
+6. **Coleções** — opções por evento e condições de pagamento
+7. **Dúvidas** — oito perguntas
+8. **Convite** — fechamento e pedido de proposta
+
+Os cartões da home e dos setores usam o mesmo componente em
+`templates/_pacotes.html`. Os diferenciais adicionais ficam em `extras`.
+
+O formulário publicado lê `tipo` e `pacote` do endereço para preservar a
+escolha do visitante. Nome, tipo de evento e cidade são obrigatórios;
+a data pode ser marcada como “a definir”. Telefone não é solicitado:
+a conversa continua pelo próprio WhatsApp. Os detalhes adicionais são
+opcionais, e o cliente precisa confirmar o envio no WhatsApp.
 
 ---
 

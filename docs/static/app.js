@@ -123,15 +123,6 @@
       .toISOString().slice(0, 10);
   }
 
-  const zap = document.querySelector('input[name="whatsapp"]');
-  zap?.addEventListener('input', () => {
-    const n = zap.value.replace(/\D/g, '').slice(0, 11);
-    let saida = n;
-    if (n.length > 2) saida = `(${n.slice(0, 2)}) ${n.slice(2)}`;
-    if (n.length > 7) saida = `(${n.slice(0, 2)}) ${n.slice(2, 7)}-${n.slice(7)}`;
-    zap.value = saida;
-  });
-
   const formulario = document.querySelector('.formulario[novalidate]');
 
   // As coleções oferecidas mudam conforme o tipo de evento: quem procura
@@ -139,12 +130,17 @@
   if (formulario) {
     const tipo = formulario.querySelector('#tipo');
     const pacote = formulario.querySelector('#pacote');
+    const parametros = new URLSearchParams(window.location.search);
+    const tipoPedido = parametros.get('tipo');
+    if (tipo && [...tipo.options].some((opcao) => opcao.value === tipoPedido)) {
+      tipo.value = tipoPedido;
+    }
     let mapa = {};
     try { mapa = JSON.parse(formulario.dataset.pacotes || '{}'); } catch { mapa = {}; }
 
     const preenchePacotes = (manterEscolha) => {
       if (!tipo || !pacote) return;
-      const escolhido = manterEscolha ? (pacote.dataset.escolhido || '') : pacote.value;
+      const escolhido = manterEscolha ? (parametros.get('pacote') || pacote.dataset.escolhido || '') : '';
       const opcoes = mapa[tipo.value] || [];
       pacote.innerHTML = '';
 
@@ -159,10 +155,24 @@
     preenchePacotes(true);
     tipo?.addEventListener('change', () => preenchePacotes(false));
 
+    const dataIndefinida = formulario.querySelector('#data-indefinida');
+    const atualizaData = () => {
+      if (!dataInput || !dataIndefinida) return;
+      dataInput.disabled = dataIndefinida.checked;
+      dataInput.required = !dataIndefinida.checked;
+      formulario.querySelector('[data-data-obrigatoria]')?.toggleAttribute('hidden', dataIndefinida.checked);
+      dataInput.closest('.campo')?.classList.remove('erro');
+      dataInput.removeAttribute('aria-invalid');
+      const aviso = dataInput.closest('.campo')?.querySelector('.campo-erro');
+      if (aviso) aviso.hidden = true;
+    };
+    atualizaData();
+    dataIndefinida?.addEventListener('change', atualizaData);
+
     // Site estático: não há servidor para receber o formulário. O envio
     // monta a mensagem no próprio navegador e leva direto para o WhatsApp.
     const formatarData = (valor) => {
-      if (!valor) return 'Não informada';
+      if (!valor) return 'A definir';
       const [ano, mes, dia] = valor.split('-');
       return `${dia}/${mes}/${ano}`;
     };
@@ -173,9 +183,12 @@
       let primeiro = null;
       formulario.querySelectorAll('[required]').forEach((campo) => {
         const grupo = campo.closest('.campo');
-        const vazio = !campo.value.trim();
-        grupo?.classList.toggle('erro', vazio);
-        if (vazio && !primeiro) primeiro = campo;
+        const invalido = !campo.value.trim() || !campo.checkValidity();
+        grupo?.classList.toggle('erro', invalido);
+        campo.setAttribute('aria-invalid', String(invalido));
+        const aviso = grupo?.querySelector('.campo-erro');
+        if (aviso) aviso.hidden = !invalido;
+        if (invalido && !primeiro) primeiro = campo;
       });
       if (primeiro) {
         primeiro.focus();
@@ -187,31 +200,44 @@
       if (formulario.elements.website?.value) return;
 
       const rotulo = formulario.querySelector('.enviar span');
-      if (rotulo) rotulo.textContent = 'Enviando…';
+      if (rotulo) rotulo.textContent = 'Preparando a conversa…';
 
       const dados = Object.fromEntries(new FormData(formulario).entries());
       let modelo = '';
       try { modelo = JSON.parse(formulario.dataset.modelo || '""'); } catch { modelo = ''; }
 
-      const texto = modelo
-        .replace('{nome}', dados.nome || '')
-        .replace('{whatsapp}', dados.whatsapp || '')
-        .replace('{tipo}', dados.tipo || '')
-        .replace('{data}', formatarData(dados.data))
-        .replace('{local}', dados.local || '')
-        .replace('{pacote}', dados.pacote || 'ainda não escolhida')
-        .replace('{mensagem}', dados.mensagem || 'não informado');
+      const conteudo = {
+        nome: dados.nome.trim(),
+        tipo: dados.tipo,
+        data: formatarData(dados.data),
+        local: dados.local.trim(),
+        pacote: dados.pacote || 'ainda não escolhida',
+        mensagem: dados.mensagem?.trim() || 'não informado',
+        conheceu: dados.conheceu || 'não informado',
+      };
+      const texto = modelo.replace(/\{(\w+)\}/g, (campo, chave) => conteudo[chave] ?? campo);
 
-      // Pela sessão do navegador, e não pela URL: assim o telefone da
-      // pessoa não fica gravado no histórico nem em link compartilhado.
-      sessionStorage.setItem('ultimo_contato', texto);
-      window.location.href = '/obrigado';
+      // A mensagem fica na sessão do navegador até a pessoa abrir o WhatsApp,
+      // sem incluir os dados em links internos ou no histórico do site.
+      try {
+        sessionStorage.setItem('ultimo_contato', texto);
+        window.location.href = '/obrigado';
+      } catch {
+        window.location.href = `https://api.whatsapp.com/send?phone=${formulario.dataset.numero}&text=${encodeURIComponent(texto)}`;
+      }
     });
 
     formulario.querySelectorAll('[required]').forEach((campo) => {
-      campo.addEventListener('input', () => {
-        if (campo.value.trim()) campo.closest('.campo')?.classList.remove('erro');
-      });
+      const limpaErro = () => {
+        if (!campo.value.trim() || !campo.checkValidity()) return;
+        const grupo = campo.closest('.campo');
+        grupo?.classList.remove('erro');
+        campo.removeAttribute('aria-invalid');
+        const aviso = grupo?.querySelector('.campo-erro');
+        if (aviso) aviso.hidden = true;
+      };
+      campo.addEventListener('input', limpaErro);
+      campo.addEventListener('change', limpaErro);
     });
   }
 
@@ -220,10 +246,9 @@
   if (zapAbrir) {
     const texto = sessionStorage.getItem('ultimo_contato');
     if (texto) {
-      sessionStorage.removeItem('ultimo_contato');
       const numero = zapAbrir.dataset.numero;
       zapAbrir.href = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(texto)}`;
+      zapAbrir.addEventListener('click', () => sessionStorage.removeItem('ultimo_contato'));
     }
-    setTimeout(() => window.open(zapAbrir.href, '_blank', 'noopener'), 900);
   }
 })();

@@ -11,13 +11,13 @@
 
   <!-- ─────────────────────────────── abertura ─────────────────────────────── -->
   <section class="setor-abertura {% if setor.video_fundo %}com-video{% endif %}">
-    {% if setor.video_fundo %}
+{% if setor.video_fundo %}
     <video class="setor-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"
            {% if setor.capa_fundo %}poster="{{ url_for('static', filename=setor.capa_fundo) }}"{% endif %}>
       <source src="{{ url_for('static', filename=setor.video_fundo) }}" type="video/mp4">
     </video>
     <div class="setor-sombra" aria-hidden="true"></div>
-    {% endif %}
+{% endif %}
 
     <div class="shell setor-abertura-texto">
       <span class="rotulo">{{ setor.rotulo }}</span>
@@ -45,16 +45,20 @@
       </div>
 
       <div class="momentos-grade">
-        {% for item in setor.momentos %}
+{% for item in setor.momentos %}
         <article class="momento aparece">
           <span class="momento-num">{{ '%02d' % loop.index }}</span>
           <h3>{{ item.titulo }}</h3>
           <p>{{ item.texto }}</p>
         </article>
-        {% endfor %}
+{% endfor %}
       </div>
     </div>
   </section>
+
+{% if slug == 'casamentos' %}
+{% include "_avaliacoes.html" %}
+{% endif %}
 
   <!-- ─────────────────────────────── orçamento ─────────────────────────────── -->
   <section class="setor-precos pad-g" id="orcamento">
@@ -69,48 +73,18 @@
 {% if grupo.nota %}
       <p class="setor-nota aparece">{{ grupo.nota }}</p>
 {% endif %}
-      {% if grupo.flexibilidade %}
+{% if grupo.flexibilidade %}
       <p class="flexibilidade aparece">{{ grupo.flexibilidade }}</p>
-      {% endif %}
+{% endif %}
 
-      <div class="pacotes {% if grupo.pacotes|length == 2 %}dois{% endif %}">
-        {% for pacote in grupo.pacotes %}
-          <article class="pacote {% if pacote.destaque %}pacote-marcado{% endif %} aparece">
-            <div class="pacote-topo">
-              <h3>{{ pacote.nome }}</h3>
-              <span class="pacote-num">
-                {{ pacote.indice }}{% if pacote.selo %} · <b>{{ pacote.selo }}</b>{% endif %}
-              </span>
-            </div>
-
-            <p class="pacote-ideal">{{ pacote.descricao or pacote.ideal }}</p>
-
-            <ul>
-              {% for item in pacote.itens %}
-              {% if item is mapping %}
-              <li class="item-detalhado">
-                <strong>{{ item.rotulo }}</strong>
-                <span>{{ item.valor }}</span>
-              </li>
-              {% else %}
-              <li>{{ item }}</li>
-              {% endif %}
-              {% endfor %}
-            </ul>
-
-            <a class="pacote-link" href="{{ url_for('orcamento', tipo=setor.tipo, pacote=pacote.nome) }}">
-              {{ pacote.botao or 'Falar sobre esta opção' }} <i aria-hidden="true">→</i>
-            </a>
-          </article>
-        {% endfor %}
-      </div>
+{% set tipo_pacote = setor.tipo %}
+{% include "_pacotes.html" %}
+      <p class="pagamento"><span>{{ pagamento.rotulo }}</span>{{ pagamento.texto }}</p>
 
     </div>
   </section>
 
-{% if slug == 'casamentos' %}
-{% include "_avaliacoes.html" %}
-{% endif %}
+
 
   <!-- ─────────────────────────────── convite ─────────────────────────────── -->
   <section class="convite pad-g">

@@ -242,10 +242,19 @@ def orcamento():
 
     dados = {chave: request.form.get(chave, "").strip() for chave in
              ("nome", "whatsapp", "data", "local", "tipo", "pacote", "mensagem", "conheceu")}
+    dados["data_indefinida"] = request.form.get("data_indefinida") == "1"
+    if dados["data_indefinida"]:
+        dados["data"] = ""
     dados["origem"] = request.form.get("origem", "Site").strip()
 
-    obrigatorios = ("nome", "whatsapp", "data", "local", "tipo")
-    if not all(dados[chave] for chave in obrigatorios):
+    obrigatorios = ("nome", "local", "tipo")
+    data_valida = dados["data_indefinida"]
+    if not data_valida:
+        try:
+            data_valida = datetime.strptime(dados["data"], "%Y-%m-%d").date() >= datetime.now().date()
+        except ValueError:
+            pass
+    if not all(dados[chave] for chave in obrigatorios) or dados["tipo"] not in content.TIPOS_EVENTO or not data_valida:
         return render_template(
             "orcamento.html",
             pacote=dados["pacote"],
@@ -264,6 +273,7 @@ def orcamento():
         local=dados["local"],
         pacote=dados["pacote"] or "ainda não escolhida",
         mensagem=dados["mensagem"] or "não informado",
+        conheceu=dados["conheceu"] or "não informado",
     )
     # A mensagem vai pela sessão, e não pela URL: assim o telefone do cliente
     # não fica gravado no histórico do navegador nem em link compartilhado.
@@ -282,7 +292,7 @@ def formatar_data(valor):
     try:
         return datetime.strptime(valor, "%Y-%m-%d").strftime("%d/%m/%Y")
     except ValueError:
-        return valor or "Não informada"
+        return valor or "A definir"
 
 
 def registrar_lead(dados):
