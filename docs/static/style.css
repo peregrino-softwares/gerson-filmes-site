@@ -550,6 +550,8 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .avaliacoes-cabeca > a { flex-shrink: 0; }
 .avaliacoes-widget { min-width: 0; padding: clamp(16px, 3vw, 36px); background: #fff; color: var(--tinta); color-scheme: light; border: 1px solid var(--linha-esc); border-radius: 4px; }
 .avaliacoes-widget iframe { display: block; max-width: 100%; margin-inline: auto; }
+.avaliacoes-selo { display: block; width: fit-content; max-width: 100%; margin: 32px auto 0; padding: 16px; background: #fff; border: 1px solid var(--linha-esc); border-radius: 4px; }
+.avaliacoes-selo img { display: block; width: 160px; max-width: 100%; height: auto; border: 0; }
 #wp-widget-preview { text-align: center; font-size: 14px; line-height: 2; }
 #wp-widget-preview a { display: inline-block; text-decoration: underline; text-underline-offset: 3px; }
 #wp-widget-preview img { vertical-align: middle; width: auto; height: 20px; margin-inline-start: 6px; }
