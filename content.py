@@ -199,10 +199,7 @@ PROCESSO = [
 COLECOES = {
     "Casamento": {
         "titulo": "Casamentos",
-        "nota": "Cada opção varia conforme o tempo de cobertura, o número de câmeras e "
-                "a abrangência das imagens aéreas. O orçamento é enviado pelo WhatsApp, "
-                "considerando também a data, o deslocamento e a duração efetiva do "
-                "evento — e vale para Sete Lagoas, Belo Horizonte e região.",
+        "nota": "",
 
         # Aparece logo abaixo da nota, antes dos cartões.
         "flexibilidade": "Se alguma opção não se encaixar no que vocês imaginam, ela pode "
@@ -405,9 +402,7 @@ SETORES = {
 
         "intro_rotulo": "O que fica no filme",
         "intro_titulo": "A história inteira,<br>na ordem em que aconteceu.",
-        "intro_texto": "Um casamento tem uma curva própria: começa no silêncio do quarto e "
-                       "termina com todo mundo descalço na pista. Nosso trabalho é acompanhar "
-                       "essa curva sem atropelar nenhuma parte dela.",
+        "intro_texto": "",
 
         "momentos": [
             {"titulo": "A preparação", "texto": "O quarto cheio, o vestido pendurado, as mãos tremendo no botão da camisa."},

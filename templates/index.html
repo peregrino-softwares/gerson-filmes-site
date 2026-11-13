@@ -161,7 +161,9 @@
            id="painel-{{ loop.index }}" aria-labelledby="aba-{{ loop.index }}"
            {% if not loop.first %}hidden{% endif %}>
 
+{% if grupo.nota %}
         <p class="painel-nota">{{ grupo.nota }}</p>
+{% endif %}
         {% if grupo.flexibilidade %}
         <p class="flexibilidade">{{ grupo.flexibilidade }}</p>
         {% endif %}

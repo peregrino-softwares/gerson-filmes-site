@@ -39,7 +39,9 @@
           <span class="rotulo">{{ setor.intro_rotulo }}</span>
           <h2>{{ setor.intro_titulo | safe }}</h2>
         </div>
+{% if setor.intro_texto %}
         <p>{{ setor.intro_texto }}</p>
+{% endif %}
       </div>
 
       <div class="momentos-grade">
@@ -64,7 +66,9 @@
         </div>
       </div>
 
+{% if grupo.nota %}
       <p class="setor-nota aparece">{{ grupo.nota }}</p>
+{% endif %}
       {% if grupo.flexibilidade %}
       <p class="flexibilidade aparece">{{ grupo.flexibilidade }}</p>
       {% endif %}
