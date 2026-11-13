@@ -542,6 +542,21 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 .voz figcaption strong { display: block; font-weight: 500; color: var(--tinta); letter-spacing: 0; font-size: 16px; margin-bottom: 5px; }
 .voz-evento { display: block; color: var(--cinza-2); font-size: 11.5px; letter-spacing: .09em; text-transform: uppercase; }
 
+/* --------------------------------------- Opiniões no Casamentos.com.br */
+.avaliacoes { background: var(--osso); color: var(--tinta); border-top: 1px solid var(--linha-esc); }
+.avaliacoes-cabeca { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 40px; }
+.avaliacoes-cabeca .titulo { margin-top: 18px; }
+.avaliacoes-cabeca p { max-width: 520px; margin: 24px 0 0; color: var(--cinza-esc); }
+.avaliacoes-cabeca > a { flex-shrink: 0; }
+.avaliacoes-widget { min-width: 0; padding: clamp(16px, 3vw, 36px); background: #fff; color: var(--tinta); color-scheme: light; border: 1px solid var(--linha-esc); border-radius: 4px; }
+.avaliacoes-widget iframe { display: block; max-width: 100%; margin-inline: auto; }
+#wp-widget-preview { text-align: center; font-size: 14px; line-height: 2; }
+#wp-widget-preview a { display: inline-block; text-decoration: underline; text-underline-offset: 3px; }
+#wp-widget-preview img { vertical-align: middle; width: auto; height: 20px; margin-inline-start: 6px; }
+@media (max-width: 700px) {
+  .avaliacoes-cabeca { flex-direction: column; align-items: start; gap: 24px; }
+}
+
 /* -------------------------------------------------------------- FAQ */
 .duvidas { background: var(--tinta-2); }
 .duvidas-grade { display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
