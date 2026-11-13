@@ -622,64 +622,52 @@ Obrigado de coração!"""
 # ---------------------------------------------------------------
 FAQ = [
     {
-        "pergunta": "Com quanto tempo de antecedência devemos reservar a data?",
-        "resposta": "Quanto antes, melhor — sábados de maio a dezembro costumam fechar "
-                    "primeiro. Dito isso, se a sua data ainda estiver livre, ela é sua, "
-                    "mesmo que falte pouco tempo. Pergunte antes de descartar.",
+        "pergunta": "Como saber se nossa data está disponível?",
+        "resposta": "Envie a data e o local do evento pelo WhatsApp. Nós conferimos a "
+                    "disponibilidade e conversamos sobre o que vocês imaginam para o filme. "
+                    "Vale consultar mesmo que falte pouco tempo.",
     },
     {
-        "pergunta": "Quantas pessoas filmam e por quantas horas vocês ficam?",
-        "resposta": "Depende da opção escolhida. Na Essencial trabalhamos com um ponto de "
-                    "câmera; na Completo e na Autoral, com apoio e mais de um ponto ao "
-                    "mesmo tempo. A equipe é sempre pequena de propósito: quanto menos "
-                    "gente circulando, mais natural fica o que acontece na frente da "
-                    "câmera.",  # ⚠️ CONFIRA quantas horas você cobre em cada opção
+        "pergunta": "Como funciona a reserva da data?",
+        "resposta": "Depois de escolhermos juntos a opção mais adequada, formalizamos a "
+                    "contratação. A reserva é confirmada com o contrato assinado e o "
+                    "pagamento da entrada.",
     },
     {
-        "pergunta": "Vocês levam equipamento reserva?",
-        "resposta": "Sim. Cartões, baterias e uma câmera extra viajam junto em todo evento. "
-                    "Equipamento falha — é do ofício. O que não pode é a falha virar problema "
-                    "de vocês.",  # ⚠️ CONFIRA se você realmente leva câmera reserva
+        "pergunta": "Quantos profissionais participam e qual é o tempo de cobertura?",
+        "resposta": "A equipe e o tempo de cobertura variam conforme a opção contratada e "
+                    "a programação do evento. A proposta informa esses detalhes para vocês "
+                    "saberem exatamente o que está incluído.",
     },
     {
-        "pergunta": "A trilha do filme é licenciada? Podemos escolher a música?",
-        "resposta": "A trilha é licenciada, sim. Usar música comercial sem licença é o motivo "
-                    "mais comum de um filme de casamento ser derrubado do Instagram ou do "
-                    "YouTube meses depois — e aí o vídeo que vocês queriam mostrar some. "
-                    "Vocês podem sugerir referências, e nós procuramos algo com o mesmo clima "
-                    "dentro do que é liberado para uso.",
+        "pergunta": "Vocês levam equipamentos de reserva?",
+        "resposta": "Sim. Levamos câmera, baterias e cartões de reserva para lidar com "
+                    "imprevistos e dar continuidade ao registro do evento.",
     },
     {
-        "pergunta": "Em quanto tempo o filme fica pronto?",
-        "resposta": "Até 60 dias nas opções Essencial e Completo, e até 45 dias na Autoral. "
-                    "O prazo vai escrito no contrato, e um trecho curto costuma chegar antes "
-                    "disso para vocês já poderem mostrar.",
+        "pergunta": "Podemos participar da escolha das músicas?",
+        "resposta": "Sim. Queremos conhecer as músicas e os estilos que fazem parte da "
+                    "história de vocês. Essas referências orientam a escolha de trilhas "
+                    "licenciadas que combinem com o casal e com o ritmo do filme.",
     },
     {
-        "pergunta": "Recebemos também os arquivos brutos?",
-        "resposta": "O que entregamos é o filme montado — é nele que está o trabalho. "
-                    "O material bruto de um dia inteiro passa de centenas de gigabytes e não "
-                    "se assiste. Guardamos tudo por um ano; se você precisar de alguma cena "
-                    "específica nesse período, é só pedir.",  # ⚠️ CONFIRA o prazo de guarda
+        "pergunta": "Quando e como recebemos o filme?",
+        "resposta": "O prazo de entrega é informado na proposta e registrado no contrato. "
+                    "Vocês recebem um link privado para assistir e baixar os filmes "
+                    "incluídos na opção escolhida.",
     },
     {
-        "pergunta": "Vocês atendem fora de Sete Lagoas?",
-        "resposta": "Nossa base é Sete Lagoas e atendemos Belo Horizonte na mesma condição. "
-                    "Fora daí, viajamos para o interior de Minas e para qualquer estado do "
-                    "Brasil. Quando há viagem, deslocamento e hospedagem aparecem separados "
-                    "no orçamento, para você ver de onde vem cada valor.",
+        "pergunta": "Vocês filmam em outras cidades?",
+        "resposta": "Sim. Atendemos Belo Horizonte, outras cidades de Minas Gerais e todo "
+                    "o Brasil. Quando houver custos de deslocamento e hospedagem, eles "
+                    "serão informados na proposta.",
     },
     {
-        "pergunta": "E se chover ou o horário atrasar?",
-        "resposta": "Acontece com frequência e já faz parte do plano. Chegamos cedo, "
-                    "conversamos com o cerimonial e temos alternativa de luz e de locação. "
-                    "Se o cronograma escorregar, ficamos até a história terminar.",
-    },
-    {
-        "pergunta": "Dá para parcelar?",
-        "resposta": "Dá. São 40% na entrada e o restante até 7 dias antes do evento. "
-                    "No cartão, parcelamos em até 12 vezes, com os juros da máquina. "
-                    "O formato fica combinado antes de assinar.",
+        "pergunta": "Quais são as formas de pagamento?",
+        "resposta": "Pedimos uma entrada de 40% para confirmar a reserva, e o restante "
+                    "deve ser pago até 7 dias antes do evento. Também oferecemos "
+                    "parcelamento no cartão, conforme as condições da proposta. "
+                    "Valores e datas ficam registrados no contrato.",
     },
 ]
 
