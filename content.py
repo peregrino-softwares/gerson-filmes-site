@@ -681,13 +681,6 @@ FAQ = [
                     "No cartão, parcelamos em até 12 vezes, com os juros da máquina. "
                     "O formato fica combinado antes de assinar.",
     },
-    {
-        "pergunta": "O que vocês publicam do nosso filme?",
-        "resposta": "Para apresentar nosso trabalho, utilizamos apenas recortes de "
-                    "poucos segundos, selecionados com cuidado e destinados exclusivamente "
-                    "ao portfólio. A intimidade de vocês é sempre preservada, e o filme "
-                    "completo nunca é publicado ou compartilhado sem autorização.",
-    },
 ]
 
 
