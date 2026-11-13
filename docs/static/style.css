@@ -291,12 +291,12 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 
 /* ---------------------------------------------------------- Abertura */
 .abertura { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: #0c0a08; }
-.abertura-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.6) contrast(1.05) brightness(.92); }
+.abertura-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.88) contrast(1.03) brightness(1.04); }
 .abertura-sombra {
   position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, rgba(12,10,8,.9) 0%, rgba(12,10,8,.55) 46%, rgba(12,10,8,.1) 82%),
-    linear-gradient(180deg, rgba(12,10,8,.6) 0%, transparent 30%, rgba(12,10,8,.85) 100%);
+    linear-gradient(90deg, rgba(15,11,8,.77), rgba(15,11,8,.42) 48%, rgba(15,11,8,.1) 85%),
+    linear-gradient(0deg, rgba(15,11,8,.83), transparent 54%, rgba(15,11,8,.22));
 }
 .abertura-conteudo { padding-bottom: 130px; max-width: 960px; }
 .abertura-rotulo { margin-bottom: 34px; color: var(--cinza); font-size: 12px; letter-spacing: .22em; text-transform: uppercase; }
@@ -943,6 +943,10 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
   .abertura-rotulo { margin-bottom: 22px; font-size: 10px; letter-spacing: .16em; }
   .abertura h1 { font-size: clamp(52px, 17vw, 78px); line-height: .96; }
   .abertura h1 em { margin-left: 0; }
+  .abertura-sombra {
+    background: linear-gradient(0deg, rgba(15,11,8,.94), rgba(15,11,8,.43) 58%, rgba(15,11,8,.14)),
+                linear-gradient(90deg, rgba(15,11,8,.23), transparent);
+  }
   .abertura-texto { margin-top: 26px; font-size: 15px; }
   .abertura-acoes { margin-top: 30px; gap: 20px; flex-direction: column; align-items: stretch; }
   .abertura-acoes .botao { justify-content: center; }
