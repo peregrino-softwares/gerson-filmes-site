@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=1794608165">
+  <link rel="stylesheet" href="/static/style.css?v=1794608165-memoria">
 
   <!-- Sem esta marca nada fica escondido: se o JS falhar, o site aparece igual. -->
   <script>document.documentElement.classList.add('js');</script>
@@ -295,39 +295,59 @@
     </div>
   </section>
 
-  <!-- ──────────────────────────── como eu trabalho ─────────────────────────── -->
-  <section class="metodo pad-p" aria-label="Como trabalhamos">
+  <section class="memoria" aria-labelledby="memoria-titulo">
+    <video class="memoria-video" muted loop playsinline preload="none" aria-hidden="true"
+           poster="/static/lembrar-de-tudo.webp" data-src="/static/lembrar-de-tudo.mp4"></video>
     <div class="shell">
-      <div class="secao-cabeca aparece">
-        <div>
-          <span class="rotulo">Como trabalhamos</span>
-          <h2 class="titulo">Três cuidados.<br><em>Uma história só de vocês.</em></h2>
-        </div>
-      </div>
-
-      <div class="metodo-grade">
-
-        <article class="metodo-item aparece">
-          <span class="metodo-rotulo">Som</span>
-          <h3>Vozes que permanecem</h3>
-          <p>Votos, discursos e homenagens captados com microfones dedicados, para preservar as palavras que fazem parte da história.</p>
-        </article>
-
-        <article class="metodo-item aparece">
-          <span class="metodo-rotulo">Presença</span>
-          <h3>Registro discreto</h3>
-          <p>Acompanhamos os momentos com atenção, sem pedir que vocês parem de viver o dia para a câmera.</p>
-        </article>
-
-        <article class="metodo-item aparece">
-          <span class="metodo-rotulo">Montagem</span>
-          <h3>Uma edição com identidade</h3>
-          <p>Imagem, música e silêncio se encontram em um filme construído a partir da história de vocês.</p>
-        </article>
-
-      </div>
+      <h2 class="memoria-titulo" id="memoria-titulo">Vocês vão querer <em>lembrar de tudo</em></h2>
     </div>
+    <button class="memoria-controle" type="button" hidden>Reproduzir vídeo</button>
   </section>
+  <script>
+    (() => {
+      const section = document.querySelector('.memoria');
+      const video = section.querySelector('video');
+      const control = section.querySelector('button');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let visible = false;
+      let playWhenVisible = !reducedMotion.matches;
+
+      function updateControl() {
+        control.textContent = video.paused ? 'Reproduzir vídeo' : 'Pausar vídeo';
+      }
+
+      function updatePlayback() {
+        if (visible && playWhenVisible) {
+          if (!video.hasAttribute('src')) video.src = video.dataset.src;
+          video.play().catch(updateControl);
+        } else {
+          video.pause();
+        }
+      }
+
+      control.hidden = false;
+      control.addEventListener('click', () => {
+        playWhenVisible = video.paused;
+        updatePlayback();
+      });
+      video.addEventListener('play', updateControl);
+      video.addEventListener('pause', updateControl);
+      reducedMotion.addEventListener('change', () => {
+        playWhenVisible = !reducedMotion.matches;
+        updatePlayback();
+      });
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(([entry]) => {
+          visible = entry.isIntersecting;
+          updatePlayback();
+        }, { threshold: .25 });
+        observer.observe(section);
+      } else {
+        visible = true;
+      }
+    })();
+  </script>
 
 
 <section class="avaliacoes claro pad-p" id="avaliacoes" aria-labelledby="avaliacoes-titulo">

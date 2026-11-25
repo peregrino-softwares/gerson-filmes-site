@@ -1024,3 +1024,76 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .js .aparece { opacity: 1; transform: none; }
 }
+
+/* Fotograma de passagem entre os serviços e as avaliações. */
+.memoria {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: clamp(360px, 55vw, 700px);
+  padding: 88px 0;
+  overflow: hidden;
+  background: var(--tinta);
+  text-align: center;
+}
+
+.memoria-video,
+.memoria::before {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.memoria-video {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+.memoria::before {
+  content: "";
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(21, 17, 14, .27), rgba(21, 17, 14, .58) 46%, rgba(21, 17, 14, .72));
+}
+
+.memoria-titulo {
+  margin: 0;
+  color: var(--osso-2);
+  font: 500 clamp(3rem, 7.1vw, 7.4rem)/.9 var(--serif);
+  letter-spacing: -.045em;
+  text-shadow: 0 2px 24px rgba(17, 13, 10, .5);
+}
+
+.memoria-titulo em {
+  display: block;
+  margin-top: .08em;
+  font-weight: 500;
+}
+
+.memoria-controle {
+  position: absolute;
+  right: clamp(16px, 4vw, 56px);
+  bottom: 18px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid rgba(248, 245, 239, .6);
+  background: rgba(21, 17, 14, .8);
+  color: var(--osso-2);
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .memoria {
+    min-height: clamp(370px, 66svh, 530px);
+  }
+
+  .memoria-titulo {
+    font-size: clamp(2.65rem, 11vw, 4.15rem);
+  }
+
+  .memoria-video {
+    object-position: 49% center;
+  }
+}

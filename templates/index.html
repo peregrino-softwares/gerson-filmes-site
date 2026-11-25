@@ -92,27 +92,59 @@
     </div>
   </section>
 
-  <!-- ──────────────────────────── como eu trabalho ─────────────────────────── -->
-  <section class="metodo pad-p" aria-label="Como trabalhamos">
+  <section class="memoria" aria-labelledby="memoria-titulo">
+    <video class="memoria-video" muted loop playsinline preload="none" aria-hidden="true"
+           poster="{{ url_for('static', filename='lembrar-de-tudo.webp') }}" data-src="{{ url_for('static', filename='lembrar-de-tudo.mp4') }}"></video>
     <div class="shell">
-      <div class="secao-cabeca aparece">
-        <div>
-          <span class="rotulo">Como trabalhamos</span>
-          <h2 class="titulo">Três cuidados.<br><em>Uma história só de vocês.</em></h2>
-        </div>
-      </div>
-
-      <div class="metodo-grade">
-{% for item in metodo %}
-        <article class="metodo-item aparece">
-          <span class="metodo-rotulo">{{ item.rotulo }}</span>
-          <h3>{{ item.titulo }}</h3>
-          <p>{{ item.texto }}</p>
-        </article>
-{% endfor %}
-      </div>
+      <h2 class="memoria-titulo" id="memoria-titulo">Vocês vão querer <em>lembrar de tudo</em></h2>
     </div>
+    <button class="memoria-controle" type="button" hidden>Reproduzir vídeo</button>
   </section>
+  <script>
+    (() => {
+      const section = document.querySelector('.memoria');
+      const video = section.querySelector('video');
+      const control = section.querySelector('button');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let visible = false;
+      let playWhenVisible = !reducedMotion.matches;
+
+      function updateControl() {
+        control.textContent = video.paused ? 'Reproduzir vídeo' : 'Pausar vídeo';
+      }
+
+      function updatePlayback() {
+        if (visible && playWhenVisible) {
+          if (!video.hasAttribute('src')) video.src = video.dataset.src;
+          video.play().catch(updateControl);
+        } else {
+          video.pause();
+        }
+      }
+
+      control.hidden = false;
+      control.addEventListener('click', () => {
+        playWhenVisible = video.paused;
+        updatePlayback();
+      });
+      video.addEventListener('play', updateControl);
+      video.addEventListener('pause', updateControl);
+      reducedMotion.addEventListener('change', () => {
+        playWhenVisible = !reducedMotion.matches;
+        updatePlayback();
+      });
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(([entry]) => {
+          visible = entry.isIntersecting;
+          updatePlayback();
+        }, { threshold: .25 });
+        observer.observe(section);
+      } else {
+        visible = true;
+      }
+    })();
+  </script>
 
 {% set relatos = depoimentos %}
 {% include "_avaliacoes.html" %}
