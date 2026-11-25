@@ -14,17 +14,12 @@
       <li>{{ item }}</li>
 {% endif %}
 {% endfor %}
-    </ul>
 {% if pacote.extras %}
-    <details class="pacote-extras">
-      <summary>Ver os diferenciais do {{ pacote.nome }}</summary>
-      <ul>
 {% for item in pacote.extras %}
-        <li class="item-detalhado"><strong>{{ item.rotulo }}</strong><span>{{ item.valor }}</span></li>
+      <li class="item-detalhado"><strong>{{ item.rotulo }}</strong><span>{{ item.valor }}</span></li>
 {% endfor %}
-      </ul>
-    </details>
 {% endif %}
+    </ul>
     <a class="pacote-link" href="{{ url_for('orcamento', tipo=tipo_pacote, pacote=pacote.nome) }}">
       {{ pacote.botao or 'Falar sobre esta opção' }} <i aria-hidden="true">→</i>
     </a>
