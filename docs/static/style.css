@@ -1072,18 +1072,6 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
   font-weight: 500;
 }
 
-.memoria-controle {
-  position: absolute;
-  right: clamp(16px, 4vw, 56px);
-  bottom: 18px;
-  min-height: 44px;
-  padding: 8px 14px;
-  border: 1px solid rgba(248, 245, 239, .6);
-  background: rgba(21, 17, 14, .8);
-  color: var(--osso-2);
-  cursor: pointer;
-}
-
 @media (max-width: 767px) {
   .memoria {
     min-height: clamp(300px, 75vw, 460px);
@@ -1096,11 +1084,5 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 
   .memoria-video {
     object-position: center;
-  }
-
-  .memoria-controle {
-    right: 14px;
-    bottom: 12px;
-    font-size: .8125rem;
   }
 }

@@ -302,44 +302,27 @@
     <div class="shell">
       <h2 class="memoria-titulo" id="memoria-titulo">Vocês vão querer <em>lembrar de tudo</em></h2>
     </div>
-    <button class="memoria-controle" type="button" hidden>Reproduzir vídeo</button>
   </section>
   <script>
     (() => {
       const section = document.querySelector('.memoria');
       const video = section.querySelector('video');
-      const control = section.querySelector('button');
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       let visible = false;
-      let playWhenVisible = !reducedMotion.matches;
-
-      function updateControl() {
-        control.textContent = video.paused ? 'Reproduzir vídeo' : 'Pausar vídeo';
-      }
 
       function updatePlayback() {
-        if (visible && playWhenVisible) {
+        if (visible && !reducedMotion.matches) {
           if (!video.hasAttribute('src')) {
             const mobile = window.matchMedia('(max-width: 767px)').matches;
             video.src = mobile ? video.dataset.srcMobile : video.dataset.src;
           }
-          video.play().catch(updateControl);
+          video.play().catch(() => {});
         } else {
           video.pause();
         }
       }
 
-      control.hidden = false;
-      control.addEventListener('click', () => {
-        playWhenVisible = video.paused;
-        updatePlayback();
-      });
-      video.addEventListener('play', updateControl);
-      video.addEventListener('pause', updateControl);
-      reducedMotion.addEventListener('change', () => {
-        playWhenVisible = !reducedMotion.matches;
-        updatePlayback();
-      });
+      reducedMotion.addEventListener('change', updatePlayback);
 
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver(([entry]) => {
@@ -349,6 +332,7 @@
         observer.observe(section);
       } else {
         visible = true;
+        updatePlayback();
       }
     })();
   </script>
