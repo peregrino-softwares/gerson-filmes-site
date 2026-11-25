@@ -94,7 +94,8 @@
 
   <section class="memoria" aria-labelledby="memoria-titulo">
     <video class="memoria-video" muted loop playsinline preload="none" aria-hidden="true"
-           poster="{{ url_for('static', filename='lembrar-de-tudo.webp') }}" data-src="{{ url_for('static', filename='lembrar-de-tudo.mp4') }}"></video>
+           poster="{{ url_for('static', filename='lembrar-pb.webp') }}" data-src="{{ url_for('static', filename='lembrar-pb.mp4') }}"
+           data-src-mobile="{{ url_for('static', filename='lembrar-pb-mobile.mp4') }}"></video>
     <div class="shell">
       <h2 class="memoria-titulo" id="memoria-titulo">Vocês vão querer <em>lembrar de tudo</em></h2>
     </div>
@@ -115,7 +116,10 @@
 
       function updatePlayback() {
         if (visible && playWhenVisible) {
-          if (!video.hasAttribute('src')) video.src = video.dataset.src;
+          if (!video.hasAttribute('src')) {
+            const mobile = window.matchMedia('(max-width: 767px)').matches;
+            video.src = mobile ? video.dataset.srcMobile : video.dataset.src;
+          }
           video.play().catch(updateControl);
         } else {
           video.pause();

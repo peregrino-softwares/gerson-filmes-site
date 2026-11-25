@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=1794608165-memoria">
+  <link rel="stylesheet" href="/static/style.css?v=1794608165-memoria-pb">
 
   <!-- Sem esta marca nada fica escondido: se o JS falhar, o site aparece igual. -->
   <script>document.documentElement.classList.add('js');</script>
@@ -297,7 +297,8 @@
 
   <section class="memoria" aria-labelledby="memoria-titulo">
     <video class="memoria-video" muted loop playsinline preload="none" aria-hidden="true"
-           poster="/static/lembrar-de-tudo.webp" data-src="/static/lembrar-de-tudo.mp4"></video>
+           poster="/static/lembrar-pb.webp" data-src="/static/lembrar-pb.mp4"
+           data-src-mobile="/static/lembrar-pb-mobile.mp4"></video>
     <div class="shell">
       <h2 class="memoria-titulo" id="memoria-titulo">Vocês vão querer <em>lembrar de tudo</em></h2>
     </div>
@@ -318,7 +319,10 @@
 
       function updatePlayback() {
         if (visible && playWhenVisible) {
-          if (!video.hasAttribute('src')) video.src = video.dataset.src;
+          if (!video.hasAttribute('src')) {
+            const mobile = window.matchMedia('(max-width: 767px)').matches;
+            video.src = mobile ? video.dataset.srcMobile : video.dataset.src;
+          }
           video.play().catch(updateControl);
         } else {
           video.pause();
