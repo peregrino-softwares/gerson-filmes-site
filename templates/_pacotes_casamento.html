@@ -1,0 +1,28 @@
+<div class="pacotes pacotes-casamento">
+{% for pacote in grupo.pacotes %}
+  <article class="pacote{% if pacote.destaque %} pacote-marcado{% endif %}">
+    <h3>{{ pacote.nome }}</h3>
+    <dl class="pacote-resumo">
+{% for rotulo, valor in pacote.resumo %}
+      <div>
+        <dt>{{ rotulo }}</dt>
+        <dd>{{ valor }}</dd>
+      </div>
+{% endfor %}
+    </dl>
+    <p class="pacote-diferencial">{{ pacote.diferencial }}</p>
+    <a class="pacote-link" href="{{ url_for('orcamento', tipo=tipo_pacote, pacote=pacote.nome) }}">
+      Consultar valor do {{ pacote.nome }}
+    </a>
+    <details class="pacote-extras">
+      <summary><span aria-hidden="true"></span>Ver todos os detalhes</summary>
+      <ul>
+{% for item in pacote.itens %}
+        <li class="item-detalhado"><strong>{{ item.rotulo }}</strong><span>{{ item.valor }}</span></li>
+{% endfor %}
+      </ul>
+    </details>
+  </article>
+{% endfor %}
+</div>
+<p class="pacotes-incluso"><strong>Em todos os pacotes</strong> {{ grupo.em_todos }}</p>

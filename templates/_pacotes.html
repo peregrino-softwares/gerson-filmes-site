@@ -1,3 +1,6 @@
+{% if tipo_pacote == "Casamento" %}
+{% include "_pacotes_casamento.html" %}
+{% else %}
 <div class="pacotes {% if grupo.pacotes|length == 2 %}dois{% endif %}">
 {% for pacote in grupo.pacotes %}
   <article class="pacote {% if pacote.destaque %}pacote-marcado{% endif %}">
@@ -26,6 +29,7 @@
   </article>
 {% endfor %}
 </div>
+{% endif %}
 {% if grupo.comparacao %}
 <p class="pacotes-nota">{{ grupo.comparacao }}</p>
 {% endif %}
