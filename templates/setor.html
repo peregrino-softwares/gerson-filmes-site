@@ -56,10 +56,6 @@
     </div>
   </section>
 
-{% if slug == 'casamentos' %}
-{% include "_avaliacoes.html" %}
-{% endif %}
-
   <!-- ─────────────────────────────── orçamento ─────────────────────────────── -->
   <section class="setor-precos pad-g" id="orcamento">
     <div class="shell">
@@ -86,6 +82,10 @@
 
 
 
+{% if slug == 'casamentos' %}
+{% include "_avaliacoes.html" %}
+{% endif %}
+
   <!-- ─────────────────────────────── convite ─────────────────────────────── -->
   <section class="convite pad-g">
     <div class="shell convite-caixa aparece">
@@ -96,7 +96,6 @@
       </div>
       <div>
         <a class="botao botao-claro" href="{{ url_for('orcamento', tipo=setor.tipo) }}">Começar uma conversa</a>
-        <span class="convite-nota">Sem compromisso · Resposta pelo WhatsApp</span>
       </div>
     </div>
   </section>
