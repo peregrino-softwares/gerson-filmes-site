@@ -51,18 +51,6 @@
     </div>
   </section>
 
-  <!-- ──────────────────────────────── ficha ──────────────────────────────── -->
-  <section class="ficha" aria-label="Informações gerais">
-    <dl class="shell ficha-grade">
-{% for item in ficha %}
-      <div class="ficha-item aparece">
-        <dt>{{ item.rotulo }}</dt>
-        <dd>{{ item.valor }}</dd>
-      </div>
-{% endfor %}
-    </dl>
-  </section>
-
   <!-- ───────────────────────────── o que eu filmo ─────────────────────────── -->
   <section class="filmo pad-g" id="filmo">
     <div class="shell">
@@ -134,9 +122,6 @@
     })();
   </script>
 
-{% set relatos = depoimentos %}
-{% include "_avaliacoes.html" %}
-
   <!-- ─────────────────────────────── orçamento ─────────────────────────────── -->
   <section class="colecoes pad-g" id="orcamento">
     <div class="shell">
@@ -184,6 +169,21 @@
 {% endfor %}
     </div>
   </section>
+
+  <!-- ──────────────────────────────── ficha ──────────────────────────────── -->
+  <section class="ficha" aria-label="Informações gerais">
+    <dl class="shell ficha-grade">
+{% for item in ficha %}
+      <div class="ficha-item aparece">
+        <dt>{{ item.rotulo }}</dt>
+        <dd>{{ item.valor }}</dd>
+      </div>
+{% endfor %}
+    </dl>
+  </section>
+
+{% set relatos = depoimentos %}
+{% include "_avaliacoes.html" %}
 
   <!-- ─────────────────────────── quem está atrás ──────────────────────────── -->
 {% if quem.ativo %}
