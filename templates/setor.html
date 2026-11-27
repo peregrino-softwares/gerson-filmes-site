@@ -31,6 +31,49 @@
     </div>
   </section>
 
+{% if slug == 'casamentos' %}
+  <section class="memoria" id="filme-casamento" aria-labelledby="filme-casamento-titulo">
+    <video class="memoria-video" muted loop playsinline preload="none" aria-hidden="true"
+           poster="{{ url_for('static', filename='casamento-memoria.webp') }}" data-src="{{ url_for('static', filename='casamento-memoria.mp4') }}"
+           data-src-mobile="{{ url_for('static', filename='casamento-memoria-mobile.mp4') }}"></video>
+    <div class="shell">
+      <h2 class="memoria-titulo" id="filme-casamento-titulo">A vida passa, <em>o filme eterniza.</em></h2>
+    </div>
+  </section>
+  <script>
+    (() => {
+      const section = document.getElementById('filme-casamento');
+      const video = section.querySelector('video');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let visible = false;
+
+      function updatePlayback() {
+        if (visible && !reducedMotion.matches) {
+          if (!video.hasAttribute('src')) {
+            const mobile = window.matchMedia('(max-width: 767px)').matches;
+            video.src = mobile ? video.dataset.srcMobile : video.dataset.src;
+          }
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      }
+
+      reducedMotion.addEventListener('change', updatePlayback);
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(([entry]) => {
+          visible = entry.isIntersecting;
+          updatePlayback();
+        }, { threshold: .25 });
+        observer.observe(section);
+      } else {
+        visible = true;
+        updatePlayback();
+      }
+    })();
+  </script>
+{% else %}
   <!-- ────────────────────────────── os momentos ───────────────────────────── -->
   <section class="momentos pad-g">
     <div class="shell">
@@ -55,6 +98,7 @@
       </div>
     </div>
   </section>
+{% endif %}
 
   <!-- ─────────────────────────────── orçamento ─────────────────────────────── -->
   <section class="setor-precos pad-g" id="orcamento">
