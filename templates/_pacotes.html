@@ -34,3 +34,6 @@
 {% if grupo.comparacao %}
 <p class="pacotes-nota">{{ grupo.comparacao }}</p>
 {% endif %}
+{% if tipo_pacote == "Casamento" %}
+{% include "_guia_casamento.html" %}
+{% endif %}

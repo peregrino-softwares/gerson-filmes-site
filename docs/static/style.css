@@ -1133,3 +1133,20 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
   .calendario-navegacao { grid-template-columns: 36px minmax(0, 1.6fr) minmax(0, 1fr) 36px; gap: 4px; }
   .calendario-icone { min-width: 36px; }
 }
+
+.casamento-guia { margin-top: clamp(48px, 7vw, 96px); }
+.casamento-guia h3 { margin: 0 0 28px; font: 400 clamp(32px, 4vw, 52px)/1.08 var(--serif); }
+.casamento-guia table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+.casamento-guia :is(th, td, dt, dd) { text-align: left; padding: 16px 12px; border-bottom: 1px solid var(--linha); }
+.casamento-guia th:first-child, .casamento-guia dt { padding-left: 0; }
+.casamento-guia thead th { font-weight: 500; color: var(--argila-cl); border-top: 1px solid var(--linha); }
+.casamento-guia tbody th { font-weight: 500; }
+.casamento-guia :is(td, dd) { color: var(--areia); }
+.casamento-guia dl { margin: 0; display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; border-top: 1px solid var(--linha); }
+.casamento-guia dd { margin: 0; }
+@media (max-width: 640px) {
+  .casamento-guia :is(th, td) { font-size: 13px; line-height: 1.45; padding: 12px 4px; overflow-wrap: anywhere; }
+  .casamento-guia dl { display: block; }
+  .casamento-guia dt { padding: 16px 0 4px; border-bottom: 0; }
+  .casamento-guia dd { padding: 0 0 16px; }
+}
