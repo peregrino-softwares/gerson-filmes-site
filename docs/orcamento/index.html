@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=1794608165-orcamento-personalizado">
+  <link rel="stylesheet" href="/static/style.css?v=1794608165">
 
   <!-- Sem esta marca nada fica escondido: se o JS falhar, o site aparece igual. -->
   <script>document.documentElement.classList.add('js');</script>
@@ -151,7 +151,6 @@
 
       <form class="formulario" novalidate
             data-pacotes='{"15 anos": ["Essencial", "Completo", "Autoral"], "Casamento": ["Essencial", "Legado", "Cinema"], "Evento": ["Cobertura", "Institucional"], "Evento corporativo": ["Cobertura", "Institucional"], "Formatura": ["Cobertura", "Institucional"], "Outro": []}'
-            data-servicos='{"Casamento":[["Momentos do dia",["Making of do casal","Making of exclusivo da noiva","Cerimônia","Recepção"]],["Serviços adicionais",["Pré-wedding","Filmes com drone","Teasers (vídeos com os melhores momentos)"]],["O que vocês querem receber",["Filme de 15 a 25 minutos","Filme de 30 a 45 minutos","Cerimônia na íntegra"]]],"15 anos":[["Momentos do dia",["Making of","Entrada e valsa","Festa","Discursos e homenagens com áudio dedicado"]],["Serviços adicionais",["Ensaio filmado","Ensaio em duas locações","Imagens de drone (sujeitas ao local e ao clima)"]],["O que vocês querem receber",["Filme de 5 a 8 minutos","Filme de 10 a 15 minutos","Valsa e homenagens na íntegra","Vídeo vertical para redes sociais"]]],"Formatura":[["Cobertura",["Registro dos momentos principais","Discursos e apresentações com áudio dedicado","Entrevistas e depoimentos"]],["Entregas",["Filme de 3 a 5 minutos","Vídeo institucional","Vídeo vertical para redes sociais","Versão para site ou YouTube"]]],"Evento corporativo":[["Cobertura",["Registro dos momentos principais","Discursos e apresentações com áudio dedicado","Entrevistas e depoimentos"]],["Entregas",["Filme de 3 a 5 minutos","Vídeo institucional","Vídeo vertical para redes sociais","Versão para site ou YouTube"]]],"Evento":[["Cobertura",["Registro dos momentos principais","Discursos e apresentações com áudio dedicado","Entrevistas e depoimentos"]],["Entregas",["Filme de 3 a 5 minutos","Vídeo institucional","Vídeo vertical para redes sociais","Versão para site ou YouTube"]]],"Outro":[["Cobertura",["Registro dos momentos principais","Discursos e apresentações com áudio dedicado"]],["Entregas",["Filme editado","Vídeo vertical para redes sociais"]]]}'
             data-modelo='"Ol\u00e1, Gerson. Vim pelo site e queria conversar sobre a minha data.\n\nNome: {nome}\nEvento: {tipo}\nData: {data}\nCidade ou local: {local}\nOr\u00e7amento: {pacote}\nO que n\u00e3o pode faltar: {mensagem}\nComo nos encontrou: {conheceu}"'
             data-numero="5531998851328">
 
@@ -184,30 +183,12 @@
             <small class="campo-erro" id="tipo-erro" hidden>Selecione o tipo de evento.</small>
           </div>
           <div class="campo">
-            <label for="pacote">Como você quer montar a cobertura?</label>
+            <label for="pacote">Opção de cobertura (opcional)</label>
             <select id="pacote" name="pacote" data-escolhido="">
               <option value="">Ainda não sei</option>
             </select>
           </div>
         </div>
-
-        <fieldset class="orcamento-personalizado" id="servicos-personalizados" disabled hidden
-                  aria-describedby="servicos-ajuda">
-          <legend>Monte seu orçamento</legend>
-          <p id="servicos-ajuda">Escolha os serviços que você quer incluir. A equipe prepara a proposta pelo WhatsApp.</p>
-          <div id="servicos-opcoes"></div>
-          <p class="campo-erro" id="servicos-erro" role="alert" hidden>Escolha pelo menos um serviço para continuar.</p>
-          <p class="servicos-contagem" id="servicos-contagem" aria-live="polite"></p>
-          <div class="campo">
-            <label for="duracao-cobertura">Tempo de cobertura desejado (opcional)</label>
-            <select id="duracao-cobertura" name="duracao_cobertura">
-              <option value="">A combinar</option>
-              <option>Até 5 horas</option>
-              <option>Até 8 horas</option>
-              <option>Dia inteiro</option>
-            </select>
-          </div>
-        </fieldset>
 
         <div class="dupla">
           <div class="campo">
@@ -307,6 +288,6 @@
     </div>
   </footer>
 
-  <script src="/static/app.js?v=1794603492-orcamento-personalizado" defer></script>
+  <script src="/static/app.js?v=1794603492" defer></script>
 </body>
 </html>

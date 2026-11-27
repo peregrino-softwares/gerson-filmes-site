@@ -168,7 +168,6 @@ def inject_content():
         "faq": content.FAQ,
         "tipos_evento": content.TIPOS_EVENTO,
         "pacotes_por_tipo": content.PACOTES_POR_TIPO,
-        "servicos_personalizados": content.SERVICOS_PERSONALIZADOS,
         "como_conheceu": content.COMO_CONHECEU,
         "whatsapp_link": whatsapp_link(content.WHATSAPP_MENSAGEM),
         # No site publicado (estático), o formulário monta a mensagem no

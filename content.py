@@ -169,7 +169,8 @@ COLECOES = {'Casamento': {'titulo': 'Casamentos',
                             'itens': [{'rotulo': 'Horas de cobertura', 'valor': '5 horas'},
                                       {'rotulo': 'Câmeras', 'valor': '2 câmeras'},
                                       {'rotulo': 'Cobertura', 'valor': 'Cerimônia'},
-                                      {'rotulo': 'Áudio', 'valor': 'Áudio profissional'},
+                                      {'rotulo': 'Áudio',
+                                       'valor': 'Captação profissional diretamente na mesa de som do evento.'},
                                       {'rotulo': 'Filme principal', 'valor': '15 a 25 minutos'},
                                       {'rotulo': 'Teasers', 'valor': '1 filme artístico'}],
                             'destaque': False},
@@ -183,7 +184,8 @@ COLECOES = {'Casamento': {'titulo': 'Casamentos',
                                       {'rotulo': 'Câmeras', 'valor': '4 câmeras'},
                                       {'rotulo': 'Cobertura',
                                        'valor': 'Cerimônia e recepção'},
-                                      {'rotulo': 'Áudio', 'valor': 'Áudio profissional'},
+                                      {'rotulo': 'Áudio',
+                                       'valor': 'Captação profissional diretamente na mesa de som do evento.'},
                                       {'rotulo': 'Filme principal', 'valor': '30 a 45 minutos'},
                                       {'rotulo': 'Teasers',
                                        'valor': '2 filmes artísticos'}],
@@ -202,7 +204,8 @@ COLECOES = {'Casamento': {'titulo': 'Casamentos',
                                       {'rotulo': 'Câmeras', 'valor': '5 câmeras'},
                                       {'rotulo': 'Cobertura',
                                        'valor': 'Cerimônia integral, recepção e festa'},
-                                      {'rotulo': 'Áudio', 'valor': 'Áudio profissional'},
+                                      {'rotulo': 'Áudio',
+                                       'valor': 'Captação profissional diretamente na mesa de som do evento.'},
                                       {'rotulo': 'Teasers',
                                        'valor': '3 filmes artísticos'}],
                             'destaque': False,
@@ -210,7 +213,8 @@ COLECOES = {'Casamento': {'titulo': 'Casamentos',
                                         'valor': 'Ensaio dedicado ao casal'},
                                        {'rotulo': 'Making of noiva e noivo',
                                         'valor': 'Preparação dos dois registrada ao mesmo tempo'},
-                                       {'rotulo': 'Drone na cerimônia'}]}],
+                                       {'rotulo': 'Drone na cerimônia',
+                                        'valor': 'Filmes aéreos cinematográficos durante a cerimônia.'}]}],
                'comparacao': 'A quantidade de câmeras e a composição da equipe são informações '
                              'diferentes. Os profissionais e os horários de início e encerramento '
                              'são definidos na proposta.'},
@@ -567,96 +571,6 @@ FAQ = [
 # ---------------------------------------------------------------
 # 11. FORMULÁRIO
 # ---------------------------------------------------------------
-# Opções para montar uma cobertura personalizada. A proposta confirma a combinação.
-SERVICOS_PERSONALIZADOS = {
-    "Casamento": [
-        ("Momentos do dia", [
-            "Making of do casal",
-            "Making of exclusivo da noiva",
-            "Cerimônia",
-            "Recepção",
-        ]),
-        ("Serviços adicionais", [
-            "Pré-wedding",
-            "Filmes com drone",
-            "Teasers (vídeos com os melhores momentos)",
-        ]),
-        ("O que vocês querem receber", [
-            "Filme de 15 a 25 minutos",
-            "Filme de 30 a 45 minutos",
-            "Cerimônia na íntegra",
-        ]),
-    ],
-    "15 anos": [
-        ("Momentos do dia", [
-            "Making of",
-            "Entrada e valsa",
-            "Festa",
-            "Discursos e homenagens com áudio dedicado",
-        ]),
-        ("Serviços adicionais", [
-            "Ensaio filmado",
-            "Ensaio em duas locações",
-            "Imagens de drone (sujeitas ao local e ao clima)",
-        ]),
-        ("O que vocês querem receber", [
-            "Filme de 5 a 8 minutos",
-            "Filme de 10 a 15 minutos",
-            "Valsa e homenagens na íntegra",
-            "Vídeo vertical para redes sociais",
-        ]),
-    ],
-    "Formatura": [
-        ("Cobertura", [
-            "Registro dos momentos principais",
-            "Discursos e apresentações com áudio dedicado",
-            "Entrevistas e depoimentos",
-        ]),
-        ("Entregas", [
-            "Filme de 3 a 5 minutos",
-            "Vídeo institucional",
-            "Vídeo vertical para redes sociais",
-            "Versão para site ou YouTube",
-        ]),
-    ],
-    "Evento corporativo": [
-        ("Cobertura", [
-            "Registro dos momentos principais",
-            "Discursos e apresentações com áudio dedicado",
-            "Entrevistas e depoimentos",
-        ]),
-        ("Entregas", [
-            "Filme de 3 a 5 minutos",
-            "Vídeo institucional",
-            "Vídeo vertical para redes sociais",
-            "Versão para site ou YouTube",
-        ]),
-    ],
-    "Evento": [
-        ("Cobertura", [
-            "Registro dos momentos principais",
-            "Discursos e apresentações com áudio dedicado",
-            "Entrevistas e depoimentos",
-        ]),
-        ("Entregas", [
-            "Filme de 3 a 5 minutos",
-            "Vídeo institucional",
-            "Vídeo vertical para redes sociais",
-            "Versão para site ou YouTube",
-        ]),
-    ],
-    "Outro": [
-        ("Cobertura", [
-            "Registro dos momentos principais",
-            "Discursos e apresentações com áudio dedicado",
-        ]),
-        ("Entregas", [
-            "Filme editado",
-            "Vídeo vertical para redes sociais",
-        ]),
-    ],
-}
-
 TIPOS_EVENTO = ["Casamento", "15 anos", "Formatura", "Evento corporativo", "Evento", "Outro"]
 
 # Coleções que aparecem no formulário para cada tipo de evento

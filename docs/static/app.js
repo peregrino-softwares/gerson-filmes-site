@@ -138,65 +138,9 @@
     let mapa = {};
     try { mapa = JSON.parse(formulario.dataset.pacotes || '{}'); } catch { mapa = {}; }
 
-    const personalizado = 'personalizado';
-    const servicos = formulario.querySelector('#servicos-personalizados');
-    const servicosOpcoes = formulario.querySelector('#servicos-opcoes');
-    const servicosErro = formulario.querySelector('#servicos-erro');
-    const servicosContagem = formulario.querySelector('#servicos-contagem');
-    let catalogo = {};
-    try { catalogo = JSON.parse(formulario.dataset.servicos || '{}'); } catch { catalogo = {}; }
-
-    const selecionados = () => [...formulario.querySelectorAll('[name="servicos"]:checked')];
-    const atualizaContagem = () => {
-      const quantidade = selecionados().length;
-      if (servicosContagem) {
-        servicosContagem.textContent = quantidade === 1
-          ? '1 serviço selecionado'
-          : `${quantidade} serviços selecionados`;
-      }
-      if (quantidade && servicosErro) servicosErro.hidden = true;
-    };
-
-    let tipoRenderizado = '';
-    const atualizaServicos = () => {
-      if (!servicos || !servicosOpcoes || !tipo || !pacote) return;
-      const aberto = pacote.value === personalizado;
-      servicos.hidden = !aberto;
-      servicos.disabled = !aberto;
-      if (servicosErro) servicosErro.hidden = true;
-
-      if (tipoRenderizado !== tipo.value) {
-        tipoRenderizado = tipo.value;
-        servicosOpcoes.replaceChildren();
-        for (const [titulo, itens] of catalogo[tipo.value] || []) {
-          const grupo = document.createElement('fieldset');
-          grupo.className = 'servicos-grupo';
-          const legenda = document.createElement('legend');
-          legenda.textContent = titulo;
-          grupo.append(legenda);
-          for (const texto of itens) {
-            const rotulo = document.createElement('label');
-            const escolha = document.createElement('input');
-            escolha.type = 'checkbox';
-            escolha.name = 'servicos';
-            escolha.value = texto;
-            rotulo.append(escolha, document.createTextNode(texto));
-            grupo.append(rotulo);
-          }
-          servicosOpcoes.append(grupo);
-        }
-      }
-      atualizaContagem();
-    };
-
     const preenchePacotes = (manterEscolha) => {
       if (!tipo || !pacote) return;
-      const mantenhaPersonalizado = pacote.value === personalizado;
-      const escolhido = manterEscolha
-        ? (parametros.get('modo') === personalizado
-          ? personalizado
-          : (parametros.get('pacote') || pacote.dataset.escolhido || ''))
-        : (mantenhaPersonalizado ? personalizado : '');
+      const escolhido = manterEscolha ? (parametros.get('pacote') || pacote.dataset.escolhido || '') : '';
       const opcoes = mapa[tipo.value] || [];
       pacote.innerHTML = '';
 
@@ -204,18 +148,12 @@
       pacote.add(vazia);
       opcoes.forEach((nome) => pacote.add(new Option(nome, nome)));
 
-      if (servicos) pacote.add(new Option('Monte seu orçamento', personalizado));
-      if (escolhido && [...pacote.options].some((opcao) => opcao.value === escolhido)) {
-        pacote.value = escolhido;
-      }
-      pacote.disabled = opcoes.length === 0 && !servicos;
-      atualizaServicos();
+      if (escolhido && opcoes.includes(escolhido)) pacote.value = escolhido;
+      pacote.disabled = opcoes.length === 0;
     };
 
     preenchePacotes(true);
     tipo?.addEventListener('change', () => preenchePacotes(false));
-    pacote?.addEventListener('change', atualizaServicos);
-    servicosOpcoes?.addEventListener('change', atualizaContagem);
 
     const dataIndefinida = formulario.querySelector('#data-indefinida');
     const atualizaData = () => {
@@ -261,14 +199,6 @@
       // Campo-armadilha: se veio preenchido, foi robô — some sem enviar nada.
       if (formulario.elements.website?.value) return;
 
-      const querPersonalizar = pacote?.value === personalizado;
-      const escolhas = querPersonalizar ? selecionados() : [];
-      if (querPersonalizar && escolhas.length === 0) {
-        if (servicosErro) servicosErro.hidden = false;
-        servicosOpcoes?.querySelector('input')?.focus();
-        return;
-      }
-
       const rotulo = formulario.querySelector('.enviar span');
       if (rotulo) rotulo.textContent = 'Preparando a conversa…';
 
@@ -281,15 +211,11 @@
         tipo: dados.tipo,
         data: formatarData(dados.data),
         local: dados.local.trim(),
-        pacote: querPersonalizar ? 'Personalizado' : (dados.pacote || 'ainda não escolhida'),
+        pacote: dados.pacote || 'ainda não escolhida',
         mensagem: dados.mensagem?.trim() || 'não informado',
         conheceu: dados.conheceu || 'não informado',
       };
-      let texto = modelo.replace(/\{(\w+)\}/g, (campo, chave) => conteudo[chave] ?? campo);
-      if (querPersonalizar) {
-        texto += '\n\nServiços desejados:\n' + escolhas.map((escolha) => `• ${escolha.value}`).join('\n');
-        texto += `\nTempo de cobertura desejado: ${dados.duracao_cobertura || 'A combinar'}`;
-      }
+      const texto = modelo.replace(/\{(\w+)\}/g, (campo, chave) => conteudo[chave] ?? campo);
 
       // A mensagem fica na sessão do navegador até a pessoa abrir o WhatsApp,
       // sem incluir os dados em links internos ou no histórico do site.
