@@ -275,10 +275,7 @@ def orcamento():
         mensagem=dados["mensagem"] or "não informado",
         conheceu=dados["conheceu"] or "não informado",
     )
-    # A mensagem vai pela sessão, e não pela URL: assim o telefone do cliente
-    # não fica gravado no histórico do navegador nem em link compartilhado.
-    session["ultimo_contato"] = texto
-    return redirect(url_for("obrigado"))
+    return redirect(whatsapp_link(texto))
 
 
 @app.get("/obrigado")

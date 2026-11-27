@@ -76,7 +76,7 @@
            href="{{ url_for('setor', slug=s) }}"
            {% if slug is defined and slug == s %}aria-current="page"{% endif %}>{{ setores[s].nome }}</a>
         {% endfor %}
-        <a href="{{ url_for('home') }}#orcamento">Orçamento</a>
+        <a href="{{ url_for('home') }}#orcamento">Pacotes</a>
         <a href="{{ url_for('home') }}#duvidas">Dúvidas</a>
 
         <span class="menu-social">
@@ -113,7 +113,7 @@
       <a class="{% if setores[s].tema %}menu-movel-{{ setores[s].tema }}{% endif %}"
          href="{{ url_for('setor', slug=s) }}">{{ setores[s].nome }}</a>
       {% endfor %}
-      <a href="{{ url_for('home') }}#orcamento">Orçamento</a>
+      <a href="{{ url_for('home') }}#orcamento">Pacotes</a>
       <a href="{{ url_for('home') }}#duvidas">Dúvidas</a>
     </nav>
 
@@ -147,7 +147,7 @@
           {% for s in ordem_setores if s != 'eventos' %}
           <a href="{{ url_for('setor', slug=s) }}">{{ setores[s].nome }}</a>
           {% endfor %}
-          <a href="{{ url_for('home') }}#orcamento">Orçamento</a>
+          <a href="{{ url_for('home') }}#orcamento">Pacotes</a>
           <a href="{{ url_for('home') }}#duvidas">Dúvidas</a>
         </div>
         <div>

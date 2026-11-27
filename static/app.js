@@ -327,9 +327,6 @@
       // Campo-armadilha: se veio preenchido, foi robô — some sem enviar nada.
       if (formulario.elements.website?.value) return;
 
-      const rotulo = formulario.querySelector('.enviar span');
-      if (rotulo) rotulo.textContent = 'Preparando a conversa…';
-
       const dados = Object.fromEntries(new FormData(formulario).entries());
       let modelo = '';
       try { modelo = JSON.parse(formulario.dataset.modelo || '""'); } catch { modelo = ''; }
@@ -345,14 +342,7 @@
       };
       const texto = modelo.replace(/\{(\w+)\}/g, (campo, chave) => conteudo[chave] ?? campo);
 
-      // A mensagem fica na sessão do navegador até a pessoa abrir o WhatsApp,
-      // sem incluir os dados em links internos ou no histórico do site.
-      try {
-        sessionStorage.setItem('ultimo_contato', texto);
-        window.location.href = '/obrigado';
-      } catch {
-        window.location.href = `https://api.whatsapp.com/send?phone=${formulario.dataset.numero}&text=${encodeURIComponent(texto)}`;
-      }
+      window.location.href = `https://api.whatsapp.com/send?phone=${formulario.dataset.numero}&text=${encodeURIComponent(texto)}`;
     });
 
     formulario.querySelectorAll('[required]').forEach((campo) => {
