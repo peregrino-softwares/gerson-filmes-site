@@ -162,47 +162,58 @@
     </div>
   </section>
 
-  <section class="memoria" id="filme-casamento" aria-labelledby="filme-casamento-titulo">
-    <video class="memoria-video" muted loop playsinline preload="none" aria-hidden="true"
-           poster="/static/casamento-memoria.webp" data-src="/static/casamento-memoria.mp4"
-           data-src-mobile="/static/casamento-memoria-mobile.mp4"></video>
+  <!-- ────────────────────────────── os momentos ───────────────────────────── -->
+  <section class="momentos pad-g">
     <div class="shell">
-      <h2 class="memoria-titulo" id="filme-casamento-titulo">A vida passa, <em>o filme eterniza.</em></h2>
+      <div class="momentos-cabeca aparece">
+        <div>
+          <span class="rotulo">O que fica no filme</span>
+          <h2>A história inteira,<br>na ordem em que aconteceu.</h2>
+        </div>
+
+      </div>
+
+      <div class="momentos-grade">
+
+        <article class="momento aparece">
+          <span class="momento-num">01</span>
+          <h3>A preparação</h3>
+          <p>O quarto cheio, o vestido pendurado, as mãos tremendo no botão da camisa.</p>
+        </article>
+
+        <article class="momento aparece">
+          <span class="momento-num">02</span>
+          <h3>A espera</h3>
+          <p>Os minutos antes de entrar, quando ninguém sabe muito bem o que dizer.</p>
+        </article>
+
+        <article class="momento aparece">
+          <span class="momento-num">03</span>
+          <h3>Os votos</h3>
+          <p>Captados com microfone, do primeiro ao último. É a cena que mais se revê depois.</p>
+        </article>
+
+        <article class="momento aparece">
+          <span class="momento-num">04</span>
+          <h3>Os pais</h3>
+          <p>O abraço que acontece sem aviso e dura mais do que o combinado.</p>
+        </article>
+
+        <article class="momento aparece">
+          <span class="momento-num">05</span>
+          <h3>O brinde</h3>
+          <p>Os discursos, as piadas internas e a mesa inteira rindo junto.</p>
+        </article>
+
+        <article class="momento aparece">
+          <span class="momento-num">06</span>
+          <h3>A pista</h3>
+          <p>Quando o salto sai, a gravata afrouxa e a festa vira o que ela é de verdade.</p>
+        </article>
+
+      </div>
     </div>
   </section>
-  <script>
-    (() => {
-      const section = document.getElementById('filme-casamento');
-      const video = section.querySelector('video');
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      let visible = false;
-
-      function updatePlayback() {
-        if (visible && !reducedMotion.matches) {
-          if (!video.hasAttribute('src')) {
-            const mobile = window.matchMedia('(max-width: 767px)').matches;
-            video.src = mobile ? video.dataset.srcMobile : video.dataset.src;
-          }
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      }
-
-      reducedMotion.addEventListener('change', updatePlayback);
-
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(([entry]) => {
-          visible = entry.isIntersecting;
-          updatePlayback();
-        }, { threshold: .25 });
-        observer.observe(section);
-      } else {
-        visible = true;
-        updatePlayback();
-      }
-    })();
-  </script>
 
 
   <!-- ─────────────────────────────── orçamento ─────────────────────────────── -->
