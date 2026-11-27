@@ -123,6 +123,128 @@
       .toISOString().slice(0, 10);
   }
 
+  function configurarCalendario(campo) {
+    const abrir = document.querySelector('#calendario-abrir');
+    const dialogo = document.querySelector('#calendario-dialogo');
+    if (!campo || !abrir || typeof dialogo?.showModal !== 'function') return null;
+
+    const mesCampo = dialogo.querySelector('#calendario-mes');
+    const anoCampo = dialogo.querySelector('#calendario-ano');
+    const dias = dialogo.querySelector('[data-cal-dias]');
+    const anterior = dialogo.querySelector('[data-cal-anterior]');
+    const proximo = dialogo.querySelector('[data-cal-proximo]');
+    const [anoMin, mesMin] = campo.min.split('-').map(Number);
+    const nomesMes = new Intl.DateTimeFormat('pt-BR', { month: 'long', timeZone: 'UTC' });
+    const nomesDia = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'full', timeZone: 'UTC' });
+    let periodo;
+
+    anoCampo.min = String(anoMin);
+    for (let mes = 0; mes < 12; mes += 1) {
+      mesCampo.add(new Option(nomesMes.format(new Date(Date.UTC(anoMin, mes, 1))), String(mes)));
+    }
+
+    const atualizaBotao = () => {
+      const [ano, mes, dia] = campo.value.split('-');
+      abrir.querySelector('span').textContent = ano ? `${dia}/${mes}/${ano}` : 'Escolher data';
+      abrir.setAttribute('aria-label', ano ? `Data do evento: ${dia}/${mes}/${ano}` : 'Escolher data do evento');
+    };
+
+    const desenhar = () => {
+      const ano = periodo.getUTCFullYear();
+      const mes = periodo.getUTCMonth();
+      anoCampo.value = String(ano);
+      mesCampo.value = String(mes);
+      for (const opcao of mesCampo.options) {
+        opcao.disabled = ano === anoMin && Number(opcao.value) < mesMin - 1;
+      }
+      anterior.disabled = ano === anoMin && mes === mesMin - 1;
+      proximo.disabled = ano === 9999 && mes === 11;
+      dias.replaceChildren();
+
+      const total = new Date(Date.UTC(ano, mes + 1, 0)).getUTCDate();
+      for (let dia = 1; dia <= total; dia += 1) {
+        const data = new Date(Date.UTC(ano, mes, dia));
+        const iso = data.toISOString().slice(0, 10);
+        const botao = document.createElement('button');
+        botao.type = 'button';
+        botao.textContent = String(dia);
+        botao.dataset.dia = iso;
+        botao.setAttribute('aria-label', nomesDia.format(data));
+        botao.setAttribute('aria-pressed', String(iso === campo.value));
+        if (iso === campo.min) botao.setAttribute('aria-current', 'date');
+        botao.disabled = iso < campo.min;
+        botao.tabIndex = -1;
+        if (dia === 1) botao.style.gridColumnStart = String(periodo.getUTCDay() + 1);
+        dias.append(botao);
+      }
+      const entrada = dias.querySelector('[aria-pressed="true"]:not(:disabled)') || dias.querySelector('button:not(:disabled)');
+      if (entrada) entrada.tabIndex = 0;
+    };
+
+    const mover = (delta) => {
+      periodo = new Date(Date.UTC(periodo.getUTCFullYear(), periodo.getUTCMonth() + delta, 1));
+      desenhar();
+      if (delta < 0 && anterior.disabled) mesCampo.focus();
+      if (delta > 0 && proximo.disabled) mesCampo.focus();
+    };
+    anterior.addEventListener('click', () => mover(-1));
+    proximo.addEventListener('click', () => mover(1));
+    const escolherPeriodo = () => {
+      let ano = anoCampo.valueAsNumber;
+      if (!Number.isInteger(ano) || ano < anoMin || ano > 9999) ano = periodo.getUTCFullYear();
+      const mes = Math.max(Number(mesCampo.value), ano === anoMin ? mesMin - 1 : 0);
+      periodo = new Date(Date.UTC(ano, mes, 1));
+      desenhar();
+    };
+    mesCampo.addEventListener('change', escolherPeriodo);
+    anoCampo.addEventListener('change', escolherPeriodo);
+    anoCampo.addEventListener('keydown', (evento) => {
+      if (evento.key === 'Enter') {
+        evento.preventDefault();
+        escolherPeriodo();
+        dias.querySelector('[tabindex="0"]')?.focus();
+      }
+    });
+
+    dias.addEventListener('click', (evento) => {
+      const escolha = evento.target.closest('button[data-dia]');
+      if (!escolha || escolha.disabled) return;
+      campo.value = escolha.dataset.dia;
+      campo.dispatchEvent(new Event('change', { bubbles: true }));
+      dialogo.close();
+    });
+    dias.addEventListener('keydown', (evento) => {
+      const deslocamentos = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 };
+      const delta = deslocamentos[evento.key];
+      if (!delta) return;
+      evento.preventDefault();
+      const opcoes = [...dias.querySelectorAll('button:not(:disabled)')];
+      const atual = opcoes.indexOf(evento.target);
+      const proxima = opcoes[atual + delta];
+      if (!proxima) return;
+      evento.target.tabIndex = -1;
+      proxima.tabIndex = 0;
+      proxima.focus();
+    });
+
+    abrir.addEventListener('click', () => {
+      const base = campo.value && campo.value >= campo.min ? campo.value : campo.min;
+      const [ano, mes] = base.split('-').map(Number);
+      periodo = new Date(Date.UTC(ano, mes - 1, 1));
+      desenhar();
+      dialogo.showModal();
+      dias.querySelector('[tabindex="0"]')?.focus();
+    });
+    dialogo.querySelector('[data-cal-fechar]').addEventListener('click', () => dialogo.close());
+    dialogo.addEventListener('close', () => abrir.focus());
+    campo.addEventListener('change', atualizaBotao);
+    window.addEventListener('pageshow', atualizaBotao);
+    atualizaBotao();
+    campo.hidden = true;
+    abrir.hidden = false;
+    return abrir;
+  }
+
   const formulario = document.querySelector('.formulario[novalidate]');
 
   // As coleções oferecidas mudam conforme o tipo de evento: quem procura
@@ -155,10 +277,15 @@
     preenchePacotes(true);
     tipo?.addEventListener('change', () => preenchePacotes(false));
 
+    const botaoData = configurarCalendario(dataInput);
     const dataIndefinida = formulario.querySelector('#data-indefinida');
     const atualizaData = () => {
       if (!dataInput || !dataIndefinida) return;
       dataInput.disabled = dataIndefinida.checked;
+      if (botaoData) {
+        botaoData.disabled = dataIndefinida.checked;
+        botaoData.removeAttribute('aria-invalid');
+      }
       dataInput.required = !dataIndefinida.checked;
       formulario.querySelector('[data-data-obrigatoria]')?.toggleAttribute('hidden', dataIndefinida.checked);
       dataInput.closest('.campo')?.classList.remove('erro');
@@ -185,10 +312,11 @@
         const grupo = campo.closest('.campo');
         const invalido = !campo.value.trim() || !campo.checkValidity();
         grupo?.classList.toggle('erro', invalido);
-        campo.setAttribute('aria-invalid', String(invalido));
+        const controle = campo === dataInput && botaoData ? botaoData : campo;
+        controle.setAttribute('aria-invalid', String(invalido));
         const aviso = grupo?.querySelector('.campo-erro');
         if (aviso) aviso.hidden = !invalido;
-        if (invalido && !primeiro) primeiro = campo;
+        if (invalido && !primeiro) primeiro = controle;
       });
       if (primeiro) {
         primeiro.focus();
@@ -232,7 +360,8 @@
         if (!campo.value.trim() || !campo.checkValidity()) return;
         const grupo = campo.closest('.campo');
         grupo?.classList.remove('erro');
-        campo.removeAttribute('aria-invalid');
+        const controle = campo === dataInput && botaoData ? botaoData : campo;
+        controle.removeAttribute('aria-invalid');
         const aviso = grupo?.querySelector('.campo-erro');
         if (aviso) aviso.hidden = true;
       };

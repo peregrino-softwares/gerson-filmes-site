@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=1794608165">
+  <link rel="stylesheet" href="/static/style.css?v=1794608165-calendario">
 
   <!-- Sem esta marca nada fica escondido: se o JS falhar, o site aparece igual. -->
   <script>document.documentElement.classList.add('js');</script>
@@ -194,6 +194,35 @@
           <div class="campo">
             <label for="data">Data do evento <i data-data-obrigatoria>*</i></label>
             <input id="data" name="data" type="date" required aria-describedby="data-erro" value="">
+            <button class="calendario-abrir" id="calendario-abrir" type="button" hidden
+                    aria-haspopup="dialog" aria-controls="calendario-dialogo" aria-describedby="data-erro">
+              <span>Escolher data</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/>
+              </svg>
+            </button>
+            <dialog class="calendario-dialogo" id="calendario-dialogo" aria-labelledby="calendario-titulo">
+              <div class="calendario-topo">
+                <h2 id="calendario-titulo">Data do evento</h2>
+                <button type="button" class="calendario-icone" data-cal-fechar aria-label="Fechar calendário">×</button>
+              </div>
+              <div class="calendario-navegacao">
+                <button type="button" class="calendario-icone" data-cal-anterior aria-label="Mês anterior">‹</button>
+                <div class="calendario-periodo">
+                  <label for="calendario-mes">Mês</label>
+                  <select id="calendario-mes"></select>
+                </div>
+                <div class="calendario-periodo">
+                  <label for="calendario-ano">Ano</label>
+                  <input id="calendario-ano" type="number" inputmode="numeric" max="9999" step="1">
+                </div>
+                <button type="button" class="calendario-icone" data-cal-proximo aria-label="Próximo mês">›</button>
+              </div>
+              <div class="calendario-semana" aria-hidden="true">
+                <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+              </div>
+              <div class="calendario-dias" data-cal-dias role="group" aria-label="Dias do mês"></div>
+            </dialog>
             <label class="data-indefinida" for="data-indefinida">
               <input id="data-indefinida" name="data_indefinida" type="checkbox" value="1" >
               Ainda não definimos a data
@@ -213,7 +242,7 @@
           <div class="campo">
           <label for="mensagem">O que não pode faltar no seu filme de casamento?</label>
           <textarea id="mensagem" name="mensagem" rows="4"
-                    placeholder="Uma homenagem, uma pessoa especial, a música da entrada, o número de convidados. O que vier à cabeça."></textarea>
+                    placeholder="Uma homenagem, uma pessoa especial, um momento, tudo que fizer sentido pra vocês."></textarea>
         </div>
 
         <div class="campo">
@@ -235,7 +264,6 @@
           <span>Preparar mensagem</span>
           <i aria-hidden="true">→</i>
         </button>
-        <p class="formulario-nota">Campos com <i>*</i> são obrigatórios. Seus dados serão enviados quando você confirmar a mensagem no WhatsApp. <a href="/politica-de-privacidade">Política de Privacidade</a>.</p>
       </form>
     </div>
 
@@ -288,6 +316,6 @@
     </div>
   </footer>
 
-  <script src="/static/app.js?v=1794603492" defer></script>
+  <script src="/static/app.js?v=1794603492-calendario" defer></script>
 </body>
 </html>
