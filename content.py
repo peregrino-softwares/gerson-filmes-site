@@ -214,10 +214,7 @@ COLECOES = {'Casamento': {'titulo': 'Casamentos',
                                        {'rotulo': 'Making of noiva e noivo',
                                         'valor': 'Preparação dos dois registrada ao mesmo tempo'},
                                        {'rotulo': 'Drone na cerimônia',
-                                        'valor': 'Filmes aéreos cinematográficos durante a cerimônia.'}]}],
-               'comparacao': 'A quantidade de câmeras e a composição da equipe são informações '
-                             'diferentes. Os profissionais e os horários de início e encerramento '
-                             'são definidos na proposta.'},
+                                        'valor': 'Filmes aéreos cinematográficos durante a cerimônia.'}]}]},
  '15 anos': {'titulo': '15 anos',
              'nota': 'Atendemos Sete Lagoas, Belo Horizonte e região. O orçamento é enviado pelo '
                      'WhatsApp: ensaio em outra cidade e festas acima de quatro horas entram nessa '
