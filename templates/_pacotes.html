@@ -9,14 +9,14 @@
     <ul>
 {% for item in pacote.itens %}
 {% if item is mapping %}
-      <li class="item-detalhado"><strong>{{ item.rotulo }}</strong><span>{{ item.valor }}</span></li>
+      <li class="item-detalhado"><strong>{{ item.rotulo }}</strong>{% if item.valor %}<span>{{ item.valor }}</span>{% endif %}</li>
 {% else %}
       <li>{{ item }}</li>
 {% endif %}
 {% endfor %}
 {% if pacote.extras %}
 {% for item in pacote.extras %}
-      <li class="item-detalhado"><strong>{{ item.rotulo }}</strong><span>{{ item.valor }}</span></li>
+      <li class="item-detalhado"><strong>{{ item.rotulo }}</strong>{% if item.valor %}<span>{{ item.valor }}</span>{% endif %}</li>
 {% endfor %}
 {% endif %}
     </ul>
