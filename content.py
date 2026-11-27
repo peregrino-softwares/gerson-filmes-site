@@ -593,19 +593,16 @@ SERVICOS_PERSONALIZADOS = {
             "Making of do casal",
             "Cerimônia",
             "Recepção",
-            "Festa",
-            "Detalhes da decoração",
         ]),
         ("Serviços adicionais", [
             "Pré-wedding",
-            "Imagens de drone (sujeitas ao local e ao clima)",
-            "Captação dedicada de votos, discursos e homenagens",
+            "Filmes com drone",
+            "Teasers (vídeo curto)",
         ]),
         ("O que vocês querem receber", [
             "Filme de 15 a 25 minutos",
             "Filme de 30 a 45 minutos",
             "Cerimônia na íntegra",
-            "Teaser (vídeo curto)",
         ]),
     ],
     "15 anos": [
