@@ -5,7 +5,9 @@
       <h3>{{ pacote.nome }}</h3>
       <span class="pacote-num">{{ pacote.indice }}{% if pacote.selo %} · <b>{{ pacote.selo }}</b>{% endif %}</span>
     </div>
+{% if pacote.descricao or pacote.ideal %}
     <p class="pacote-ideal">{{ pacote.descricao or pacote.ideal }}</p>
+{% endif %}
     <ul>
 {% for item in pacote.itens %}
 {% if item is mapping %}
