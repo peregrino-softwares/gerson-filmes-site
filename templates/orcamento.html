@@ -10,7 +10,7 @@
 
     <div class="orcamento-intro aparece">
       <span class="rotulo">Falar com a gente</span>
-      <h1>Conte-nos o que você deseja registrar no seu grande dia.</h1>
+      <h1>Conte-nos o que você deseja registrar.</h1>
     </div>
 
     <div class="formulario-caixa aparece">
@@ -40,7 +40,7 @@
             <small class="campo-erro" id="tipo-erro" hidden>Selecione o tipo de evento.</small>
           </div>
           <div class="campo">
-            <label for="pacote">Opção de cobertura (opcional)</label>
+            <label for="pacote">Qual dos nossos pacotes melhor se encaixa no que vocês buscam?</label>
             <select id="pacote" name="pacote" data-escolhido="{{ pacote or '' }}">
               <option value="">Ainda não sei</option>
             </select>
@@ -68,7 +68,7 @@
         <details class="formulario-complemento">
           <summary>Adicionar detalhes (opcional)</summary>
           <div class="campo">
-          <label for="mensagem">O que não pode faltar nesse filme?</label>
+          <label for="mensagem">O que não pode faltar no seu filme de casamento?</label>
           <textarea id="mensagem" name="mensagem" rows="4"
                     placeholder="Uma homenagem, uma pessoa especial, a música da entrada, o número de convidados. O que vier à cabeça.">{{ enviado.mensagem if enviado else '' }}</textarea>
         </div>
