@@ -153,6 +153,8 @@ p { text-wrap: pretty; }
 .tema-rosa .pacote { border-left-color: rgba(226,166,181,.16); border-bottom-color: rgba(226,166,181,.16); }
 .tema-rosa .pacote ul { border-top-color: rgba(226,166,181,.16); }
 .tema-rosa .pacote-link { border-top-color: rgba(226,166,181,.16); }
+.tema-rosa .pacotes { align-items: stretch; }
+.tema-rosa .pacote-link { margin-top: auto; }
 
 /* O cartão de 15 anos na home ganha o fundo da própria paleta, para se
    separar dos vizinhos sem virar um bloco solto. */
