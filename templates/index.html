@@ -68,7 +68,9 @@
           <span class="filmo-num">{{ item.indice }}</span>
           <div>
             <h3>{{ item.titulo }}</h3>
+{% if item.chamada %}
             <p class="filmo-chamada">{{ item.chamada }}</p>
+{% endif %}
           </div>
           <p>{{ item.texto }}</p>
           <a class="filmo-link" href="{{ url_for('setor', slug=ordem_setores[loop.index0]) }}">

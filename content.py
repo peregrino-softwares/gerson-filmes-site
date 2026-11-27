@@ -74,7 +74,6 @@ ESPECIALIDADES = [
     {
         "indice": "01",
         "titulo": "Casamentos",
-        "chamada": "Quem casa não assiste ao próprio casamento.",
         "texto": "Daqui a 50 anos, tudo o que vocês viveram neste dia estará a apenas "
                  "um play de distância.",
         "pacote": "Casamento",
@@ -83,7 +82,6 @@ ESPECIALIDADES = [
     {
         "indice": "02",
         "titulo": "15 anos",
-        "chamada": "O ano em que ela escolhe quem quer ser.",
         "texto": "São meses de preparação para uma noite intensa de alegria e festa, com "
                  "ela no centro de tudo. Filmamos as duas: a menina que ensaiou a valsa "
                  "por semanas e a que tirou o salto na terceira música.",
