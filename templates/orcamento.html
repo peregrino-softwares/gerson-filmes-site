@@ -94,9 +94,7 @@
           </div>
         </div>
 
-        <details class="formulario-complemento">
-          <summary>Adicionar detalhes (opcional)</summary>
-          <div class="campo">
+        <div class="campo">
           <label for="mensagem">O que não pode faltar no seu filme de casamento?</label>
           <textarea id="mensagem" name="mensagem" rows="4"
                     placeholder="Uma homenagem, uma pessoa especial, um momento, tudo que fizer sentido pra vocês.">{{ enviado.mensagem if enviado else '' }}</textarea>
@@ -109,7 +107,6 @@
 {% for item in como_conheceu %}<option value="{{ item }}">{{ item }}</option>{% endfor %}
           </select>
         </div>
-        </details>
 
         <input type="hidden" name="origem" value="Site">
         <div class="armadilha" aria-hidden="true">
