@@ -194,8 +194,8 @@ COLECOES = {'Casamento': {'titulo': 'Casamentos',
                                        'valor': 'Escolhida para conduzir a narrativa'},
                                       {'rotulo': 'Prazo de entrega', 'valor': 'Em até 45 dias'}],
                             'destaque': True,
-                            'extras': [{'rotulo': 'Making of do casal',
-                                        'valor': 'Registro da preparação dos dois antes da '
+                            'extras': [{'rotulo': 'Making of da noiva',
+                                        'valor': 'Registro da preparação da noiva antes da '
                                                  'cerimônia'}]},
                            {'indice': '03',
                             'nome': 'Cinema',

@@ -58,11 +58,12 @@
           <span class="rotulo">O que filmamos</span>
           <h2 class="titulo">Cada história pede<br><em>uma linguagem.</em></h2>
         </div>
-        <p class="corpo">Casamentos, festas de 15 anos e eventos. Escolha o seu momento e conheça as opções de cobertura.</p>
+        <p class="corpo">Casamentos e festas de 15 anos. Escolha o seu momento e conheça as opções de cobertura.</p>
       </div>
 
       <div class="filmo-lista">
 {% for item in especialidades %}
+{% if ordem_setores[loop.index0] != 'eventos' %}
         <article class="filmo-item {{ item.tema }} aparece">
           <span class="filmo-num">{{ item.indice }}</span>
           <div>
@@ -74,6 +75,7 @@
             Ver a página <i aria-hidden="true">→</i>
           </a>
         </article>
+{% endif %}
 {% endfor %}
       </div>
     </div>
@@ -131,12 +133,11 @@
         </div>
         <div class="monte-orcamento">
           <a class="botao botao-claro" href="{{ url_for('orcamento', tipo='Casamento', modo='personalizado') }}">Monte seu orçamento</a>
-          <p>Escolha os serviços e peça sua proposta pelo WhatsApp.</p>
         </div>
       </div>
 
       <div class="abas aparece" role="tablist" aria-label="Tipo de evento">
-{% for chave in ordem_colecoes %}
+{% for chave in ordem_colecoes if chave != 'Evento' %}
         <button class="aba" type="button" role="tab" id="aba-{{ loop.index }}"
                 aria-controls="painel-{{ loop.index }}"
                 aria-selected="{{ 'true' if loop.first else 'false' }}"
@@ -147,7 +148,7 @@
 {% endfor %}
       </div>
 
-{% for chave in ordem_colecoes %}
+{% for chave in ordem_colecoes if chave != 'Evento' %}
 {% set grupo = colecoes[chave] %}
       <div class="painel {% if chave == '15 anos' %}tema-rosa{% endif %}" role="tabpanel"
            id="painel-{{ loop.index }}" aria-labelledby="aba-{{ loop.index }}"
