@@ -1,22 +1,23 @@
 <section class="casamento-guia" id="comparativo-casamento" aria-labelledby="titulo-comparativo">
   <h3 id="titulo-comparativo">Compare os pacotes</h3>
+  <p class="guia-leitura">Os serviços marcados como <strong>opcionais</strong> podem ser contratados à parte.</p>
   <table aria-labelledby="titulo-comparativo">
-    <thead><tr><th scope="col">O que está incluído</th>{% for pacote in grupo.pacotes %}<th scope="col">{{ pacote.nome }}</th>{% endfor %}</tr></thead>
+    <thead><tr><th scope="col">Item do pacote</th>{% for pacote in grupo.pacotes %}<th scope="col">{{ pacote.nome }}</th>{% endfor %}</tr></thead>
     <tbody>
       {% for item, essencial, legado, cinema in [
         ('Cobertura', 'Cerimônia', 'Cerimônia e recepção', 'Cerimônia integral, recepção e festa'),
         ('Horas de cobertura', '5 horas', '8 horas', 'Sem limite de horas'),
         ('Câmeras', '2', '4', '5'),
-        ('Making of', 'Opcional', 'Noiva', 'Noiva e noivo, simultaneamente'),
-        ('Drone', 'Opcional', 'Opcional', 'Drone na cerimônia'),
+        ('Making of (preparação)', 'Opcional', 'Só da noiva', 'Da noiva e do noivo ao mesmo tempo'),
+        ('Drone na cerimônia', 'Opcional', 'Opcional', 'Incluído'),
         ('Pré-wedding', 'Opcional', 'Opcional', 'Incluído'),
         ('Filme principal', '15 a 25 minutos', '30 a 45 minutos', 'Até 1 hora e 30 minutos'),
-        ('Teasers', '1 filme artístico', '2 filmes artísticos', '3 filmes artísticos'),
+        ('Teasers (filmes curtos)', '1 filme artístico', '2 filmes artísticos', '3 filmes artísticos'),
         ('Entrega do filme', 'Até 60 dias', 'Até 45 dias', 'Até 25 dias')
       ] %}
-      <tr><th scope="row">{{ item }}</th>{% for valor in (essencial, legado, cinema) %}<td>{{ valor }}</td>{% endfor %}</tr>
+      <tr><th scope="row">{{ item }}</th>{% for valor in (essencial, legado, cinema) %}<td><span class="guia-plano" aria-hidden="true">{{ grupo.pacotes[loop.index0].nome }}</span><span>{{ valor }}</span></td>{% endfor %}</tr>
       {% endfor %}
-      <tr><th scope="row">Áudio</th><td colspan="3">Captação profissional diretamente na mesa de som do evento.</td></tr>
+      <tr><th scope="row">Áudio</th><td colspan="3">Nos três pacotes: captação profissional diretamente na mesa de som do evento.</td></tr>
     </tbody>
   </table>
   <p class="pacotes-nota">Vocês recebem um link privado para assistir e baixar os filmes.</p>
@@ -25,9 +26,9 @@
   <h3 id="titulo-adicionais">Serviços adicionais</h3>
   <dl>
     <dt>Drone na cerimônia</dt><dd>Opcional no Essencial e no Legado. Já faz parte do Cinema.</dd>
-    <dt>Making of da noiva e do noivo</dt><dd>Registro simultâneo da preparação dos dois. Já incluído no Cinema.</dd>
+    <dt>Making of da noiva e do noivo</dt><dd>Essencial e Legado podem acrescentar a preparação simultânea dos dois. O Cinema já inclui esse registro.</dd>
     <dt>Making of somente da noiva</dt><dd>Pode ser acrescentado ao Essencial. Legado e Cinema já cobrem a preparação da noiva.</dd>
-    <dt>Cobertura da recepção e da festa</dt><dd>O Legado já cobre a recepção. O Cinema inclui a recepção e a festa.</dd>
+    <dt>Cobertura da recepção e da festa</dt><dd>No Essencial, vocês podem acrescentar recepção e festa. No Legado, a recepção já está incluída e a festa é opcional. O Cinema inclui ambas.</dd>
     <dt>Pré-wedding</dt><dd>Ensaio filmado dedicado ao casal. Opcional no Essencial e no Legado, já incluído no Cinema.</dd>
   </dl>
 </section>

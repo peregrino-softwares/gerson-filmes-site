@@ -1134,19 +1134,35 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
   .calendario-icone { min-width: 36px; }
 }
 
-.casamento-guia { margin-top: clamp(48px, 7vw, 96px); }
-.casamento-guia h3 { margin: 0 0 28px; font: 400 clamp(32px, 4vw, 52px)/1.08 var(--serif); }
+.casamento-guia {
+  margin-top: clamp(36px, 5vw, 72px);
+  padding: clamp(20px, 4vw, 54px);
+  background: var(--osso-2);
+  color: var(--tinta);
+}
+.casamento-guia + .casamento-guia { margin-top: 24px; background: var(--osso); }
+.casamento-guia h3 { margin: 0 0 22px; font: 400 clamp(32px, 4vw, 52px)/1.08 var(--serif); }
+.casamento-guia .guia-leitura { margin: -6px 0 24px; color: var(--cinza-esc); }
 .casamento-guia table { border-collapse: collapse; width: 100%; table-layout: fixed; }
-.casamento-guia :is(th, td, dt, dd) { text-align: left; padding: 16px 12px; border-bottom: 1px solid var(--linha); }
-.casamento-guia th:first-child, .casamento-guia dt { padding-left: 0; }
-.casamento-guia thead th { font-weight: 500; color: var(--argila-cl); border-top: 1px solid var(--linha); }
-.casamento-guia tbody th { font-weight: 500; }
-.casamento-guia :is(td, dd) { color: var(--areia); }
-.casamento-guia dl { margin: 0; display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; border-top: 1px solid var(--linha); }
+.casamento-guia :is(th, td, dt, dd) { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--linha-esc); }
+.casamento-guia thead { background: var(--areia); }
+.casamento-guia th, .casamento-guia dt { font-weight: 600; }
+.casamento-guia tbody tr:nth-child(even) { background: var(--osso); }
+.casamento-guia :is(td, dd, .pacotes-nota) { color: var(--cinza-esc); }
+.guia-plano { display: none; }
+.casamento-guia dl { margin: 0; display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; border-top: 1px solid var(--linha-esc); }
+.casamento-guia dt { padding-left: 0; }
 .casamento-guia dd { margin: 0; }
 @media (max-width: 640px) {
-  .casamento-guia :is(th, td) { font-size: 13px; line-height: 1.45; padding: 12px 4px; overflow-wrap: anywhere; }
+  .casamento-guia thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .casamento-guia :is(table, tbody, tr) { display: block; }
+  .casamento-guia tbody tr { padding: 14px 0; border-top: 1px solid var(--linha-esc); }
+  .casamento-guia tbody tr:nth-child(even) { background: transparent; }
+  .casamento-guia tbody th { display: block; padding: 0 0 5px; border: 0; color: var(--argila-txt); }
+  .casamento-guia td { display: grid; grid-template-columns: 5em 1fr; gap: 8px; padding: 4px 0; border: 0; font-size: 15px; line-height: 1.5; }
+  .casamento-guia td[colspan] { display: block; }
+  .guia-plano { display: inline; font-weight: 600; color: var(--tinta); }
   .casamento-guia dl { display: block; }
-  .casamento-guia dt { padding: 16px 0 4px; border-bottom: 0; }
+  .casamento-guia dt { padding: 16px 0 4px; border: 0; }
   .casamento-guia dd { padding: 0 0 16px; }
 }
