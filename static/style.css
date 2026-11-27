@@ -1088,19 +1088,14 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
 }
 
 /* Entrada para o orçamento personalizado e seleção de serviços. */
-.monte-orcamento {
-  margin: 0 0 24px;
-  padding: 16px 0;
-  border-block: 1px solid var(--linha);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  column-gap: 20px;
+.colecoes-cabeca:has(.monte-orcamento) { gap: 22px; }
+.monte-orcamento { display: grid; justify-items: start; gap: 10px; max-width: 290px; }
+.monte-orcamento .botao { min-height: 48px; justify-content: center; text-align: center; }
+.monte-orcamento p { margin: 0; color: var(--areia); font-size: .9375rem; line-height: 1.45; }
+@media (max-width: 680px) {
+  .monte-orcamento { max-width: none; }
+  .monte-orcamento .botao { width: 100%; }
 }
-.monte-orcamento p { margin: 0; color: var(--areia); font-size: .9375rem; }
-.monte-orcamento a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; font-size: .9375rem; }
-.monte-orcamento a span { color: var(--argila-cl); }
 .orcamento-personalizado {
   min-inline-size: 0;
   margin: 0;
