@@ -591,13 +591,14 @@ SERVICOS_PERSONALIZADOS = {
     "Casamento": [
         ("Momentos do dia", [
             "Making of do casal",
+            "Making of exclusivo da noiva",
             "Cerimônia",
             "Recepção",
         ]),
         ("Serviços adicionais", [
             "Pré-wedding",
             "Filmes com drone",
-            "Teasers (vídeo curto)",
+            "Teasers (vídeos curtos com os melhores momentos)",
         ]),
         ("O que vocês querem receber", [
             "Filme de 15 a 25 minutos",
