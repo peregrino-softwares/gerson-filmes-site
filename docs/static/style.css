@@ -1086,3 +1086,42 @@ html:not(.js) .aparece { opacity: 1; transform: none; }
     object-position: center;
   }
 }
+
+/* Entrada para o orçamento personalizado e seleção de serviços. */
+.monte-orcamento {
+  margin: 0 0 24px;
+  padding: 16px 0;
+  border-block: 1px solid var(--linha);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 20px;
+}
+.monte-orcamento p { margin: 0; color: var(--areia); font-size: .9375rem; }
+.monte-orcamento a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; font-size: .9375rem; }
+.monte-orcamento a span { color: var(--argila-cl); }
+.orcamento-personalizado {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 14px clamp(12px, 2vw, 20px) 18px;
+  border: 1px solid var(--linha-esc);
+}
+.orcamento-personalizado legend { padding: 0 8px; font-family: var(--serif); font-size: 1.6rem; line-height: 1.2; }
+.orcamento-personalizado p { margin: 0 0 14px; font-size: .9375rem; color: var(--cinza-esc); }
+.orcamento-personalizado .campo-erro { color: #7d2f1d; }
+.orcamento-personalizado .servicos-contagem { margin: 14px 0; }
+.servicos-grupo { min-inline-size: 0; border: 0; margin: 0 0 14px; padding: 0; }
+.servicos-grupo legend { padding: 0; margin-bottom: 6px; font: 500 .9375rem/1.4 var(--sans); color: var(--tinta); }
+.servicos-grupo label {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--linha-esc);
+  font-size: .9375rem;
+  line-height: 1.35;
+  cursor: pointer;
+}
+.servicos-grupo input { flex: none; width: 18px; height: 18px; margin: 0; accent-color: var(--argila-txt); }

@@ -586,6 +586,98 @@ FAQ = [
 # ---------------------------------------------------------------
 # 11. FORMULÁRIO
 # ---------------------------------------------------------------
+# Opções para montar uma cobertura personalizada. A proposta confirma a combinação.
+SERVICOS_PERSONALIZADOS = {
+    "Casamento": [
+        ("Momentos do dia", [
+            "Making of do casal",
+            "Cerimônia",
+            "Recepção",
+            "Festa",
+            "Detalhes da decoração",
+        ]),
+        ("Serviços adicionais", [
+            "Pré-wedding",
+            "Imagens de drone (sujeitas ao local e ao clima)",
+            "Captação dedicada de votos, discursos e homenagens",
+        ]),
+        ("O que vocês querem receber", [
+            "Filme de 15 a 25 minutos",
+            "Filme de 30 a 45 minutos",
+            "Cerimônia na íntegra",
+            "Teaser (vídeo curto)",
+        ]),
+    ],
+    "15 anos": [
+        ("Momentos do dia", [
+            "Making of",
+            "Entrada e valsa",
+            "Festa",
+            "Discursos e homenagens com áudio dedicado",
+        ]),
+        ("Serviços adicionais", [
+            "Ensaio filmado",
+            "Ensaio em duas locações",
+            "Imagens de drone (sujeitas ao local e ao clima)",
+        ]),
+        ("O que vocês querem receber", [
+            "Filme de 5 a 8 minutos",
+            "Filme de 10 a 15 minutos",
+            "Valsa e homenagens na íntegra",
+            "Vídeo vertical para redes sociais",
+        ]),
+    ],
+    "Formatura": [
+        ("Cobertura", [
+            "Registro dos momentos principais",
+            "Discursos e apresentações com áudio dedicado",
+            "Entrevistas e depoimentos",
+        ]),
+        ("Entregas", [
+            "Filme de 3 a 5 minutos",
+            "Vídeo institucional",
+            "Vídeo vertical para redes sociais",
+            "Versão para site ou YouTube",
+        ]),
+    ],
+    "Evento corporativo": [
+        ("Cobertura", [
+            "Registro dos momentos principais",
+            "Discursos e apresentações com áudio dedicado",
+            "Entrevistas e depoimentos",
+        ]),
+        ("Entregas", [
+            "Filme de 3 a 5 minutos",
+            "Vídeo institucional",
+            "Vídeo vertical para redes sociais",
+            "Versão para site ou YouTube",
+        ]),
+    ],
+    "Evento": [
+        ("Cobertura", [
+            "Registro dos momentos principais",
+            "Discursos e apresentações com áudio dedicado",
+            "Entrevistas e depoimentos",
+        ]),
+        ("Entregas", [
+            "Filme de 3 a 5 minutos",
+            "Vídeo institucional",
+            "Vídeo vertical para redes sociais",
+            "Versão para site ou YouTube",
+        ]),
+    ],
+    "Outro": [
+        ("Cobertura", [
+            "Registro dos momentos principais",
+            "Discursos e apresentações com áudio dedicado",
+        ]),
+        ("Entregas", [
+            "Filme editado",
+            "Vídeo vertical para redes sociais",
+        ]),
+    ],
+}
+
 TIPOS_EVENTO = ["Casamento", "15 anos", "Formatura", "Evento corporativo", "Evento", "Outro"]
 
 # Coleções que aparecem no formulário para cada tipo de evento

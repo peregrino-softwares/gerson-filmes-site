@@ -21,6 +21,7 @@
 
       <form class="formulario" novalidate
             data-pacotes='{{ pacotes_por_tipo | tojson }}'
+            data-servicos='{{ servicos_personalizados | tojson }}'
             data-modelo='{{ whatsapp_formulario | tojson }}'
             data-numero="{{ marca.whatsapp }}">
 
@@ -43,12 +44,30 @@
             <small class="campo-erro" id="tipo-erro" hidden>Selecione o tipo de evento.</small>
           </div>
           <div class="campo">
-            <label for="pacote">Opção de cobertura (opcional)</label>
+            <label for="pacote">Como você quer montar a cobertura?</label>
             <select id="pacote" name="pacote" data-escolhido="{{ pacote or '' }}">
               <option value="">Ainda não sei</option>
             </select>
           </div>
         </div>
+
+        <fieldset class="orcamento-personalizado" id="servicos-personalizados" disabled hidden
+                  aria-describedby="servicos-ajuda">
+          <legend>Monte seu orçamento</legend>
+          <p id="servicos-ajuda">Escolha os serviços que você quer incluir. A equipe prepara a proposta pelo WhatsApp.</p>
+          <div id="servicos-opcoes"></div>
+          <p class="campo-erro" id="servicos-erro" role="alert" hidden>Escolha pelo menos um serviço para continuar.</p>
+          <p class="servicos-contagem" id="servicos-contagem" aria-live="polite"></p>
+          <div class="campo">
+            <label for="duracao-cobertura">Tempo de cobertura desejado (opcional)</label>
+            <select id="duracao-cobertura" name="duracao_cobertura">
+              <option value="">A combinar</option>
+              <option>Até 5 horas</option>
+              <option>Até 8 horas</option>
+              <option>Dia inteiro</option>
+            </select>
+          </div>
+        </fieldset>
 
         <div class="dupla">
           <div class="campo">
