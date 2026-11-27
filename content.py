@@ -181,9 +181,9 @@ COLECOES = {'Casamento': {'titulo': 'Casamentos',
                             'itens': [{'rotulo': 'Cobertura',
                                        'valor': 'Cerimônia e recepção'},
                                       {'rotulo': 'Câmeras', 'valor': '4 câmeras'},
-                                      {'rotulo': 'Making of da noiva',
-                                       'valor': 'Registro da preparação da noiva antes da '
-                                                'cerimônia'},
+                                      {'rotulo': 'Making of da noiva e do noivo',
+                                       'valor': 'Registro dos preparativos do casal'},
+                                      {'rotulo': 'Drone', 'valor': 'Imagens aéreas'},
                                       {'rotulo': 'Teasers',
                                        'valor': '2 filmes artísticos'},
                                       {'rotulo': 'Horas de cobertura', 'valor': '8 horas'},
@@ -197,6 +197,7 @@ COLECOES = {'Casamento': {'titulo': 'Casamentos',
                             'descricao': 'Preparação do casal, imagens aéreas e cerimônia na '
                                          'íntegra.',
                             'botao': 'Quero conhecer o Cinema',
+                            'video': 'https://youtu.be/x5tjsdQ_JdI',
                             'itens': [{'rotulo': 'Cobertura',
                                        'valor': 'Cerimônia integral, recepção e festa'},
                                       {'rotulo': 'Câmeras', 'valor': '5 câmeras'},
@@ -261,7 +262,8 @@ COLECOES = {'Casamento': {'titulo': 'Casamentos',
 # Formas de pagamento. Fica na mesma seção das coleções: é a primeira pergunta
 # de quem acabou de escolher uma opção, e antes ela só existia lá embaixo, nas
 # dúvidas — muita gente fechava a página antes de chegar lá.
-PAGAMENTO = {'rotulo': 'Formas de pagamento',
+PAGAMENTO_CASAMENTO = "Entrada de 40% na assinatura do contrato. O saldo restante vence 7 dias antes do evento."
+PAGAMENTO = {'casamento': PAGAMENTO_CASAMENTO, 'rotulo': 'Formas de pagamento',
  'texto': 'Entrada de 40% para reservar a data e o restante até 7 dias antes do evento. As '
           'condições de pagamento ficam registradas na proposta e no contrato.'}
 
@@ -528,9 +530,7 @@ FAQ = [
     },
     {
         "pergunta": "Quantos profissionais participam e qual é o tempo de cobertura?",
-        "resposta": "A equipe e o tempo de cobertura variam conforme a opção contratada e "
-                    "a programação do evento. A proposta informa esses detalhes para vocês "
-                    "saberem exatamente o que está incluído.",
+        "resposta": "Cada pacote indica as horas de cobertura e o número de câmeras. Confirmamos o número de profissionais na proposta personalizada, conforme a programação do evento.",
     },
     {
         "pergunta": "Vocês levam equipamentos de reserva?",
@@ -556,8 +556,8 @@ FAQ = [
                     "serão informados na proposta.",
     },
     {
-        "pergunta": "Quais são as formas de pagamento?",
-        "resposta": PAGAMENTO["texto"],
+        "pergunta": "Como funciona o pagamento do casamento?",
+        "resposta": "Para casamentos: " + PAGAMENTO_CASAMENTO,
     },
 ]
 

@@ -75,7 +75,7 @@
 
 {% set tipo_pacote = setor.tipo %}
 {% include "_pacotes.html" %}
-      <p class="pagamento"><span>{{ pagamento.rotulo }}</span>{{ pagamento.texto }}</p>
+      <p class="pagamento"><span>{{ pagamento.rotulo }}</span>{{ pagamento.casamento if tipo_pacote == "Casamento" else pagamento.texto }}</p>
 
     </div>
   </section>

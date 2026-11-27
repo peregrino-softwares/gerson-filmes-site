@@ -22,6 +22,9 @@
 {% endfor %}
 {% endif %}
     </ul>
+{% if pacote.video %}
+    <a class="pacote-link" href="{{ pacote.video }}" target="_blank" rel="noopener noreferrer">Assistir a uma cerimônia completa <i aria-hidden="true">↗</i></a>
+{% endif %}
     <a class="pacote-link" href="{{ url_for('orcamento', tipo=tipo_pacote, pacote=pacote.nome) }}">
       {{ pacote.botao or 'Falar sobre esta opção' }} <i aria-hidden="true">→</i>
     </a>

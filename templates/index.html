@@ -165,7 +165,7 @@
 
         <p class="pagamento aparece">
           <span>{{ pagamento.rotulo }}</span>
-          {{ pagamento.texto }}
+          {{ pagamento.casamento if tipo_pacote == "Casamento" else pagamento.texto }}
         </p>
 
       </div>
